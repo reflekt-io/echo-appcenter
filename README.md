@@ -2,7 +2,7 @@
 
 Sebuah tempat baru yang akan menjadi tempat aman untuk merefleksikan diri, berkeluh kesah, memberikan semangat kepada sesama, dan menyuarakan harapan tanpa rasa takut.
 
-**Kini, dapat diakses melalui ponsel Anda.**
+**Kini, dapat diakses secara langsung melalui ponsel.**
 
 > Proyek ini dibuat untuk memenuhi tugas Proyek Akhir Semester (PAS)
 > pada mata kuliah Pemrograman Berbasis Platform (CSGE602022) yang
