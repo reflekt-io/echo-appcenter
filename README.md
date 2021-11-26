@@ -62,3 +62,4 @@ Berikut ini adalah sumber referensi yang digunakan dalam pembuatan proyek ini.
 - [Relax Color Scheme » Blue » SchemeColor.com](https://www.schemecolor.com/relax-color.php)
 - [Beautiful Free Images & Pictures | Unsplash](https://unsplash.com)
 - [How do I make an http request using cookies on flutter?](https://stackoverflow.com/questions/52241089/how-do-i-make-an-http-request-using-cookies-on-flutter)
+- [Using Github Actions With Flutter](https://petercoding.com/flutter/2021/07/18/using-github-actions-with-flutter/)
