@@ -210,11 +210,8 @@ class _JournalHomePageState extends State<AddJournalPage> {
                       backgroundColor: MaterialStateProperty.all(const Color(0xFF0B36A8)),
                     ),
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
-                      // Kalau validated, print ringkasan di console (untuk event)
-                      else {
-                        // ignore: avoid_print
-                        print(_typedSummary);
+                      if (_formKey.currentState!.validate()) {
+                        // How to submit?
                       }
                     },
                   ),
