@@ -127,10 +127,10 @@ class _JournalHomePageState extends State<JournalHomePage> {
 
     try {
       final response = await http.get(Uri.parse(url));
-      print(response.body);
+      //print(response.body);
       data = jsonDecode(response.body);
     } catch (error) {
-      print(error);
+      //print(error);
     }
 
     return data!;
