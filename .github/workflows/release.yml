@@ -5,8 +5,6 @@ name: Release
 on: 
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    tags:
-    - '*'
     branches: [main]
     paths-ignore:
       - '**/README.md'
@@ -47,3 +45,4 @@ jobs:
         with:
          artifacts: "build/app/outputs/apk/release/*.apk"
          token: ${{ secrets.GH_TOKEN }}
+         tag: "latest"
