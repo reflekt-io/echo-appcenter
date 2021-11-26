@@ -1,5 +1,8 @@
 # reflekt.io - echo
 
+[![Develop](https://github.com/reflekt-io/echo/actions/workflows/develop.yml/badge.svg)](https://github.com/reflekt-io/echo/actions/workflows/develop.yml)
+[![Release](https://github.com/reflekt-io/echo/actions/workflows/release.yml/badge.svg)](https://github.com/reflekt-io/echo/actions/workflows/release.yml)
+
 Sebuah tempat baru yang akan menjadi tempat aman untuk merefleksikan diri, berkeluh kesah, memberikan semangat kepada sesama, dan menyuarakan harapan tanpa rasa takut.
 
 **Kini, dapat diakses secara langsung melalui ponsel.**
