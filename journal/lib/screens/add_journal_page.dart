@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_question_mark
+// ignore_for_file: unnecessary_question_mark, prefer_final_fields, unused_field, unused_element
 
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
