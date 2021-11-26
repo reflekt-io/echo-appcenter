@@ -6,8 +6,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the develop branch
   push:
     branches: [develop]
-    paths-ignore:
-      - '**/README.md'
   pull_request:
     branches: [develop]
 
