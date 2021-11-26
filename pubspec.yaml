@@ -32,19 +32,19 @@ dependencies:
   
   # Modules here (path dependency)
   about_us:
-    path: ./about_us
+    path: about_us
   deteksi_depresi:
-    path: ./deteksi_depresi
+    path: deteksi_depresi
   ide_kegiatan:
-    path: ./ide_kegiatan
+    path: ide_kegiatan
   journal:
-    path: ./journal
+    path: journal
   kutipan:
-    path: ./kutipan
+    path: kutipan
   pojok_curhat:
-    path: ./pojok_curhat
+    path: pojok_curhat
   tembok_harapan:
-    path: ./tembok_harapan
+    path: tembok_harapan
 
 
   # The following adds the Cupertino Icons font to your application.
