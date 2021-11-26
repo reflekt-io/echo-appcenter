@@ -47,7 +47,7 @@ Berikut ini adalah daftar modul yang akan diimplementasikan beserta pengembang d
 Aplikasi ini hanya dapat diakses setelah user melakukan login. Apabila user belum memiliki akun, maka user dapat membuat akun melalui fitur _sign up_.
 
 User yang sudah melakukan login dapat:
-- Melakukan deteksi dini depresi
+- Melakukan Deteksi Dini Depresi
 - Melakukan Journaling
 - Menggunakan Pojok Curhat
 - Melihat dan membuat Kutipan Penyemangat
@@ -60,5 +60,5 @@ Berikut ini adalah sumber referensi yang digunakan dalam pembuatan proyek ini.
 - [Efektivitas Kuesioner PHQ-9 Sebagai Skrining Deteksi Dini Depresi](https://www.alomedika.com/efektivitas-kuesioner-ph-9-sebagai-skrining-deteksi-dini-depresi/)
 - [The Patient Health Questionnaire (PHQ-9) - Overview](https://img3.reoveme.com/m/7dcac06741830f40.pdf)
 - [Relax Color Scheme » Blue » SchemeColor.com](https://www.schemecolor.com/relax-color.php)
-- [Mark – Free Bootstrap 4 HTML5 Personal Portfolio Website Template - ThemeWagon](https://themewagon.com/themes/free-bootstrap-4-html-5-personal-portfolio-website-template-mark/)
 - [Beautiful Free Images & Pictures | Unsplash](https://unsplash.com)
+- [How do I make an http request using cookies on flutter?](https://stackoverflow.com/questions/52241089/how-do-i-make-an-http-request-using-cookies-on-flutter)
