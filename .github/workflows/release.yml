@@ -5,11 +5,11 @@ name: Release
 on: 
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
+    tags:
+    - '*'
     branches: [main]
     paths-ignore:
       - '**/README.md'
-    tags:
-      - '*'
   
   # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -38,9 +38,6 @@ jobs:
 
       - name: Analyze
         run: flutter analyze
-
-      - name: Run tests
-        run: flutter test --coverage
               
       - name: Build APK
         run: flutter build apk --split-per-abi
