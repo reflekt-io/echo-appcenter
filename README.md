@@ -66,3 +66,5 @@ Berikut ini adalah sumber referensi yang digunakan dalam pembuatan proyek ini.
 - [Beautiful Free Images & Pictures | Unsplash](https://unsplash.com)
 - [How do I make an http request using cookies on flutter?](https://stackoverflow.com/questions/52241089/how-do-i-make-an-http-request-using-cookies-on-flutter)
 - [Using Github Actions With Flutter](https://petercoding.com/flutter/2021/07/18/using-github-actions-with-flutter/)
+- [Flutter Action](https://github.com/subosito/flutter-action)
+- [GitHub Release Action](https://github.com/ncipollo/release-action)
