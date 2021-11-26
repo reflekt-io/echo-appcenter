@@ -1,4 +1,4 @@
-package com.reflekt-io.echo
+package com.reflekt_io.echo
 
 import io.flutter.embedding.android.FlutterActivity
 
