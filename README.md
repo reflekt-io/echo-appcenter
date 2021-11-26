@@ -13,7 +13,7 @@ Sebuah tempat baru yang akan menjadi tempat aman untuk merefleksikan diri, berke
 > pada Semester Gasal, Tahun Ajaran 2021/2022.
 
 ## 📱 Aplikasi 📱
-TBA.
+Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diunduh melalui bagian [_releases_](https://github.com/reflekt-io/echo/releases).
 
 ## 👨‍💻 Pengembang Aplikasi 👩‍💻
 Proyek ini dibuat oleh kelompok C04 yang beranggotakan sebagai berikut.
@@ -47,9 +47,9 @@ Berikut ini adalah daftar modul yang akan diimplementasikan beserta pengembang d
 - [About Us](https://github.com/reflekt-io/echo/tree/main/about_us) - [Muhammad Bintang Azriel Aditya Wardhana](https://github.com/bintangazriel)
 
 ## 👥 Persona 👥
-Aplikasi ini hanya dapat diakses setelah user melakukan login. Apabila user belum memiliki akun, maka user dapat membuat akun melalui fitur _sign up_.
+Aplikasi ini hanya dapat diakses setelah pengguna melakukan _login_. Apabila pengguna belum memiliki akun, maka pengguna dapat membuat akun melalui fitur _sign up_.
 
-User yang sudah melakukan login dapat:
+Pengguna yang sudah melakukan login dapat:
 - Melakukan Deteksi Dini Depresi
 - Melakukan Journaling
 - Menggunakan Pojok Curhat
