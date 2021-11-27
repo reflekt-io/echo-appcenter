@@ -17,15 +17,11 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
-
-      - name: Get current date
-        id: date
-        run: echo "::set-output name=date::$(TZ='Asia/Jakarta' date +'%A %d-%m-%Y %T WIB')"
       
       - name: Get version from pubspec.yaml
         id: version
         run: echo "::set-output name=version::$(grep "version:" pubspec.yaml | cut -c10-)"
-        
+
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
@@ -45,6 +41,10 @@ jobs:
               
       - name: Build APK
         run: flutter build apk --split-per-abi
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(TZ='Asia/Jakarta' date +'%A %d-%m-%Y %T WIB')"
       
       - name: Release APK
         uses: ncipollo/release-action@v1
