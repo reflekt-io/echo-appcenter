@@ -41,6 +41,7 @@ jobs:
       - name: Release APK
         uses: ncipollo/release-action@v1
         with:
-         artifacts: "build/app/outputs/flutter-apk/*.apk"
-         token: ${{ secrets.GH_TOKEN }}
-         tag: "latest"
+          allowUpdates: true
+          artifacts: "build/app/outputs/flutter-apk/*.apk"
+          token: ${{ secrets.GH_TOKEN }}
+          tag: "latest"
