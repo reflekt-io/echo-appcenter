@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Ntar ada lah ya',
+              'Ntar ada lah ya :P',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
