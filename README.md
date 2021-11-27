@@ -13,7 +13,7 @@ Sebuah tempat baru yang akan menjadi tempat aman untuk merefleksikan diri, berke
 > pada Semester Gasal, Tahun Ajaran 2021/2022.
 
 ## 📱 Aplikasi 📱
-Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diunduh melalui bagian [_releases_](https://github.com/reflekt-io/echo/releases).
+Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diunduh di bagian [_releases_](https://github.com/reflekt-io/echo/releases).
 
 ## 👨‍💻 Pengembang Aplikasi 👩‍💻
 Proyek ini dibuat oleh kelompok C04 yang beranggotakan sebagai berikut.
