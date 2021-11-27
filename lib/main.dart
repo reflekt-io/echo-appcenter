@@ -39,14 +39,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'reflekt.io',
-      theme: ThemeData(
-        primarySwatch: MaterialColor(0xFF24262A, themeColor),
-      ),
-      // home: (ke login screen intinya)
-      home: const HomePage(),
-      navigatorObservers: [routeObserver],
-      onGenerateRoute: (RouteSettings settings) {
+        title: 'reflekt.io',
+        theme: ThemeData(
+          primarySwatch: MaterialColor(0xFF24262A, themeColor),
+        ),
+        // home: (ke login screen intinya)
+        home: const HomePage(),
+        navigatorObservers: [routeObserver],
+        onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case HomePage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => const HomePage());
@@ -54,8 +54,17 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => const JournalHomePage());
             case AddJournalPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => const AddJournalPage());
+            default:
+              return MaterialPageRoute(
+                builder: (_) {
+                  return const Scaffold(
+                    body: Center(
+                      child: Text('Page not found :('),
+                    ),
+                  );
+                },
+              );
           }
-      }
-    );
+        });
   }
 }
