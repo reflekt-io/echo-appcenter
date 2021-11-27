@@ -43,5 +43,7 @@ jobs:
         with:
           allowUpdates: true
           artifacts: "build/app/outputs/flutter-apk/*.apk"
+          commit: main
+          removeArtifacts: true
           token: ${{ secrets.GH_TOKEN }}
           tag: "latest"
