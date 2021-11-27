@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:echo/common/utils.dart';
+import 'package:echo/screens/home_page.dart';
 import 'package:journal/dummy_data.dart';
 import 'package:journal/models/journal.dart';
 import 'package:journal/models/journal_json.dart';
@@ -69,6 +70,13 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
               ),
             ),
             ListTile(
+              title: const Text('Halaman Utama'),
+              onTap: () {
+                // Go to Halaman Utama screen
+                Navigator.pushNamed(context, HomePage.ROUTE_NAME);
+              },
+            ),
+            ListTile(
               title: const Text('Riwayat Jurnal'),
               onTap: () {
                 // Go to Riwayat Jurnal screen
@@ -84,17 +92,11 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
             ),
             const Spacer(),
             const Divider(),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: ListTile(
-                leading: const Icon(
-                  Icons.person,
-                  color: Colors.black,
-                  size: 25,
-                ),
-                onTap: () {},
-                title: const Text('Akun'),
-              ),
+            ListTile(
+              title: const Text('Log Out'),
+              onTap: () {
+                // Log Out (delete cookie) and return to login screen
+              },
             ),
           ],
         ),

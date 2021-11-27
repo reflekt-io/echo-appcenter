@@ -61,3 +61,4 @@ Berikut ini adalah sumber referensi yang digunakan dalam pembuatan proyek ini.
 - [Using Github Actions With Flutter](https://petercoding.com/flutter/2021/07/18/using-github-actions-with-flutter/)
 - [Flutter Action](https://github.com/subosito/flutter-action)
 - [GitHub Release Action](https://github.com/ncipollo/release-action)
+- [How to handle screen transitions in Flutter - Tetsuhiro Ueda](https://medium.com/@najeira/how-to-handle-screen-transitions-in-flutter-b39dcb2675f)
