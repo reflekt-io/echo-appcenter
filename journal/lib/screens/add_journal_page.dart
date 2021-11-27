@@ -1,19 +1,12 @@
-// ignore_for_file: unnecessary_question_mark, prefer_final_fields, unused_field, unused_element
+// ignore_for_file: unnecessary_question_mark, prefer_final_fields, unused_field, unused_element, constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:journal/models/option.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 class AddJournalPage extends StatefulWidget {
   const AddJournalPage({Key? key}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+  static const ROUTE_NAME = '/add-journal';
 
   @override
   State<AddJournalPage> createState() => _JournalHomePageState();
@@ -22,57 +15,57 @@ class AddJournalPage extends StatefulWidget {
 class _JournalHomePageState extends State<AddJournalPage> {
   final _formKey = GlobalKey<FormState>();
   final _anxietyScale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  final Map _feelingList = {
-    'antusias': 'Antusias',
-    'gembira': 'Gembira',
-    'takjub': 'Takjub',
-    'semangat': 'Semangat',
-    'bangga': 'Bangga',
-    'penuh_cinta': 'Penuh Cinta',
-    'santai': 'Santai',
-    'tenang': 'Tenang',
-    'puas': 'Puas',
-    'lega': 'Lega',
-    'marah': 'Marah',
-    'takut': 'Takut',
-    'stres': 'Stres',
-    'waspada': 'Waspada',
-    'kewalahan': 'Kewalahan',
-    'kesal': 'Kesal',
-    'malu': 'Malu',
-    'cemas': 'Cemas',
-    'lesu': 'Lesu',
-    'sedih': 'Sedih',
-    'duka': 'Duka',
-    'bosan': 'Bosan',
-    'kesepian': 'Kesepian',
-    'bingung': 'Bingung',
-  };
-  final Map _factorList = {
-    'keluarga': 'Keluarga',
-    'pekerjaan': 'Pekerjaan',
-    'teman': 'Teman',
-    'percintaan': 'Percintaan',
-    'kesehatan': 'Kesehatan',
-    'pendidikan': 'Pendidikan',
-    'tidur': 'Tidur',
-    'perjalanan': 'Perjalanan',
-    'bersantai': 'Bersantai',
-    'makanan': 'Makanan',
-    'olahraga': 'Olahraga',
-    'seni': 'Seni',
-    'hobi': 'Hobi',
-    'cuaca': 'Cuaca',
-    'belanja': 'Belanja',
-    'hiburan': 'Hiburan',
-    'keuangan': 'Keuangan',
-    'ibadah': 'Ibadah',
-    'refleksi_diri': 'Refleksi Diri',
-  };
+  final List<Option> _feelingList = [
+    Option(key: 'antusias', value: 'Antusias'),
+    Option(key: 'gembira', value: 'Gembira'),
+    Option(key: 'takjub', value: 'Takjub'),
+    Option(key: 'semangat', value: 'Semangat'),
+    Option(key: 'bangga', value: 'Bangga'),
+    Option(key: 'penuh_cinta', value: 'Penuh Cinta'),
+    Option(key: 'santai', value: 'Santai'),
+    Option(key: 'tenang', value: 'Tenang'),
+    Option(key: 'puas', value: 'Puas'),
+    Option(key: 'lega', value: 'Lega'),
+    Option(key: 'marah', value: 'Marah'),
+    Option(key: 'takut', value: 'Takut'),
+    Option(key: 'stres', value: 'Stres'),
+    Option(key: 'waspada', value: 'Waspada'),
+    Option(key: 'kewalahan', value: 'Kewalahan'),
+    Option(key: 'kesal', value: 'Kesal'),
+    Option(key: 'malu', value: 'Malu'),
+    Option(key: 'cemas', value: 'Cemas'),
+    Option(key: 'lesu', value: 'Lesu'),
+    Option(key: 'sedih', value: 'Sedih'),
+    Option(key: 'duka', value: 'Duka'),
+    Option(key: 'bosan', value: 'Bosan'),
+    Option(key: 'kesepian', value: 'Kesepian'),
+    Option(key: 'bingung', value: 'Bingung'),
+  ];
+  final List<Option> _factorList = [
+    Option(key: 'keluarga', value: 'Keluarga'),
+    Option(key: 'pekerjaan', value: 'Pekerjaan'),
+    Option(key: 'teman', value: 'Teman'),
+    Option(key: 'percintaan', value: 'Percintaan'),
+    Option(key: 'kesehatan', value: 'Kesehatan'),
+    Option(key: 'pendidikan', value: 'Pendidikan'),
+    Option(key: 'tidur', value: 'Tidur'),
+    Option(key: 'perjalanan', value: 'Perjalanan'),
+    Option(key: 'bersantai', value: 'Bersantai'),
+    Option(key: 'makanan', value: 'Makanan'),
+    Option(key: 'olahraga', value: 'Olahraga'),
+    Option(key: 'seni', value: 'Seni'),
+    Option(key: 'hobi', value: 'Hobi'),
+    Option(key: 'cuaca', value: 'Cuaca'),
+    Option(key: 'belanja', value: 'Belanja'),
+    Option(key: 'hiburan', value: 'Hiburan'),
+    Option(key: 'keuangan', value: 'Keuangan'),
+    Option(key: 'ibadah', value: 'Ibadah'),
+    Option(key: 'refleksi_diri', value: 'Refleksi Diri'),
+  ];
   // Saved variables to be submitted
   int _currentSelectedAnxietyRate = 0;
-  List<MapEntry<String, String>> _selectedFeelings = [];
-  List<MapEntry<String, String>> _selectedFactors = [];
+  List _selectedFeelings = [];
+  List _selectedFactors = [];
   String _typedSummary = "";
 
   @override
@@ -105,18 +98,19 @@ class _JournalHomePageState extends State<AddJournalPage> {
                   child: MultiSelectDialogField(
                     buttonText: const Text('Perasaan apa saja yang sedang kamu rasakan?'),
                     title: const Text('Perasaan'),
-                    items: _feelingList.entries
-                        .map((MapEntry e) => MultiSelectItem<dynamic?>(e, e.value))
+                    items: _feelingList
+                        .map((option) => MultiSelectItem<Option?>(option, option.value))
                         .toList(),
                     listType: MultiSelectListType.CHIP,
                     onConfirm: (values) {
-                      // TODO: Another exception was thrown
-                      // Expected a value of type 'MapEntry<String, String>', but got one of type 'MapEntry<dynamic, dynamic>'
                       setState(() {
-                        for (var element in values) {
-                          _selectedFeelings.add(element as MapEntry<String, String>);
-                        }
+                        _selectedFeelings = values;
                       });
+                    },
+                    validator: (values) {
+                      return (values == null || values.isEmpty)
+                          ? 'Perasaan tidak boleh kosong.'
+                          : null;
                     },
                   ),
                 ),
@@ -125,18 +119,19 @@ class _JournalHomePageState extends State<AddJournalPage> {
                   child: MultiSelectDialogField(
                     buttonText: const Text('Dari mana datangnya perasaan tersebut?'),
                     title: const Text('Faktor'),
-                    items: _factorList.entries
-                        .map((MapEntry e) => MultiSelectItem<dynamic?>(e, e.value))
+                    items: _factorList
+                        .map((option) => MultiSelectItem<Option?>(option, option.value))
                         .toList(),
                     listType: MultiSelectListType.CHIP,
                     onConfirm: (values) {
-                      // TODO: Another exception was thrown
-                      // Expected a value of type 'MapEntry<String, String>', but got one of type 'MapEntry<dynamic, dynamic>'
                       setState(() {
-                        for (var element in values) {
-                          _selectedFactors.add(element as MapEntry<String, String>);
-                        }
+                        _selectedFactors = values;
                       });
+                    },
+                    validator: (values) {
+                      return (values == null || values.isEmpty)
+                          ? 'Faktor perasaan tidak boleh kosong.'
+                          : null;
                     },
                   ),
                 ),
