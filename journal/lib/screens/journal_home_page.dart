@@ -1,6 +1,9 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:echo/common/utils.dart';
 import 'package:journal/dummy_data.dart';
 import 'package:journal/models/journal.dart';
 import 'package:journal/models/journal_json.dart';
@@ -10,14 +13,32 @@ import 'package:journal/widgets/journal_card.dart';
 // Jaga-jaga nanti untuk update data, makanya pakai stateful dulu (?)
 class JournalHomePage extends StatefulWidget {
   const JournalHomePage({Key? key}) : super(key: key);
+  static const ROUTE_NAME = '/journal';
 
   @override
   State<JournalHomePage> createState() => _JournalHomePageState();
 }
 
-class _JournalHomePageState extends State<JournalHomePage> {
+class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
   List<Journal> dummyJournal = DUMMY_CATEGORIES.fields;
   // List<Journal> dummyJournal = [];
+
+  @override
+  void initState() {
+    //Get journals by calling fetchJournal()
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
+  void didPopNext() {
+    //Get journals by calling fetchJournal()
+  }  
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +79,7 @@ class _JournalHomePageState extends State<JournalHomePage> {
               title: const Text('Jurnal Baru'),
               onTap: () {
                 // Go to Jurnal Baru page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AddJournalPage(),
-                  ),
-                );
+                Navigator.pushNamed(context, AddJournalPage.ROUTE_NAME);
               },
             ),
             const Spacer(),
@@ -118,6 +134,12 @@ class _JournalHomePageState extends State<JournalHomePage> {
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    super.dispose();
   }
 
   Future<JournalJson> fetchJournal() async {
