@@ -15,6 +15,9 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(TZ='Asia/Jakarta' date +'%A %d-%m-%Y %T WIB')"
@@ -22,10 +25,7 @@ jobs:
       - name: Get version from pubspec.yaml
         id: version
         run: echo "::set-output name=version::$(grep "version:" pubspec.yaml | cut -c10-)"
-
-      - name: Checkout the code
-        uses: actions/checkout@v2
-
+        
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
