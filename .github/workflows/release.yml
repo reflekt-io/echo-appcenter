@@ -15,6 +15,10 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
       - name: Checkout the code
         uses: actions/checkout@v2
 
@@ -46,4 +50,4 @@ jobs:
           commit: main
           removeArtifacts: true
           token: ${{ secrets.GH_TOKEN }}
-          tag: "latest"
+          tag: ${{ steps.date.outputs.date }}
