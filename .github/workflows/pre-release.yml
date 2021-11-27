@@ -37,3 +37,12 @@ jobs:
               
       - name: Build APK
         run: flutter build apk --split-per-abi
+      
+      - name: Pre-release APK
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: "build/app/outputs/flutter-apk/*.apk"
+          prerelease: true
+          token: ${{ secrets.GH_TOKEN }}
+          tag: "latest"
