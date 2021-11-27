@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
               title: const Text('Riwayat Jurnal'),
               onTap: () {
                 // Go to Riwayat Jurnal screen
-                Navigator.pushNamed(context, JournalHomePage.ROUTE_NAME);
+                Navigator.pushReplacementNamed(context, JournalHomePage.ROUTE_NAME);
               },
             ),
             ListTile(

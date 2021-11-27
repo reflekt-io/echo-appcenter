@@ -73,7 +73,7 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
               title: const Text('Halaman Utama'),
               onTap: () {
                 // Go to Halaman Utama screen
-                Navigator.pushNamed(context, HomePage.ROUTE_NAME);
+                Navigator.pushReplacementNamed(context, HomePage.ROUTE_NAME);
               },
             ),
             ListTile(

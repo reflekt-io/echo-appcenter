@@ -48,6 +48,8 @@ class MyApp extends StatelessWidget {
       navigatorObservers: [routeObserver],
       onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
+            case HomePage.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => const HomePage());
             case JournalHomePage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => const JournalHomePage());
             case AddJournalPage.ROUTE_NAME:
