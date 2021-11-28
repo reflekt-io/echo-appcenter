@@ -76,19 +76,24 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
                 Navigator.pushReplacementNamed(context, HomePage.ROUTE_NAME);
               },
             ),
-            ListTile(
-              title: const Text('Riwayat Jurnal'),
-              onTap: () {
-                // Go to Riwayat Jurnal screen
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Jurnal Baru'),
-              onTap: () {
-                // Go to Jurnal Baru page
-                Navigator.pushNamed(context, AddJournalPage.ROUTE_NAME);
-              },
+            ExpansionTile(
+              title: const Text("Jurnal"),
+              children: <Widget>[
+                ListTile(
+                  title: const Text('Riwayat Jurnal'),
+                  onTap: () {
+                    // Go to Riwayat Jurnal screen
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  title: const Text('Jurnal Baru'),
+                  onTap: () {
+                    // Go to Jurnal Baru page
+                    Navigator.pushNamed(context, AddJournalPage.ROUTE_NAME);
+                  },
+                ),
+              ],
             ),
             const Spacer(),
             const Divider(),
