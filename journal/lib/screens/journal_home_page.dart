@@ -69,39 +69,126 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
                 ),
               ),
             ),
-            ListTile(
-              title: const Text('Halaman Utama'),
-              onTap: () {
-                // Go to Halaman Utama screen
-                Navigator.pushReplacementNamed(context, HomePage.ROUTE_NAME);
-              },
-            ),
-            ExpansionTile(
-              title: const Text("Jurnal"),
-              children: <Widget>[
-                ListTile(
-                  title: const Text('Riwayat Jurnal'),
-                  onTap: () {
-                    // Go to Riwayat Jurnal screen
-                    Navigator.pop(context);
-                  },
-                ),
-                ListTile(
-                  title: const Text('Jurnal Baru'),
-                  onTap: () {
-                    // Go to Jurnal Baru page
-                    Navigator.pushNamed(context, AddJournalPage.ROUTE_NAME);
-                  },
-                ),
-              ],
-            ),
-            const Spacer(),
-            const Divider(),
-            ListTile(
-              title: const Text('Log Out'),
-              onTap: () {
-                // Log Out (delete cookie) and return to login screen
-              },
+            Expanded(
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                children: <Widget>[
+                  ListTile(
+                    title: const Text('Halaman Utama'),
+                    onTap: () {
+                      // Go to Halaman Utama screen
+                      Navigator.pushReplacementNamed(context, HomePage.ROUTE_NAME);
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Deteksi Dini Depresi'),
+                    onTap: () {
+                      // Go to deteksi screen
+                    },
+                  ),
+                  ExpansionTile(
+                    title: const Text("Kutipan Penyemangat"),
+                    children: <Widget>[
+                      ListTile(
+                        title: const Text('Lihat Kutipan Penyemangat'),
+                        onTap: () {
+                          // Go to KutipanHome screen
+                        },
+                      ),
+                      ListTile(
+                        title: const Text('Kutipan Penyemangat Baru'),
+                        onTap: () {
+                          // Go to Kutipan Baru page
+                        },
+                      ),
+                    ],
+                  ),
+                  ExpansionTile(
+                    title: const Text("Jurnal"),
+                    children: <Widget>[
+                      ListTile(
+                        title: const Text('Riwayat Jurnal'),
+                        onTap: () {
+                          // Go to Riwayat Jurnal screen
+                          Navigator.pop(context);
+                        },
+                      ),
+                      ListTile(
+                        title: const Text('Jurnal Baru'),
+                        onTap: () {
+                          // Go to Jurnal Baru page
+                          Navigator.pushNamed(
+                              context, AddJournalPage.ROUTE_NAME);
+                        },
+                      ),
+                    ],
+                  ),
+                  ExpansionTile(
+                    title: const Text("Ide Kegiatan"),
+                    children: <Widget>[
+                      ListTile(
+                        title: const Text('Lihat Ide Kegiatan'),
+                        onTap: () {
+                          // Go to the page
+                        },
+                      ),
+                      ListTile(
+                        title: const Text('Ide Kegiatan Baru'),
+                        onTap: () {
+                          // Go to the page
+                        },
+                      ),
+                    ],
+                  ),
+                  ExpansionTile(
+                    title: const Text("Pojok Curhat"),
+                    children: <Widget>[
+                      ListTile(
+                        title: const Text('Riwayat Kartu Curhat'),
+                        onTap: () {
+                          // Go to the page
+                        },
+                      ),
+                      ListTile(
+                        title: const Text('Kartu Curhat Baru'),
+                        onTap: () {
+                          // Go to the page
+                        },
+                      ),
+                    ],
+                  ),
+                  ExpansionTile(
+                    title: const Text("Tembok Harapan"),
+                    children: <Widget>[
+                      ListTile(
+                        title: const Text('Lihat Tembok Harapan'),
+                        onTap: () {
+                          // Go to the page
+                        },
+                      ),
+                      ListTile(
+                        title: const Text('Harapan Baru'),
+                        onTap: () {
+                          // Go to the page
+                        },
+                      ),
+                    ],
+                  ),
+                  ListTile(
+                    title: const Text('Tentang Kami'),
+                    onTap: () {
+                      // Go to About Us
+                    },
+                  ),
+                  const Divider(),
+                  ListTile(
+                    title: const Text('Log Out'),
+                    onTap: () {
+                      // Log Out (delete cookie) and return to login screen
+                    },
+                  ),
+                ],
+              ),
             ),
           ],
         ),
