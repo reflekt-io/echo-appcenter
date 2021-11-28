@@ -1,4 +1,3 @@
-
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
@@ -13,7 +12,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Halaman Utama"),
+        title: const Text(
+          // Nanti jangan pakai const
+          "Halo, username!",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       drawer: Drawer(
         child: Column(
@@ -44,19 +49,25 @@ class HomePage extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-            ListTile(
-              title: const Text('Riwayat Jurnal'),
-              onTap: () {
-                // Go to Riwayat Jurnal screen
-                Navigator.pushReplacementNamed(context, JournalHomePage.ROUTE_NAME);
-              },
-            ),
-            ListTile(
-              title: const Text('Jurnal Baru'),
-              onTap: () {
-                // Go to Jurnal Baru page
-                Navigator.pushNamed(context, AddJournalPage.ROUTE_NAME);
-              },
+            ExpansionTile(
+              title: const Text("Jurnal"),
+              children: <Widget>[
+                ListTile(
+                  title: const Text('Riwayat Jurnal'),
+                  onTap: () {
+                    // Go to Riwayat Jurnal screen
+                    Navigator.pushReplacementNamed(
+                        context, JournalHomePage.ROUTE_NAME);
+                  },
+                ),
+                ListTile(
+                  title: const Text('Jurnal Baru'),
+                  onTap: () {
+                    // Go to Jurnal Baru page
+                    Navigator.pushNamed(context, AddJournalPage.ROUTE_NAME);
+                  },
+                ),
+              ],
             ),
             const Spacer(),
             const Divider(),
