@@ -8,6 +8,10 @@ class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   static const ROUTE_NAME = '/home';
 
+  // Color themes
+  static const blackColorTheme = Color(0xFF24262A);
+  static const blueColorTheme = Color(0xFF0B36A8);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -189,7 +193,7 @@ class HomePage extends StatelessWidget {
                 shrinkWrap: true,
                 children: <Widget>[
                   Material(
-                    color: const Color(0xFF24262A),
+                    color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
                         // Go to ... screen
@@ -205,7 +209,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Material(
-                    color: const Color(0xFF24262A),
+                    color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
                         // Go to ... screen
@@ -221,7 +225,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Material(
-                    color: const Color(0xFF24262A),
+                    color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
                         // Go to ... screen
@@ -237,7 +241,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Material(
-                    color: const Color(0xFF24262A),
+                    color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
                         // Go to JournalHomePage
@@ -254,7 +258,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Material(
-                    color: const Color(0xFF24262A),
+                    color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
                         // Go to AddJournalPage
@@ -270,7 +274,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Material(
-                    color: const Color(0xFF24262A),
+                    color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
                         // Go to ... screen
@@ -286,7 +290,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Material(
-                    color: const Color(0xFF24262A),
+                    color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
                         // Go to ... screen
@@ -302,7 +306,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Material(
-                    color: const Color(0xFF24262A),
+                    color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
                         // Go to ... screen
@@ -318,7 +322,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Material(
-                    color: const Color(0xFF24262A),
+                    color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
                         // Go to ... screen
@@ -334,7 +338,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Material(
-                    color: const Color(0xFF24262A),
+                    color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
                         // Go to ... screen
@@ -350,7 +354,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Material(
-                    color: const Color(0xFF24262A),
+                    color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
                         // Go to ... screen
@@ -366,7 +370,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Material(
-                    color: const Color(0xFF24262A),
+                    color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
                         // Go to ... screen
