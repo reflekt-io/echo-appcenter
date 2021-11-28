@@ -13,11 +13,8 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          // Nanti jangan pakai const
+          // Nanti jangan pakai const (variable, cuy)
           "Halo, username!",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
         ),
       ),
       drawer: Drawer(
