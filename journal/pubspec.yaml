@@ -17,7 +17,6 @@ dependencies:
     sdk: flutter
   echo:
     path: ../.
-  http: ^0.13.4
   multi_select_flutter: ^4.0.0
 
 dev_dependencies:
