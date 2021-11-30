@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names, avoid_print
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:journal/screens/add_journal_page.dart';
 import 'package:journal/screens/journal_home_page.dart';
@@ -70,7 +71,7 @@ class HomePage extends StatelessWidget {
                         },
                       ),
                       ListTile(
-                        title: const Text('Kutipan Penyemangat Baru'),
+                        title: const Text('Buat Kutipan Baru'),
                         onTap: () {
                           // Go to Kutipan Baru page
                         },
@@ -89,7 +90,7 @@ class HomePage extends StatelessWidget {
                         },
                       ),
                       ListTile(
-                        title: const Text('Jurnal Baru'),
+                        title: const Text('Buat Jurnal Baru'),
                         onTap: () {
                           // Go to Jurnal Baru page
                           Navigator.pushNamed(
@@ -102,13 +103,13 @@ class HomePage extends StatelessWidget {
                     title: const Text("Ide Kegiatan"),
                     children: <Widget>[
                       ListTile(
-                        title: const Text('Lihat Ide Kegiatan'),
+                        title: const Text('Rekomendasi Ide Kegiatan'),
                         onTap: () {
                           // Go to the page
                         },
                       ),
                       ListTile(
-                        title: const Text('Ide Kegiatan Baru'),
+                        title: const Text('Buat Ide Kegiatan Baru'),
                         onTap: () {
                           // Go to the page
                         },
@@ -119,13 +120,13 @@ class HomePage extends StatelessWidget {
                     title: const Text("Pojok Curhat"),
                     children: <Widget>[
                       ListTile(
-                        title: const Text('Riwayat Kartu Curhat'),
+                        title: const Text('Lihat Pojok Curhat'),
                         onTap: () {
                           // Go to the page
                         },
                       ),
                       ListTile(
-                        title: const Text('Kartu Curhat Baru'),
+                        title: const Text('Buat Kartu Curhat Baru'),
                         onTap: () {
                           // Go to the page
                         },
@@ -142,7 +143,7 @@ class HomePage extends StatelessWidget {
                         },
                       ),
                       ListTile(
-                        title: const Text('Harapan Baru'),
+                        title: const Text('Buat Harapan Baru'),
                         onTap: () {
                           // Go to the page
                         },
@@ -201,9 +202,23 @@ class HomePage extends StatelessWidget {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        child: const Text(
-                          "Deteksi Dini Depresi",
-                          style: TextStyle(color: Colors.white),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.search,
+                                color: Colors.white,
+                                size: 30.0,
+                              ),
+                              Padding(padding: EdgeInsets.all(3)),
+                              Text(
+                                "Deteksi Dini Depresi",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -217,9 +232,23 @@ class HomePage extends StatelessWidget {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        child: const Text(
-                          "Lihat Kutipan Penyemangat",
-                          style: TextStyle(color: Colors.white),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.format_quote,
+                                color: Colors.white,
+                                size: 35.0,
+                              ),
+                              Padding(padding: EdgeInsets.all(1)),
+                              Text(
+                                "Lihat Kutipan Penyemangat",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -233,9 +262,23 @@ class HomePage extends StatelessWidget {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        child: const Text(
-                          "Buat Kutipan Penyemangat",
-                          style: TextStyle(color: Colors.white),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.speaker_notes,
+                                color: Colors.white,
+                                size: 30.0,
+                              ),
+                              Padding(padding: EdgeInsets.all(3)),
+                              Text(
+                                "Buat Kutipan Penyemangat",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -250,9 +293,23 @@ class HomePage extends StatelessWidget {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        child: const Text(
-                          "Lihat Riwayat Jurnal",
-                          style: TextStyle(color: Colors.white),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.library_books,
+                                color: Colors.white,
+                                size: 30.0,
+                              ),
+                              Padding(padding: EdgeInsets.all(3)),
+                              Text(
+                                "Lihat Riwayat Jurnal",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -266,9 +323,23 @@ class HomePage extends StatelessWidget {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        child: const Text(
-                          "Buat Jurnal Baru",
-                          style: TextStyle(color: Colors.white),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                                size: 30.0,
+                              ),
+                              Padding(padding: EdgeInsets.all(3)),
+                              Text(
+                                "Buat Jurnal Baru",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -282,9 +353,23 @@ class HomePage extends StatelessWidget {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        child: const Text(
-                          "Lihat Ide Kegiatan",
-                          style: TextStyle(color: Colors.white),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.directions_walk,
+                                color: Colors.white,
+                                size: 30.0,
+                              ),
+                              Padding(padding: EdgeInsets.all(3)),
+                              Text(
+                                "Lihat Ide Kegiatan",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -298,9 +383,23 @@ class HomePage extends StatelessWidget {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        child: const Text(
-                          "Buat Ide Kegiatan Baru",
-                          style: TextStyle(color: Colors.white),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.lightbulb,
+                                color: Colors.white,
+                                size: 30.0,
+                              ),
+                              Padding(padding: EdgeInsets.all(3)),
+                              Text(
+                                "Buat Ide Kegiatan Baru",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -314,9 +413,23 @@ class HomePage extends StatelessWidget {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        child: const Text(
-                          "Lihat Pojok Curhat",
-                          style: TextStyle(color: Colors.white),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.door_front_door,
+                                color: Colors.white,
+                                size: 30.0,
+                              ),
+                              Padding(padding: EdgeInsets.all(3)),
+                              Text(
+                                "Lihat Pojok Curhat",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -330,9 +443,23 @@ class HomePage extends StatelessWidget {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        child: const Text(
-                          "Buat Kartu Curhat Baru",
-                          style: TextStyle(color: Colors.white),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.note_add,
+                                color: Colors.white,
+                                size: 30.0,
+                              ),
+                              Padding(padding: EdgeInsets.all(3)),
+                              Text(
+                                "Buat Kartu Curhat Baru",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -346,9 +473,23 @@ class HomePage extends StatelessWidget {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        child: const Text(
-                          "Lihat Tembok Harapan",
-                          style: TextStyle(color: Colors.white),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                CupertinoIcons.paperplane,
+                                color: Colors.white,
+                                size: 30.0,
+                              ),
+                              Padding(padding: EdgeInsets.all(3)),
+                              Text(
+                                "Lihat Tembok Harapan",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -362,9 +503,23 @@ class HomePage extends StatelessWidget {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        child: const Text(
-                          "Buat Harapan Baru",
-                          style: TextStyle(color: Colors.white),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                CupertinoIcons.heart_fill,
+                                color: Colors.white,
+                                size: 30.0,
+                              ),
+                              Padding(padding: EdgeInsets.all(3)),
+                              Text(
+                                "Buat Harapan Baru",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -378,9 +533,23 @@ class HomePage extends StatelessWidget {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        child: const Text(
-                          "Tentang Kami",
-                          style: TextStyle(color: Colors.white),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.people,
+                                color: Colors.white,
+                                size: 35.0,
+                              ),
+                              Padding(padding: EdgeInsets.all(1)),
+                              Text(
+                                "Tentang Kami",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

@@ -96,7 +96,7 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
                         },
                       ),
                       ListTile(
-                        title: const Text('Kutipan Penyemangat Baru'),
+                        title: const Text('Buat Kutipan Baru'),
                         onTap: () {
                           // Go to Kutipan Baru page
                         },
@@ -114,7 +114,7 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
                         },
                       ),
                       ListTile(
-                        title: const Text('Jurnal Baru'),
+                        title: const Text('Buat Jurnal Baru'),
                         onTap: () {
                           // Go to Jurnal Baru page
                           Navigator.pushNamed(
@@ -127,13 +127,13 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
                     title: const Text("Ide Kegiatan"),
                     children: <Widget>[
                       ListTile(
-                        title: const Text('Lihat Ide Kegiatan'),
+                        title: const Text('Rekomendasi Ide Kegiatan'),
                         onTap: () {
                           // Go to the page
                         },
                       ),
                       ListTile(
-                        title: const Text('Ide Kegiatan Baru'),
+                        title: const Text('Buat Ide Kegiatan Baru'),
                         onTap: () {
                           // Go to the page
                         },
@@ -144,13 +144,13 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
                     title: const Text("Pojok Curhat"),
                     children: <Widget>[
                       ListTile(
-                        title: const Text('Riwayat Kartu Curhat'),
+                        title: const Text('Lihat Pojok Curhat'),
                         onTap: () {
                           // Go to the page
                         },
                       ),
                       ListTile(
-                        title: const Text('Kartu Curhat Baru'),
+                        title: const Text('Buat Kartu Curhat Baru'),
                         onTap: () {
                           // Go to the page
                         },
@@ -167,7 +167,7 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
                         },
                       ),
                       ListTile(
-                        title: const Text('Harapan Baru'),
+                        title: const Text('Buat Harapan Baru'),
                         onTap: () {
                           // Go to the page
                         },
