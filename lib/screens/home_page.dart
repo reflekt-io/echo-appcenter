@@ -239,7 +239,7 @@ class HomePage extends StatelessWidget {
                               Icon(
                                 Icons.format_quote,
                                 color: Colors.white,
-                                size: 35.0,
+                                size: 40.0,
                               ),
                               Padding(padding: EdgeInsets.all(1)),
                               Text(
@@ -540,7 +540,7 @@ class HomePage extends StatelessWidget {
                               Icon(
                                 Icons.people,
                                 color: Colors.white,
-                                size: 35.0,
+                                size: 40.0,
                               ),
                               Padding(padding: EdgeInsets.all(1)),
                               Text(
