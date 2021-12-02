@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lab_7/dummy_data.dart';
-import 'package:lab_7/screens/add_pojok_curhat_page.dart';
-import 'package:lab_7/models/pojok_curhat.dart';
-import 'package:lab_7/widgets/pojok_curhat_card.dart';
+import 'package:pojok_curhat/dummy_data.dart';
+import 'package:pojok_curhat/screens/add_pojok_curhat_page.dart';
+import 'package:pojok_curhat/models/pojok_curhat.dart';
+import 'package:pojok_curhat/widgets/pojok_curhat_card.dart';
 
 class PojokCurhatHomePage extends StatefulWidget {
   const PojokCurhatHomePage({Key? key}) : super(key: key);

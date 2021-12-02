@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:lab_7/models/pojok_curhat.dart';
+import 'package:pojok_curhat/models/pojok_curhat.dart';
 
 class Pojok_CurhatJson {
   // pk -> primary key from serialization

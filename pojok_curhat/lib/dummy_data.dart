@@ -1,5 +1,5 @@
-import 'package:lab_7/models/pojok_curhat.dart';
-import 'package:lab_7/models/pojok_curhat_json.dart';
+import 'package:pojok_curhat/models/pojok_curhat.dart';
+import 'package:pojok_curhat/models/pojok_curhat_json.dart';
 
 // ignore: non_constant_identifier_names
 Pojok_CurhatJson DUMMY_CATEGORIES = Pojok_CurhatJson(

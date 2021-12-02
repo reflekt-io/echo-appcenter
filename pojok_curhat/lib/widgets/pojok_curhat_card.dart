@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lab_7/models/pojok_curhat.dart';
+import 'package:pojok_curhat/models/pojok_curhat.dart';
 
 class PojokCurhatCard extends StatelessWidget {
   final Pojok_Curhat pojok_curhat;
