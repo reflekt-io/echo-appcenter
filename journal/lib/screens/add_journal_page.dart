@@ -107,6 +107,7 @@ class _JournalHomePageState extends State<AddJournalPage> {
                         _selectedFeelings = values;
                       });
                     },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (values) {
                       return (values == null || values.isEmpty)
                           ? 'Perasaan tidak boleh kosong.'
@@ -128,6 +129,7 @@ class _JournalHomePageState extends State<AddJournalPage> {
                         _selectedFactors = values;
                       });
                     },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (values) {
                       return (values == null || values.isEmpty)
                           ? 'Faktor perasaan tidak boleh kosong.'
@@ -159,6 +161,7 @@ class _JournalHomePageState extends State<AddJournalPage> {
                         _currentSelectedAnxietyRate = value as int;
                       });
                     },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     items: _anxietyScale.map((int val) {
                       return DropdownMenuItem(
                         value: val,
@@ -187,6 +190,7 @@ class _JournalHomePageState extends State<AddJournalPage> {
                         _typedSummary = value!;
                       });
                     },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (String? value) {
                       return (value == null || value.isEmpty)
                           ? 'Ringkasan tidak boleh kosong.'
