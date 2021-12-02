@@ -1,9 +1,10 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, constant_identifier_names
 
 import 'package:flutter/material.dart';
 
 class AddKutipanPenyemangatPage extends StatefulWidget {
   const AddKutipanPenyemangatPage({Key? key}) : super(key: key);
+  static const ROUTE_NAME = '/add-kutipan';
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
