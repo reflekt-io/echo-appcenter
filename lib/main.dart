@@ -54,6 +54,12 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => const JournalHomePage());
             case AddJournalPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => const AddJournalPage());
+            case LoginScreen.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => const LoginScreen());
+            case CreateNewAccount.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => const CreateNewAccount());
+            case KutipanPenyemangatHomePage.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => const KutipanPenyemangatHomePage());
             default:
               return MaterialPageRoute(
                 builder: (_) {

@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, non_constant_identifier_names
+// ignore_for_file: camel_case_types, non_constant_identifier_names, constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:kutipan/dummy_data.dart';
@@ -8,6 +8,7 @@ import 'package:kutipan/widgets/kutipan_penyemangat_card.dart';
 
 class KutipanPenyemangatHomePage extends StatefulWidget {
   const KutipanPenyemangatHomePage({Key? key}) : super(key: key);
+  static const ROUTE_NAME = '/kutipan';
 
   @override
   State<KutipanPenyemangatHomePage> createState() => _Kutipan_PenyemangatHomePageState();
