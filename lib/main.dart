@@ -47,7 +47,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: MaterialColor(0xFF24262A, themeColor),
         ),
-        // home: (ke login screen intinya)
         home: const LoginScreen(),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
