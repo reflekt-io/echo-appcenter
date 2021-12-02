@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:echo/common/utils.dart';
 import 'package:echo/screens/home_page.dart';
+import 'package:echo/screens/create_new_account.dart';
+import 'package:echo/screens/login_screen.dart';
 import 'package:journal/screens/add_journal_page.dart';
 import 'package:journal/screens/journal_home_page.dart';
+import 'package:kutipan/screens/add_kutipan_penyemangat_page.dart';
+import 'package:kutipan/screens/kutipan_penyemangat_home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,7 +48,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: MaterialColor(0xFF24262A, themeColor),
         ),
         // home: (ke login screen intinya)
-        home: const HomePage(),
+        home: const LoginScreen(),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
@@ -60,6 +64,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => const CreateNewAccount());
             case KutipanPenyemangatHomePage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => const KutipanPenyemangatHomePage());
+            case AddKutipanPenyemangatPage.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => const AddKutipanPenyemangatPage());
             default:
               return MaterialPageRoute(
                 builder: (_) {
