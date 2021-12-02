@@ -95,9 +95,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: size.width * 0.8,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Color(0xFF24262A),
+                      color: const Color(0xFF24262A),
                     ),
-                    child: FlatButton(
+                    child: TextButton(
                       onPressed: () {if (_formKey.currentState!.validate()) {}},
                       child: const Text(
                         'Submit',

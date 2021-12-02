@@ -141,7 +141,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                           borderRadius: BorderRadius.circular(16),
                           color: const Color(0xFF24262A),
                         ),
-                        child: FlatButton(
+                        child: TextButton(
                           onPressed: () {if (_formKey.currentState!.validate()) {}},
                           child: const Text(
                             'Submit',
