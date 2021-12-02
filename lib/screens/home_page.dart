@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
                         title: const Text('Lihat Kutipan Penyemangat'),
                         onTap: () {
                           // Go to KutipanPenyemangatHomePage
-                          Navigator.pushNamed(context, KutipanPenyemangatHomePage.ROUTE_NAME);
+                          Navigator.pushReplacementNamed(context, KutipanPenyemangatHomePage.ROUTE_NAME);
                         },
                       ),
                       ListTile(
