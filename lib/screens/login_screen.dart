@@ -2,6 +2,7 @@
 
 import 'package:echo/common/background_image.dart';
 import 'package:echo/screens/create_new_account.dart';
+import 'package:echo/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -98,7 +99,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: const Color(0xFF24262A),
                     ),
                     child: TextButton(
-                      onPressed: () {if (_formKey.currentState!.validate()) {}},
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          // Untuk sementara, push langsung ke home asal ada isi input
+                          Navigator.pushReplacementNamed(context, HomePage.ROUTE_NAME);
+                        }
+                      },
                       child: const Text(
                         'Submit',
                         style: TextStyle(fontSize: 22, color: Colors.white, height: 1.5, fontWeight: FontWeight.bold),
