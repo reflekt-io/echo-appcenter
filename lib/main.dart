@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:echo/common/utils.dart';
 import 'package:echo/screens/home_page.dart';
+import 'package:echo/screens/create_new_account.dart';
+import 'package:echo/screens/login_screen.dart';
 import 'package:journal/screens/add_journal_page.dart';
 import 'package:journal/screens/journal_home_page.dart';
 
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: MaterialColor(0xFF24262A, themeColor),
         ),
         // home: (ke login screen intinya)
-        home: const HomePage(),
+        home: const LoginScreen(),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
@@ -54,6 +56,10 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => const JournalHomePage());
             case AddJournalPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => const AddJournalPage());
+            case LoginScreen.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => const LoginScreen());
+            case CreateNewAccount.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => const CreateNewAccount());
             default:
               return MaterialPageRoute(
                 builder: (_) {
