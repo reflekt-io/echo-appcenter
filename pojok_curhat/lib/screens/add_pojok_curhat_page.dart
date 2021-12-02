@@ -16,6 +16,7 @@ class AddPojokCurhatPage extends StatefulWidget {
   State<AddPojokCurhatPage> createState() => _Pojok_CurhatHomePageState();
 }
 
+// ignore: camel_case_types
 class _Pojok_CurhatHomePageState extends State<AddPojokCurhatPage> {
   final _formKey = GlobalKey<FormState>();
 

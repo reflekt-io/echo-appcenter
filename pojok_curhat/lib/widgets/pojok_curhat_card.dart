@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pojok_curhat/models/pojok_curhat.dart';
 
 class PojokCurhatCard extends StatelessWidget {
+  // ignore: non_constant_identifier_names
   final Pojok_Curhat pojok_curhat;
   const PojokCurhatCard(this.pojok_curhat, {Key? key}) : super(key: key);
 

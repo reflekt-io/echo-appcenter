@@ -1,9 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'dart:convert';
 // To parse this JSON data, do
 //
 //     final Pojok_Curhat = Pojok_CurhatFromMap(jsonString);
 
+// ignore: camel_case_types
 class Pojok_Curhat {
   Pojok_Curhat({
     required this.id,

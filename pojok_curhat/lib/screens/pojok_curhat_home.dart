@@ -11,7 +11,9 @@ class PojokCurhatHomePage extends StatefulWidget {
   State<PojokCurhatHomePage> createState() => _Pojok_CurhatHomePageState();
 }
 
+// ignore: camel_case_types
 class _Pojok_CurhatHomePageState extends State<PojokCurhatHomePage> {
+  // ignore: non_constant_identifier_names
   List<Pojok_Curhat> dummyPojok_Curhat = DUMMY_CATEGORIES.fields;
 
   @override

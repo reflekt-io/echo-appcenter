@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:pojok_curhat/models/pojok_curhat.dart';
 
+// ignore: camel_case_types
 class Pojok_CurhatJson {
   // pk -> primary key from serialization
 
