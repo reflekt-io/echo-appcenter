@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:journal/screens/add_journal_page.dart';
 import 'package:journal/screens/journal_home_page.dart';
+import 'package:kutipan/screens/add_kutipan_penyemangat_page.dart';
+import 'package:kutipan/screens/kutipan_penyemangat_home.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -67,13 +69,15 @@ class HomePage extends StatelessWidget {
                       ListTile(
                         title: const Text('Lihat Kutipan Penyemangat'),
                         onTap: () {
-                          // Go to KutipanHome screen
+                          // Go to KutipanPenyemangatHomePage
+                          Navigator.pushReplacementNamed(context, KutipanPenyemangatHomePage.ROUTE_NAME);
                         },
                       ),
                       ListTile(
                         title: const Text('Buat Kutipan Baru'),
                         onTap: () {
-                          // Go to Kutipan Baru page
+                          // Go to AddKutipanPenyemangatPage
+                          Navigator.pushNamed(context, AddKutipanPenyemangatPage.ROUTE_NAME);
                         },
                       ),
                     ],
@@ -227,8 +231,9 @@ class HomePage extends StatelessWidget {
                     color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
-                        // Go to ... screen
-                        print('I was clicked');
+                        // Go to KutipanPenyemangatHomePage
+                        Navigator.pushReplacementNamed(
+                            context, KutipanPenyemangatHomePage.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
@@ -257,8 +262,9 @@ class HomePage extends StatelessWidget {
                     color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
-                        // Go to ... screen
-                        print('I was clicked');
+                        // Go to AddKutipanPenyemangatPage
+                        Navigator.pushNamed(
+                            context, AddKutipanPenyemangatPage.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
