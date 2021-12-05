@@ -6,6 +6,8 @@ import 'package:journal/screens/add_journal_page.dart';
 import 'package:journal/screens/journal_home_page.dart';
 import 'package:kutipan/screens/add_kutipan_penyemangat_page.dart';
 import 'package:kutipan/screens/kutipan_penyemangat_home.dart';
+import 'package:pojok_curhat/screens/add_pojok_curhat_page.dart';
+import 'package:pojok_curhat/screens/pojok_curhat_home.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -127,12 +129,16 @@ class HomePage extends StatelessWidget {
                         title: const Text('Lihat Pojok Curhat'),
                         onTap: () {
                           // Go to the page
+                          Navigator.pushReplacementNamed(
+                              context, PojokCurhatHomePage.ROUTE_NAME);
                         },
                       ),
                       ListTile(
                         title: const Text('Buat Kartu Curhat Baru'),
                         onTap: () {
                           // Go to the page
+                          Navigator.pushNamed(
+                              context, AddPojokCurhatPage.ROUTE_NAME);
                         },
                       ),
                     ],
@@ -414,8 +420,9 @@ class HomePage extends StatelessWidget {
                     color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
-                        // Go to ... screen
-                        print('I was clicked');
+                        // Go to the screen
+                        Navigator.pushReplacementNamed(
+                              context, PojokCurhatHomePage.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
@@ -444,8 +451,9 @@ class HomePage extends StatelessWidget {
                     color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
-                        // Go to ... screen
-                        print('I was clicked');
+                        // Go to the screen
+                        Navigator.pushNamed(
+                              context, AddPojokCurhatPage.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
