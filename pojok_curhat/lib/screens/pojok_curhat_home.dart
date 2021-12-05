@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:pojok_curhat/dummy_data.dart';
 import 'package:pojok_curhat/screens/add_pojok_curhat_page.dart';
@@ -6,6 +8,7 @@ import 'package:pojok_curhat/widgets/pojok_curhat_card.dart';
 
 class PojokCurhatHomePage extends StatefulWidget {
   const PojokCurhatHomePage({Key? key}) : super(key: key);
+  static const ROUTE_NAME = '/pojok-curhat';
 
   @override
   State<PojokCurhatHomePage> createState() => _Pojok_CurhatHomePageState();
@@ -13,7 +16,6 @@ class PojokCurhatHomePage extends StatefulWidget {
 
 // ignore: camel_case_types
 class _Pojok_CurhatHomePageState extends State<PojokCurhatHomePage> {
-  // ignore: non_constant_identifier_names
   List<Pojok_Curhat> dummyPojok_Curhat = DUMMY_CATEGORIES.fields;
 
   @override
@@ -54,13 +56,8 @@ class _Pojok_CurhatHomePageState extends State<PojokCurhatHomePage> {
             ListTile(
               title: const Text('Curhat Baru'),
               onTap: () {
-                // Go to Jurnal Baru page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AddPojokCurhatPage(),
-                  ),
-                );
+                // Go to AddPojokCurhatPage
+                Navigator.pushNamed(context, AddPojokCurhatPage.ROUTE_NAME);
               },
             ),
           ],
@@ -94,10 +91,7 @@ class _Pojok_CurhatHomePageState extends State<PojokCurhatHomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFF0B36A8),
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const AddPojokCurhatPage()));
+          Navigator.pushNamed(context, AddPojokCurhatPage.ROUTE_NAME);
         },
         tooltip: 'Curhat Baru',
         child: const Icon(Icons.add),

@@ -221,8 +221,7 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFF0B36A8),
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const AddJournalPage()));
+          Navigator.pushNamed(context, AddJournalPage.ROUTE_NAME);
         },
         tooltip: 'Jurnal Baru',
         child: const Icon(Icons.add),
