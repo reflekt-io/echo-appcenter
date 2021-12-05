@@ -56,13 +56,8 @@ class _Pojok_CurhatHomePageState extends State<PojokCurhatHomePage> {
             ListTile(
               title: const Text('Curhat Baru'),
               onTap: () {
-                // Go to Jurnal Baru page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AddPojokCurhatPage(),
-                  ),
-                );
+                // Go to AddPojokCurhatPage
+                Navigator.pushNamed(context, AddPojokCurhatPage.ROUTE_NAME);
               },
             ),
           ],
@@ -96,10 +91,7 @@ class _Pojok_CurhatHomePageState extends State<PojokCurhatHomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFF0B36A8),
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const AddPojokCurhatPage()));
+          Navigator.pushNamed(context, AddPojokCurhatPage.ROUTE_NAME);
         },
         tooltip: 'Curhat Baru',
         child: const Icon(Icons.add),
