@@ -8,6 +8,8 @@ import 'package:kutipan/screens/add_kutipan_penyemangat_page.dart';
 import 'package:kutipan/screens/kutipan_penyemangat_home.dart';
 import 'package:pojok_curhat/screens/add_pojok_curhat_page.dart';
 import 'package:pojok_curhat/screens/pojok_curhat_home.dart';
+import 'package:ide_kegiatan/screens/add_ide_kegiatan.dart';
+import 'package:ide_kegiatan/screens/ide_kegiatan_home.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -72,14 +74,16 @@ class HomePage extends StatelessWidget {
                         title: const Text('Lihat Kutipan Penyemangat'),
                         onTap: () {
                           // Go to KutipanPenyemangatHomePage
-                          Navigator.pushReplacementNamed(context, KutipanPenyemangatHomePage.ROUTE_NAME);
+                          Navigator.pushReplacementNamed(
+                              context, KutipanPenyemangatHomePage.ROUTE_NAME);
                         },
                       ),
                       ListTile(
                         title: const Text('Buat Kutipan Baru'),
                         onTap: () {
                           // Go to AddKutipanPenyemangatPage
-                          Navigator.pushNamed(context, AddKutipanPenyemangatPage.ROUTE_NAME);
+                          Navigator.pushNamed(
+                              context, AddKutipanPenyemangatPage.ROUTE_NAME);
                         },
                       ),
                     ],
@@ -111,13 +115,17 @@ class HomePage extends StatelessWidget {
                       ListTile(
                         title: const Text('Rekomendasi Ide Kegiatan'),
                         onTap: () {
-                          // Go to the page
+                          // Go to ide kegiatan homepage
+                          Navigator.pushNamed(
+                              context, IdeKegiatanHomePage.ROUTE_NAME);
                         },
                       ),
                       ListTile(
                         title: const Text('Buat Ide Kegiatan Baru'),
                         onTap: () {
-                          // Go to the page
+                          // Go to add kegiatan page
+                          Navigator.pushNamed(
+                              context, AddRekomendasiKegiatanPage.ROUTE_NAME);
                         },
                       ),
                     ],
@@ -360,8 +368,9 @@ class HomePage extends StatelessWidget {
                     color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
-                        // Go to ... screen
-                        print('I was clicked');
+                        // Go to ide kegiatan homepage
+                        Navigator.pushNamed(
+                            context, IdeKegiatanHomePage.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
@@ -390,8 +399,9 @@ class HomePage extends StatelessWidget {
                     color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
-                        // Go to ... screen
-                        print('I was clicked');
+                        // Go to add ide kegiatan page
+                        Navigator.pushNamed(
+                            context, AddRekomendasiKegiatanPage.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
@@ -422,7 +432,7 @@ class HomePage extends StatelessWidget {
                       onTap: () {
                         // Go to the screen
                         Navigator.pushReplacementNamed(
-                              context, PojokCurhatHomePage.ROUTE_NAME);
+                            context, PojokCurhatHomePage.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
@@ -453,7 +463,7 @@ class HomePage extends StatelessWidget {
                       onTap: () {
                         // Go to the screen
                         Navigator.pushNamed(
-                              context, AddPojokCurhatPage.ROUTE_NAME);
+                            context, AddPojokCurhatPage.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
