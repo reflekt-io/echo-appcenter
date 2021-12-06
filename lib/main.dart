@@ -9,6 +9,7 @@ import 'package:kutipan/screens/add_kutipan_penyemangat_page.dart';
 import 'package:kutipan/screens/kutipan_penyemangat_home.dart';
 import 'package:pojok_curhat/screens/add_pojok_curhat_page.dart';
 import 'package:pojok_curhat/screens/pojok_curhat_home.dart';
+import 'package:deteksi_depresi/screens/phq9_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -71,6 +72,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => const PojokCurhatHomePage());
             case AddPojokCurhatPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => const AddPojokCurhatPage());
+            case PHQ9.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => const PHQ9());
             default:
               return MaterialPageRoute(
                 builder: (_) {
