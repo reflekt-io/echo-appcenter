@@ -6,7 +6,7 @@ import 'package:echo/screens/home_page.dart';
 
 class PHQ9 extends StatefulWidget {
   const PHQ9({Key? key}) : super(key: key);
-  static const ROUTE_NAME = '/deteksi_depresi';
+  static const ROUTE_NAME = '/deteksi-depresi';
 
   @override
   State<PHQ9> createState() => _PHQ9State();

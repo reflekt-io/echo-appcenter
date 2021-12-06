@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:about_us/screens/about_us.dart';
 import 'package:echo/common/utils.dart';
 import 'package:echo/screens/home_page.dart';
 import 'package:echo/screens/create_new_account.dart';
@@ -87,6 +88,9 @@ class MyApp extends StatelessWidget {
             case AddRekomendasiKegiatanPage.ROUTE_NAME:
               return MaterialPageRoute(
                   builder: (_) => const AddRekomendasiKegiatanPage());
+            case AboutUs.ROUTE_NAME:
+              return MaterialPageRoute(
+                  builder: (_) => const AboutUs());
             default:
               return MaterialPageRoute(
                 builder: (_) {
