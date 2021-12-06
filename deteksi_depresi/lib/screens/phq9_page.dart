@@ -1,10 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
-import 'package:echo/common/utils.dart';
 import 'package:echo/screens/home_page.dart';
 
 class PHQ9 extends StatefulWidget {
@@ -273,7 +270,7 @@ class _PHQ9State extends State<PHQ9> with RouteAware {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text(
+                          title: const Text(
                               "Hasil deteksi depresi"),
                           content: Text(resultText),
                         );
