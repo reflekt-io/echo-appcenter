@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, unnecessary_const
+// ignore_for_file: deprecated_member_use, unnecessary_const, constant_identifier_names
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +12,7 @@ void main() {
 
 class AboutUs extends StatefulWidget {
   const AboutUs({Key? key}) : super(key: key);
+  static const ROUTE_NAME = '/about-us';
 
   @override
   _AboutUsState createState() => _AboutUsState();

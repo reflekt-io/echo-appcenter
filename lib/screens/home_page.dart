@@ -2,6 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:about_us/screens/about_us.dart';
+import 'package:deteksi_depresi/screens/phq9_page.dart';
 import 'package:journal/screens/add_journal_page.dart';
 import 'package:journal/screens/journal_home_page.dart';
 import 'package:kutipan/screens/add_kutipan_penyemangat_page.dart';
@@ -65,6 +67,8 @@ class HomePage extends StatelessWidget {
                     title: const Text('Deteksi Dini Depresi'),
                     onTap: () {
                       // Go to deteksi screen
+                      Navigator.pushReplacementNamed(
+                              context, PHQ9.ROUTE_NAME);
                     },
                   ),
                   ExpansionTile(
@@ -171,7 +175,8 @@ class HomePage extends StatelessWidget {
                   ListTile(
                     title: const Text('Tentang Kami'),
                     onTap: () {
-                      // Go to About Us
+                      // Go to AboutUs screen
+                      Navigator.pushNamed(context, AboutUs.ROUTE_NAME);
                     },
                   ),
                   const Divider(),
@@ -215,8 +220,8 @@ class HomePage extends StatelessWidget {
                     color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
-                        // Go to ... screen
-                        print('I was clicked');
+                        // Go to the screen
+                        Navigator.pushReplacementNamed(context, PHQ9.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
@@ -552,8 +557,8 @@ class HomePage extends StatelessWidget {
                     color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
-                        // Go to ... screen
-                        print('I was clicked');
+                        // Go to AboutUs screen
+                        Navigator.pushNamed(context, AboutUs.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
