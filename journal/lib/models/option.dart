@@ -6,4 +6,9 @@ class Option {
     required this.key,
     required this.value,
   });
+
+  @override
+  String toString() {
+    return key;
+  }
 }
