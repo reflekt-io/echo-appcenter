@@ -37,8 +37,21 @@ Berikut ini adalah daftar modul yang akan diimplementasikan beserta pengembang d
 - [About Us](https://github.com/reflekt-io/echo/tree/main/about_us) - [Muhammad Bintang Azriel Aditya Wardhana](https://github.com/bintangazriel)
 
 ## 🔗 Integrasi dengan Situs Web 🔗
-TBA.
 
+### Journaling
+Pada server Django, sebuah _method_ dibuat dalam file _views<area>.py_ untuk menerima data form yang dikirim oleh pengguna melalui halaman **Add Journal**. _Method_ tersebut akan menerima data dari Flutter berupa JSON dengan _request method_ POST dan akan mengolah data yang diterima sebagai _field_ dari form. Setelah itu, data akan disimpan pada basis data dan _method_ akan mengembalikan status penyimpanan berupa JSON kepada aplikasi Flutter.
+### Pojok Curhat
+TBA.
+### Tembok Harapan
+TBA.
+### Kutipan Penyemangat
+TBA.
+### Deteksi Dini Depresi
+TBA.
+### Ide Kegiatan
+TBA.
+### About Us
+TBA.
 ## 👥 Persona 👥
 Aplikasi ini hanya dapat diakses setelah pengguna melakukan _login_. Apabila pengguna belum memiliki akun, maka pengguna dapat membuat akun melalui fitur _sign up_.
 
