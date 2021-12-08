@@ -214,7 +214,7 @@ class _JournalHomePageState extends State<AddJournalPage> {
                       if (_formKey.currentState!.validate()) {
                         // Submit to Django server and wait for response
                         final response = await http.post(
-                          Uri.parse("http://localhost:8000/add-journal-flutter"),
+                          Uri.parse("http://localhost:8000/journal/add-journal-flutter"),
                           headers: <String, String>{
                             'Content-Type': 'application/json; charset=UTF-8',
                           },
