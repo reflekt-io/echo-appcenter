@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:echo/widgets/drawer_menu.dart';
 import 'package:pojok_curhat/dummy_data.dart';
 import 'package:pojok_curhat/screens/add_pojok_curhat_page.dart';
 import 'package:pojok_curhat/models/pojok_curhat.dart';
@@ -11,11 +12,11 @@ class PojokCurhatHomePage extends StatefulWidget {
   static const ROUTE_NAME = '/pojok-curhat';
 
   @override
-  State<PojokCurhatHomePage> createState() => _Pojok_CurhatHomePageState();
+  State<PojokCurhatHomePage> createState() => _PojokCurhatHomePageState();
 }
 
 // ignore: camel_case_types
-class _Pojok_CurhatHomePageState extends State<PojokCurhatHomePage> {
+class _PojokCurhatHomePageState extends State<PojokCurhatHomePage> {
   List<Pojok_Curhat> dummyPojok_Curhat = DUMMY_CATEGORIES.fields;
 
   @override
@@ -24,45 +25,7 @@ class _Pojok_CurhatHomePageState extends State<PojokCurhatHomePage> {
       appBar: AppBar(
         title: const Text('Riwayat Jurnal'),
       ),
-      drawer: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            // ignore: sized_box_for_whitespace
-            Container(
-              height: 64,
-              child: const DrawerHeader(
-                child: Text(
-                  'reflekt.io',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  color: Color(0xFF24262A),
-                ),
-              ),
-            ),
-            ListTile(
-              title: const Text('Riwayat Curhat'),
-              onTap: () {
-                // Go to Riwayat Curhat screen
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Curhat Baru'),
-              onTap: () {
-                // Go to AddPojokCurhatPage
-                Navigator.pushNamed(context, AddPojokCurhatPage.ROUTE_NAME);
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: const DrawerMenu(PojokCurhatHomePage.ROUTE_NAME),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

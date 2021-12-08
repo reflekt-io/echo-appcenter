@@ -2,6 +2,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:echo/widgets/drawer_menu.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -32,6 +33,7 @@ class _AboutUsState extends State<AboutUs> {
       appBar: AppBar(
         title: const Text("About Us"),
       ),
+      drawer: const DrawerMenu(AboutUs.ROUTE_NAME),
       body: ListView(children: <Widget>[
         Container(
           padding:
