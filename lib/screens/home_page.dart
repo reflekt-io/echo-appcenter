@@ -1,11 +1,18 @@
 // ignore_for_file: constant_identifier_names, avoid_print
 
+import 'package:about_us/screens/about_us.dart';
+import 'package:deteksi_depresi/screens/phq9_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:echo/widgets/drawer_menu.dart';
+import 'package:ide_kegiatan/screens/add_ide_kegiatan.dart';
+import 'package:ide_kegiatan/screens/ide_kegiatan_home.dart';
 import 'package:journal/screens/add_journal_page.dart';
 import 'package:journal/screens/journal_home_page.dart';
 import 'package:kutipan/screens/add_kutipan_penyemangat_page.dart';
 import 'package:kutipan/screens/kutipan_penyemangat_home.dart';
+import 'package:pojok_curhat/screens/add_pojok_curhat_page.dart';
+import 'package:pojok_curhat/screens/pojok_curhat_home.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,155 +31,7 @@ class HomePage extends StatelessWidget {
           "Halo, username!",
         ),
       ),
-      drawer: Drawer(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            // ignore: sized_box_for_whitespace
-            Container(
-              width: double.infinity,
-              height: 64,
-              child: const DrawerHeader(
-                child: Text(
-                  'reflekt.io',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  color: Color(0xFF24262A),
-                ),
-              ),
-            ),
-            Expanded(
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                children: <Widget>[
-                  ListTile(
-                    title: const Text('Halaman Utama'),
-                    onTap: () {
-                      // Go to Halaman Utama screen
-                      Navigator.pop(context);
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('Deteksi Dini Depresi'),
-                    onTap: () {
-                      // Go to deteksi screen
-                    },
-                  ),
-                  ExpansionTile(
-                    title: const Text("Kutipan Penyemangat"),
-                    children: <Widget>[
-                      ListTile(
-                        title: const Text('Lihat Kutipan Penyemangat'),
-                        onTap: () {
-                          // Go to KutipanPenyemangatHomePage
-                          Navigator.pushReplacementNamed(context, KutipanPenyemangatHomePage.ROUTE_NAME);
-                        },
-                      ),
-                      ListTile(
-                        title: const Text('Buat Kutipan Baru'),
-                        onTap: () {
-                          // Go to AddKutipanPenyemangatPage
-                          Navigator.pushNamed(context, AddKutipanPenyemangatPage.ROUTE_NAME);
-                        },
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    title: const Text("Jurnal"),
-                    children: <Widget>[
-                      ListTile(
-                        title: const Text('Riwayat Jurnal'),
-                        onTap: () {
-                          // Go to Riwayat Jurnal screen
-                          Navigator.pushReplacementNamed(
-                              context, JournalHomePage.ROUTE_NAME);
-                        },
-                      ),
-                      ListTile(
-                        title: const Text('Buat Jurnal Baru'),
-                        onTap: () {
-                          // Go to Jurnal Baru page
-                          Navigator.pushNamed(
-                              context, AddJournalPage.ROUTE_NAME);
-                        },
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    title: const Text("Ide Kegiatan"),
-                    children: <Widget>[
-                      ListTile(
-                        title: const Text('Rekomendasi Ide Kegiatan'),
-                        onTap: () {
-                          // Go to the page
-                        },
-                      ),
-                      ListTile(
-                        title: const Text('Buat Ide Kegiatan Baru'),
-                        onTap: () {
-                          // Go to the page
-                        },
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    title: const Text("Pojok Curhat"),
-                    children: <Widget>[
-                      ListTile(
-                        title: const Text('Lihat Pojok Curhat'),
-                        onTap: () {
-                          // Go to the page
-                        },
-                      ),
-                      ListTile(
-                        title: const Text('Buat Kartu Curhat Baru'),
-                        onTap: () {
-                          // Go to the page
-                        },
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    title: const Text("Tembok Harapan"),
-                    children: <Widget>[
-                      ListTile(
-                        title: const Text('Lihat Tembok Harapan'),
-                        onTap: () {
-                          // Go to the page
-                        },
-                      ),
-                      ListTile(
-                        title: const Text('Buat Harapan Baru'),
-                        onTap: () {
-                          // Go to the page
-                        },
-                      ),
-                    ],
-                  ),
-                  ListTile(
-                    title: const Text('Tentang Kami'),
-                    onTap: () {
-                      // Go to About Us
-                    },
-                  ),
-                  const Divider(),
-                  ListTile(
-                    title: const Text('Log Out'),
-                    onTap: () {
-                      // Log Out (delete cookie) and return to login screen
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+      drawer: const DrawerMenu(ROUTE_NAME),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -201,8 +60,8 @@ class HomePage extends StatelessWidget {
                     color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
-                        // Go to ... screen
-                        print('I was clicked');
+                        // Go to the screen
+                        Navigator.pushReplacementNamed(context, PHQ9.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
@@ -354,8 +213,9 @@ class HomePage extends StatelessWidget {
                     color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
-                        // Go to ... screen
-                        print('I was clicked');
+                        // Go to ide kegiatan homepage
+                        Navigator.pushNamed(
+                            context, IdeKegiatanHomePage.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
@@ -384,8 +244,9 @@ class HomePage extends StatelessWidget {
                     color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
-                        // Go to ... screen
-                        print('I was clicked');
+                        // Go to add ide kegiatan page
+                        Navigator.pushNamed(
+                            context, AddRekomendasiKegiatanPage.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
@@ -414,8 +275,9 @@ class HomePage extends StatelessWidget {
                     color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
-                        // Go to ... screen
-                        print('I was clicked');
+                        // Go to the screen
+                        Navigator.pushReplacementNamed(
+                            context, PojokCurhatHomePage.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
@@ -444,8 +306,9 @@ class HomePage extends StatelessWidget {
                     color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
-                        // Go to ... screen
-                        print('I was clicked');
+                        // Go to the screen
+                        Navigator.pushNamed(
+                            context, AddPojokCurhatPage.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
@@ -534,8 +397,8 @@ class HomePage extends StatelessWidget {
                     color: blueColorTheme,
                     child: InkWell(
                       onTap: () {
-                        // Go to ... screen
-                        print('I was clicked');
+                        // Go to AboutUs screen
+                        Navigator.pushNamed(context, AboutUs.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),

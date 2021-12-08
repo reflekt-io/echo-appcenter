@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_question_mark, prefer_final_fields, unused_field, unused_element, constant_identifier_names
 
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:journal/models/option.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
@@ -208,9 +210,24 @@ class _JournalHomePageState extends State<AddJournalPage> {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(const Color(0xFF0B36A8)),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        // How to submit?
+                        // Submit to Django server and wait for response
+                        final response = await http.post(
+                          Uri.parse("http://localhost:8000/journal/add-journal-flutter"),
+                          headers: <String, String>{
+                            'Content-Type': 'application/json; charset=UTF-8',
+                          },
+                          body: jsonEncode(<String, String>{
+                            'feeling': _feelingList.toString(),
+                            'factor': _factorList.toString(),
+                            'anxiety_rate': _currentSelectedAnxietyRate.toString(),
+                            'summary': _typedSummary,
+                            }
+                          ),
+                        );
+                        // ignore: avoid_print
+                        print(response);
                       }
                     },
                   ),
