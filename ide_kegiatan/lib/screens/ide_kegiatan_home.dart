@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:echo/widgets/drawer_menu.dart';
 import 'package:ide_kegiatan/dummy_data.dart';
 import 'package:ide_kegiatan/models/kegiatan.dart';
 import 'package:ide_kegiatan/models/rekomendasi.dart';
@@ -25,47 +26,7 @@ class _IdeKegiatanHomePageState extends State<IdeKegiatanHomePage> {
       appBar: AppBar(
         title: const Text('Ide Kegiatan'),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            // ignore: sized_box_for_whitespace
-            Container(
-              height: 64,
-              child: const DrawerHeader(
-                child: Text(
-                  'reflekt.io',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  color: Color(0xFF24262A),
-                ),
-              ),
-            ),
-            ListTile(
-              title: const Text('Ide Kegiatan'),
-              onTap: () {
-                // Go to Ide Kegiatan
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Tambah Kegiatan'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AddRekomendasiKegiatanPage(),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: const DrawerMenu(IdeKegiatanHomePage.ROUTE_NAME),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
