@@ -43,9 +43,7 @@ Berikut adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan aplika
 1. Mengimplementasikan sebuah _wrapper class_ dengan menggunakan library _http_ dan _map_ untuk mendukung penggunaan _cookie-based authentication_ pada aplikasi.
 2. Mengimplementasikan REST API pada Django (views.<area>py) dengan menggunakan JsonResponse atau Django JSON Serializer.
 3. Mengimplementasikan desain _front-end_ untuk aplikasi berdasarkan desain website yang sudah ada sebelumnya.
-4. Mengimplementasikan _widget_ pada _front-end_ agar sesuai dengan desain aplikasi.
-5. Melakukan integrasi antara _front-end_ dengan _back-end_ dengan menggunakan konsep _asynchronous_ HTTP.
-
+4. Melakukan integrasi antara _front-end_ dengan _back-end_ dengan menggunakan konsep _asynchronous_ HTTP.
 
 ## 👥 Persona 👥
 Aplikasi ini hanya dapat diakses setelah pengguna melakukan _login_. Apabila pengguna belum memiliki akun, maka pengguna dapat membuat akun melalui fitur _sign up_.
@@ -71,3 +69,4 @@ Berikut ini adalah sumber referensi yang digunakan dalam pembuatan proyek ini.
 - [GitHub Release Action](https://github.com/ncipollo/release-action)
 - [How to handle screen transitions in Flutter - Tetsuhiro Ueda](https://medium.com/@najeira/how-to-handle-screen-transitions-in-flutter-b39dcb2675f)
 - [App Icon Generator](https://appicon.co/)
+- [How to implement Authentication in TK2 PBP - Adrian Ardizza](https://gist.github.com/Meta502/1605fdba3b141fbf67dba689e9e55498)

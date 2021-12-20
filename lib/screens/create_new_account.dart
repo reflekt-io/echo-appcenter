@@ -1,7 +1,5 @@
 // ignore_for_file: constant_identifier_names
 
-import 'dart:ui';
-
 import 'package:echo/common/background_image.dart';
 import 'package:echo/screens/login_screen.dart';
 import 'package:flutter/material.dart';
