@@ -1,15 +1,86 @@
-// Taken from https://stackoverflow.com/a/68398885
+// Taken from https://stackoverflow.com/questions/52241089/how-do-i-make-an-http-request-using-cookies-on-flutter/
+// Taken from https://gist.github.com/Meta502/1605fdba3b141fbf67dba689e9e55498
+// Thank you in advance, Adrian Ardizza.
 
-import 'dart:convert';
 import 'package:http/http.dart' as http;
-
+import 'dart:convert';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart';
 
 class NetworkService {
-  final JsonDecoder _decoder = const JsonDecoder();
-  final JsonEncoder _encoder = const JsonEncoder();
-
-  Map<String, String> headers = {"content-type": "application/json"};
+  Map<String, String> headers = {};
   Map<String, String> cookies = {};
+  final http.Client _client = http.Client();
+
+  late SharedPreferences local;
+
+  bool loggedIn = false;
+  bool initialized = false;
+
+  Future init(BuildContext context) async {
+    if (!initialized) {
+      local = await SharedPreferences.getInstance();
+      String? savedCookies = local.getString("cookies");
+      if (savedCookies != null) {
+        cookies = Map<String, String>.from(json.decode(savedCookies));
+        if (cookies['sessionid'] != null) {
+          loggedIn = true;
+          headers['cookie'] = _generateCookieHeader();
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Successfully logged in. Welcome back!"),
+          ));
+        }
+      }
+    }
+    initialized = true;
+  }
+
+  Future persist(String cookies) async {
+    local.setString("cookies", cookies);
+  }
+
+  Future<Map> login(String url, dynamic data) async {
+    if (kIsWeb) {
+      dynamic c = _client;
+      c.withCredentials = true;
+    }
+
+    http.Response response =
+        await _client.post(Uri.parse(url), body: data, headers: headers);
+
+    _updateCookie(response);
+
+    if (response.statusCode == 200) {
+      loggedIn = true;
+    } else {
+      loggedIn = false;
+    }
+
+    return json.decode(response.body); // Expects and returns JSON request body
+  }
+
+  Future<Map> get(String url) async {
+    if (kIsWeb) {
+      dynamic c = _client;
+      c.withCredentials = true;
+    }
+    http.Response response =
+        await _client.get(Uri.parse(url), headers: headers);
+    _updateCookie(response);
+    return json.decode(response.body); // Expects and returns JSON request body
+  }
+
+  Future<Map> post(String url, dynamic data) async {
+    if (kIsWeb) {
+      dynamic c = _client;
+      c.withCredentials = true;
+    }
+    http.Response response =
+        await _client.post(Uri.parse(url), body: data, headers: headers);
+    _updateCookie(response);
+    return json.decode(response.body); // Expects and returns JSON request body
+  }
 
   void _updateCookie(http.Response response) {
     String? allSetCookie = response.headers['set-cookie'];
@@ -26,11 +97,13 @@ class NetworkService {
       }
 
       headers['cookie'] = _generateCookieHeader();
+      String cookieObject = (const JsonEncoder()).convert(cookies);
+      persist(cookieObject);
     }
   }
 
-  void _setCookie(String? rawCookie) {
-    if (rawCookie != null) {
+  void _setCookie(String rawCookie) {
+    if (rawCookie.isNotEmpty) {
       var keyValue = rawCookie.split('=');
       if (keyValue.length == 2) {
         var key = keyValue[0].trim();
@@ -49,51 +122,10 @@ class NetworkService {
 
     for (var key in cookies.keys) {
       if (cookie.isNotEmpty) cookie += ";";
-      cookie += key + "=" + cookies[key]!;
+      String? newCookie = cookies[key];
+      cookie += '$key=$newCookie';
     }
 
     return cookie;
-  }
-
-  Future<dynamic> get(String url) {
-    return http.get(Uri.parse(url), headers: headers).then((http.Response response) {
-      final String res = response.body;
-      final int statusCode = response.statusCode;
-
-      _updateCookie(response);
-
-      if (statusCode < 200 || statusCode > 400) {
-        throw Exception("Error while fetching data");
-      }
-      return _decoder.convert(res);
-    });
-  }
-
-  Future<dynamic> post(String url, {body, encoding}) {
-    return http.post(Uri.parse(url), body: _encoder.convert(body), headers: headers, encoding: encoding).then((http.Response response) {
-      final String res = response.body;
-      final int statusCode = response.statusCode;
-
-      _updateCookie(response);
-
-      if (statusCode < 200 || statusCode > 400) {
-        throw Exception("Error while fetching data");
-      }
-      return _decoder.convert(res);
-    });
-  }
-
-  Future<dynamic> put(String url, {body, encoding}) {
-    return http.put(Uri.parse(url), body: _encoder.convert(body), headers: headers, encoding: encoding).then((http.Response response) {
-      final String res = response.body;
-      final int statusCode = response.statusCode;
-
-      _updateCookie(response);
-
-      if (statusCode < 200 || statusCode > 400) {
-        throw Exception("Error while fetching data");
-      }
-      return _decoder.convert(res);
-    });
   }
 }
