@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:echo/common/network_service.dart';
 import 'package:flutter/material.dart';
 import 'package:echo/common/utils.dart';
 import 'package:echo/widgets/drawer_menu.dart';
@@ -10,8 +10,8 @@ import 'package:journal/models/journal.dart';
 import 'package:journal/models/journal_json.dart';
 import 'package:journal/screens/add_journal_page.dart';
 import 'package:journal/widgets/journal_card.dart';
+import 'package:provider/provider.dart';
 
-// Jaga-jaga nanti untuk update data, makanya pakai stateful dulu (?)
 class JournalHomePage extends StatefulWidget {
   const JournalHomePage({Key? key}) : super(key: key);
   static const ROUTE_NAME = '/journal';
@@ -91,12 +91,12 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
   }
 
   Future<JournalJson> fetchJournal() async {
-    const url = 'https://reflekt-io.herokuapp.com/journal/json/';
-    // How to auth?
+    final request = context.watch<NetworkService>();
+    String url = 'https://reflekt-io.herokuapp.com/journal/json/';
     JournalJson? data;
 
     try {
-      final response = await http.get(Uri.parse(url));
+      final response = await request.get(url);
       //print(response.body);
       data = jsonDecode(response.body);
     } catch (error) {
