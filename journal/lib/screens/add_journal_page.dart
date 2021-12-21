@@ -1,10 +1,10 @@
-// ignore_for_file: unnecessary_question_mark, prefer_final_fields, unused_field, unused_element, constant_identifier_names
+// ignore_for_file: unnecessary_question_mark, prefer_final_fields, unused_field, constant_identifier_names
 
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:echo/common/network_service.dart';
 import 'package:flutter/material.dart';
 import 'package:journal/models/option.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:provider/provider.dart';
 
 class AddJournalPage extends StatefulWidget {
   const AddJournalPage({Key? key}) : super(key: key);
@@ -72,6 +72,8 @@ class _JournalHomePageState extends State<AddJournalPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<NetworkService>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Jurnal Baru'),
@@ -98,10 +100,12 @@ class _JournalHomePageState extends State<AddJournalPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: MultiSelectDialogField(
-                    buttonText: const Text('Perasaan apa saja yang sedang kamu rasakan?'),
+                    buttonText: const Text(
+                        'Perasaan apa saja yang sedang kamu rasakan?'),
                     title: const Text('Perasaan'),
                     items: _feelingList
-                        .map((option) => MultiSelectItem<Option?>(option, option.value))
+                        .map((option) =>
+                            MultiSelectItem<Option?>(option, option.value))
                         .toList(),
                     listType: MultiSelectListType.CHIP,
                     onConfirm: (values) {
@@ -120,10 +124,12 @@ class _JournalHomePageState extends State<AddJournalPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: MultiSelectDialogField(
-                    buttonText: const Text('Dari mana datangnya perasaan tersebut?'),
+                    buttonText:
+                        const Text('Dari mana datangnya perasaan tersebut?'),
                     title: const Text('Faktor'),
                     items: _factorList
-                        .map((option) => MultiSelectItem<Option?>(option, option.value))
+                        .map((option) =>
+                            MultiSelectItem<Option?>(option, option.value))
                         .toList(),
                     listType: MultiSelectListType.CHIP,
                     onConfirm: (values) {
@@ -139,10 +145,6 @@ class _JournalHomePageState extends State<AddJournalPage> {
                     },
                   ),
                 ),
-                // Wrap(
-                //   alignment: WrapAlignment.spaceEvenly,
-                //   children: _buildButtonsList(_feelingList),
-                // ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: DropdownButtonFormField(
@@ -208,24 +210,20 @@ class _JournalHomePageState extends State<AddJournalPage> {
                       style: TextStyle(color: Colors.white),
                     ),
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(const Color(0xFF0B36A8)),
+                      backgroundColor:
+                          MaterialStateProperty.all(const Color(0xFF0B36A8)),
                     ),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         // Submit to Django server and wait for response
-                        final response = await http.post(
-                          Uri.parse("http://localhost:8000/journal/add-journal-flutter"),
-                          headers: <String, String>{
-                            'Content-Type': 'application/json; charset=UTF-8',
-                          },
-                          body: jsonEncode(<String, String>{
-                            'feeling': _feelingList.toString(),
-                            'factor': _factorList.toString(),
-                            'anxiety_rate': _currentSelectedAnxietyRate.toString(),
-                            'summary': _typedSummary,
-                            }
-                          ),
-                        );
+                        final response = await request.post(
+                            "http://localhost:8000/journal/add-journal-flutter",
+                            {
+                              'feeling': _feelingList.toString(),
+                              'factor': _factorList.toString(),
+                              'anxiety_rate': _currentSelectedAnxietyRate.toString(),
+                              'summary': _typedSummary,
+                            });
                         // ignore: avoid_print
                         print(response);
                       }
@@ -238,18 +236,5 @@ class _JournalHomePageState extends State<AddJournalPage> {
         ),
       ),
     );
-  }
-
-  List<Widget> _buildButtonsList(Map nameList) {
-    List<TextButton> buttonsList = <TextButton>[];
-    for (String i in nameList.keys) {
-      buttonsList.add(
-        TextButton(
-          child: Text(nameList[i]),
-          onPressed: null, // Nanti store yang i aja, terus submit ke database
-        ),
-      );
-    }
-    return buttonsList;
   }
 }
