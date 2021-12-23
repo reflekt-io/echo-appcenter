@@ -132,16 +132,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         child: TextButton(
                           onPressed: () async {
-                            
-                             final response = await request
+                            final response = await request
                                 .login("http://127.0.0.1:8000/loginflutter", {
                               'username': username,
                               'password': password1,
                             });
-                            if (request.loggedIn) {
+                            if (response['status']) {
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                               content: Text("Successfully logged in. Welcome back!"),
-                            ));
+                              ));
 
                               Navigator.pushReplacementNamed(
                                 context, HomePage.ROUTE_NAME);

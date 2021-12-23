@@ -3,8 +3,6 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 
-import 'package:echo/common/network_service.dart';
-import 'package:provider/provider.dart';
 import 'package:echo/common/background_image.dart';
 import 'package:echo/screens/login_screen.dart';
 import 'package:flutter/material.dart';
