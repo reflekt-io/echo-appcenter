@@ -1,7 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
 import 'dart:convert' as convert;
-import 'dart:io';
 import 'package:http/http.dart' as http;
 
 import 'package:echo/common/network_service.dart';
@@ -42,10 +41,9 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
     );
   }
   
-
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<NetworkService>();
+    // final request = context.watch<NetworkService>();
     Size size = MediaQuery.of(context).size;
     return Form(
       key: _formKey,

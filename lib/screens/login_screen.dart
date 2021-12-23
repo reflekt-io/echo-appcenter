@@ -138,8 +138,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               'username': username,
                               'password': password1,
                             });
-                            print(response);
                             if (request.loggedIn) {
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              content: Text("Successfully logged in. Welcome back!"),
+                            ));
+
                               Navigator.pushReplacementNamed(
                                 context, HomePage.ROUTE_NAME);
                             } else {
