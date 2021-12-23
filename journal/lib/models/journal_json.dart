@@ -19,7 +19,7 @@ class JournalJson {
 
     final String model;
     final int pk;
-    final List<Journal> fields;
+    final Journal fields;
 
     factory JournalJson.fromJson(String str) => JournalJson.fromMap(json.decode(str));
 
@@ -28,12 +28,12 @@ class JournalJson {
     factory JournalJson.fromMap(Map<String, dynamic> json) => JournalJson(
         model: json["model"],
         pk: json["pk"],
-        fields: List<Journal>.from(json["fields"].map((x) => x)),
+        fields: Journal.fromJson(json["fields"]),
     );
 
     Map<String, dynamic> toMap() => {
         "model": model,
         "pk": pk,
-        "fields": List<dynamic>.from(fields.map((x) => x)),
+        "fields": fields.toJson(),
     };
 }
