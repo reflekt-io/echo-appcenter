@@ -1,3 +1,4 @@
+import 'package:echo/common/CookieRequest.dart';
 import 'package:flutter/material.dart';
 import 'package:echo/common/utils.dart';
 import 'package:echo/screens/home_page.dart';
@@ -5,6 +6,7 @@ import 'package:echo/screens/create_new_account.dart';
 import 'package:echo/screens/login_screen.dart';
 import 'package:journal/screens/add_journal_page.dart';
 import 'package:journal/screens/journal_home_page.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +42,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return Provider(
+      create: (_) {
+        CookieRequest request = CookieRequest();
+
+        return request;
+      }, child : MaterialApp(
         title: 'reflekt.io',
         theme: ThemeData(
           primarySwatch: MaterialColor(0xFF24262A, themeColor),
@@ -71,6 +78,8 @@ class MyApp extends StatelessWidget {
                 },
               );
           }
-        });
+        }
+      )
+    );
   }
 }

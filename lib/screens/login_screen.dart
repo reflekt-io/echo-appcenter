@@ -1,5 +1,5 @@
 // ignore_for_file: constant_identifier_names
-
+import 'package:provider/provider.dart';
 import 'package:echo/common/background_image.dart';
 import 'package:echo/screens/create_new_account.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +14,15 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+  bool isPasswordVisible = false;
+  void togglePasswordView() {
+    setState(() {
+      isPasswordVisible = !isPasswordVisible;
+    });
+  }
+
+  String username = "";
+  String password1 = "";
   
   @override
   Widget build(BuildContext context) {
