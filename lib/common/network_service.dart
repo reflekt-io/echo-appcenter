@@ -149,6 +149,7 @@ class NetworkService {
 
     if (response.statusCode == 200) {
       loggedIn = false;
+      username = "";
     } else {
       loggedIn = true;
     }
