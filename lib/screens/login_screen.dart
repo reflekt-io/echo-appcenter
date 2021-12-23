@@ -1,4 +1,5 @@
 // ignore_for_file: constant_identifier_names
+import 'package:echo/common/network_service.dart';
 import 'package:provider/provider.dart';
 import 'package:echo/common/background_image.dart';
 import 'package:echo/screens/create_new_account.dart';
@@ -27,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<NetworkService>();
     Size size = MediaQuery.of(context).size;
     return Form(
         key: _formKey,
@@ -57,16 +59,27 @@ class _LoginScreenState extends State<LoginScreen> {
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
                           decoration: InputDecoration(
-                            hintText: "contoh: Dummy@gmail.com",
-                            labelText: "Email",
+                            hintText: "contoh: Dummy123",
+                            labelText: "Username",
                             labelStyle: const TextStyle(color: Colors.white),
                             icon: const Icon(Icons.attach_email),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
                           ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              username = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              username = value!;
+                            });
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Email tidak boleh kosong';
+                              return 'Username tidak boleh kosong';
                             }
                             return null;
                           },
@@ -88,6 +101,17 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                           ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              password1 = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              password1 = value!;
+                            });
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Password tidak boleh kosong';
@@ -107,12 +131,25 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: const Color(0xFF24262A),
                         ),
                         child: TextButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              // Untuk sementara, push langsung ke home asal ada isi input
+                          onPressed: () async {
+                            
+                             final response = await request
+                                .login("http://127.0.0.1:8000/loginflutter", {
+                              'username': username,
+                              'password': password1,
+                            });
+                            print(response);
+                            if (request.loggedIn) {
                               Navigator.pushReplacementNamed(
-                                  context, HomePage.ROUTE_NAME);
+                                context, HomePage.ROUTE_NAME);
+                            } else {
+                              // kalo salah
                             }
+                            // if (_formKey.currentState!.validate()) {
+                            //   // Untuk sementara, push langsung ke home asal ada isi input
+                            //   Navigator.pushReplacementNamed(
+                            //       context, HomePage.ROUTE_NAME);
+                            // }
                           },
                           child: const Text(
                             'Submit',
