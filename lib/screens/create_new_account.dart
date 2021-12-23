@@ -1,5 +1,8 @@
 // ignore_for_file: constant_identifier_names
 
+import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
+
 import 'package:echo/common/background_image.dart';
 import 'package:echo/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +15,33 @@ class CreateNewAccount extends StatefulWidget {
   State<CreateNewAccount> createState() => _CreateNewAccountState();
 }
 
+
 class _CreateNewAccountState extends State<CreateNewAccount> {
   final _formKey = GlobalKey<FormState>();
 
+  String username = "";
+  String email = "";
+  String password1 = "";
+  String password2 = "";
+
+  Future<http.Response> registFlutter(String username, String email, String password1, String password2) {
+  return http.post(
+    Uri.parse('http://127.0.0.1:8000/registerflutter'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8'
+    },
+    body: convert.jsonEncode(<String, String>{
+      'username': username,
+      'email': email,
+      'password1': password1,
+      'password2': password2,
+      }),
+    );
+  }
+  
   @override
   Widget build(BuildContext context) {
+    // final request = context.watch<NetworkService>();
     Size size = MediaQuery.of(context).size;
     return Form(
       key: _formKey,
@@ -50,16 +75,27 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
                           decoration: InputDecoration(
-                            hintText: "contoh: Dummy Bot",
-                            labelText: "Nama Lengkap",
+                            hintText: "contoh: Dummy123",
+                            labelText: "Username",
                             labelStyle: const TextStyle(color: Colors.white),
                             icon: const Icon(Icons.people),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
                           ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              username = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              username = value!;
+                            });
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Nama tidak boleh kosong';
+                              return 'Username tidak boleh kosong';
                             }
                             return null;
                           },
@@ -77,6 +113,17 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
                           ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              email = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              email = value!;
+                            });
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Email tidak boleh kosong';
@@ -100,6 +147,17 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
                           ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              password1 = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              password1 = value!;
+                            });
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Password tidak boleh kosong';
@@ -121,6 +179,17 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
                           ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              password2 = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              password2 = value!;
+                            });
+                          },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Password tidak boleh kosong';
@@ -140,8 +209,13 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                           color: const Color(0xFF24262A),
                         ),
                         child: TextButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {}
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              // Submit to Django server and wait for response
+                              registFlutter(username, email, password1, password2);
+                              Navigator.pushReplacementNamed(
+                                context, LoginScreen.ROUTE_NAME);
+                            }
                           },
                           child: const Text(
                             'Submit',

@@ -377,17 +377,16 @@ packages:
       name: vector_math
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
+
     version: "2.1.1"
-=======
-    version: "2.1.0"
+
   win32:
     dependency: transitive
     description:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.1"
+    version: "2.3.2"
   xdg_directories:
     dependency: transitive
     description:
@@ -395,7 +394,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0"
->>>>>>> 0af14da170406057368f71d40c985cf8b1dfe3f7
+
 sdks:
   dart: ">=2.14.0 <3.0.0"
   flutter: ">=2.5.0"

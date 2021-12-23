@@ -1,3 +1,5 @@
+import 'package:echo/common/network_service.dart';
+import 'package:echo/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:about_us/screens/about_us.dart';
 import 'package:deteksi_depresi/screens/phq9_page.dart';
@@ -10,6 +12,7 @@ import 'package:pojok_curhat/screens/add_pojok_curhat_page.dart';
 import 'package:pojok_curhat/screens/pojok_curhat_home.dart';
 import 'package:ide_kegiatan/screens/add_ide_kegiatan.dart';
 import 'package:ide_kegiatan/screens/ide_kegiatan_home.dart';
+import 'package:provider/provider.dart';
 
 class DrawerMenu extends StatelessWidget {
   final String route;
@@ -18,6 +21,7 @@ class DrawerMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<NetworkService>();
     return Drawer(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -172,7 +176,18 @@ class DrawerMenu extends StatelessWidget {
                   const Divider(),
                   ListTile(
                     title: const Text('Log Out'),
-                    onTap: () {
+                    onTap: () async {
+                      final response = await request.logoutAccount();
+                            if (response['status']) {
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              content: Text("Successfully logged out !"),
+                              ));
+
+                              Navigator.pushReplacementNamed(
+                                context, LoginScreen.ROUTE_NAME);
+                            } else {
+                              // kalo salah
+                            }
                       // Log Out (delete cookie) and return to login screen
                     },
                   ),
