@@ -27,9 +27,6 @@ class NetworkService {
         if (cookies['sessionid'] != null) {
           loggedIn = true;
           headers['cookie'] = _generateCookieHeader();
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Successfully logged in. Welcome back!"),
-          ));
         }
       }
     }
@@ -82,6 +79,21 @@ class NetworkService {
     return json.decode(response.body); // Expects and returns JSON request body
   }
 
+  Future<dynamic> postJson(String url, dynamic data) async {
+    if (kIsWeb) {
+      dynamic c = _client;
+      c.withCredentials = true;
+    }
+    // Add additional header
+    headers['Content-Type'] = 'application/json; charset=UTF-8';
+    http.Response response =
+        await _client.post(Uri.parse(url), body: data, headers: headers);
+    // Clear used additional header
+    headers['Content-Type'] = '';
+    _updateCookie(response);
+    return json.decode(response.body); // Expects and returns JSON request body
+  }
+
   void _updateCookie(http.Response response) {
     String? allSetCookie = response.headers['set-cookie'];
 
@@ -129,9 +141,9 @@ class NetworkService {
     return cookie;
   }
 
-  Future<dynamic> logoutAccount() async {
+  Future<dynamic> logoutAccount(String url) async {
     http.Response response =
-      await _client.post(Uri.parse('http://127.0.0.1:8000/logoutflutter'));
+      await _client.post(Uri.parse(url));
 
     if (response.statusCode == 200) {
       loggedIn = false;
@@ -140,6 +152,7 @@ class NetworkService {
     }
 
     cookies = {};
+
     return json.decode(response.body);
   }
 }

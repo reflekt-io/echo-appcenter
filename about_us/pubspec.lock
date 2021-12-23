@@ -65,7 +65,7 @@ packages:
     source: path
     version: "0.0.1+1"
   expandable:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: expandable
       url: "https://pub.dartlang.org"

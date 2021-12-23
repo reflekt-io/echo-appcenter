@@ -139,19 +139,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             });
                             if (response['status']) {
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                              content: Text("Successfully logged in. Welcome back!"),
+                                content: Text("Successfully logged in!"),
                               ));
 
                               Navigator.pushReplacementNamed(
                                 context, HomePage.ROUTE_NAME);
                             } else {
-                              // kalo salah
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                content: Text("An error occured, please try again."),
+                              ));
                             }
-                            // if (_formKey.currentState!.validate()) {
-                            //   // Untuk sementara, push langsung ke home asal ada isi input
-                            //   Navigator.pushReplacementNamed(
-                            //       context, HomePage.ROUTE_NAME);
-                            // }
                           },
                           child: const Text(
                             'Submit',

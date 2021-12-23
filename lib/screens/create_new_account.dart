@@ -23,21 +23,6 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
   String email = "";
   String password1 = "";
   String password2 = "";
-
-  Future<http.Response> registFlutter(String username, String email, String password1, String password2) {
-  return http.post(
-    Uri.parse('http://127.0.0.1:8000/registerflutter'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8'
-    },
-    body: convert.jsonEncode(<String, String>{
-      'username': username,
-      'email': email,
-      'password1': password1,
-      'password2': password2,
-      }),
-    );
-  }
   
   @override
   Widget build(BuildContext context) {
@@ -234,7 +219,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            'Already have an account? ',
+                            'Already have an account?',
                             style: TextStyle(
                                 fontSize: 22, color: Colors.white, height: 1.5),
                           ),
@@ -265,6 +250,21 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
           )
         ],
       ),
+    );
+  }
+
+  Future<http.Response> registFlutter(String username, String email, String password1, String password2) {
+    return http.post(
+      Uri.parse('http://127.0.0.1:8000/registerflutter'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: convert.jsonEncode(<String, String>{
+        'username': username,
+        'email': email,
+        'password1': password1,
+        'password2': password2,
+        }),
     );
   }
 }

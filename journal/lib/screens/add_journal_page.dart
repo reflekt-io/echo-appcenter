@@ -1,8 +1,9 @@
 // ignore_for_file: unnecessary_question_mark, prefer_final_fields, unused_field, constant_identifier_names
-
+import 'dart:convert' as convert;
 import 'package:echo/common/network_service.dart';
 import 'package:flutter/material.dart';
 import 'package:journal/models/option.dart';
+import 'package:journal/screens/journal_home_page.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -216,16 +217,29 @@ class _JournalHomePageState extends State<AddJournalPage> {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         // Submit to Django server and wait for response
-                        final response = await request.post(
-                            "http://localhost:8000/journal/add-journal-flutter",
-                            {
-                              'feeling': _feelingList.toString(),
-                              'factor': _factorList.toString(),
-                              'anxiety_rate': _currentSelectedAnxietyRate.toString(),
+                        final response = await request.postJson(
+                            "http://127.0.0.1:8000/journal/add-journal-flutter",
+                            convert.jsonEncode(<String, String>{
+                              'feeling': _selectedFeelings.toString(),
+                              'factor': _selectedFactors.toString(),
+                              'anxiety_rate':
+                                  _currentSelectedAnxietyRate.toString(),
                               'summary': _typedSummary,
-                            });
-                        // ignore: avoid_print
-                        print(response);
+                            }));
+                        if (response == 'success') {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Jurnal baru berhasil disimpan!"),
+                          ));
+                          Navigator.pushReplacementNamed(
+                              context, JournalHomePage.ROUTE_NAME);
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content:
+                                Text("An error occured, please try again."),
+                          ));
+                        }
                       }
                     },
                   ),
