@@ -21,12 +21,13 @@ class JournalHomePage extends StatefulWidget {
 }
 
 class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
-  List<Journal> dummyJournal = DUMMY_CATEGORIES.fields;
+  List<JournalJson> dummyJournal = DUMMY_CATEGORIES;
   // List<Journal> dummyJournal = [];
+  List<Journal> journal = [];
 
   @override
   void initState() {
-    //Get journals by calling fetchJournal()
+    // fetchJournal();
     super.initState();
   }
 
@@ -38,11 +39,12 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
 
   @override
   void didPopNext() {
-    //Get journals by calling fetchJournal()
-  }  
+    // fetchJournal();
+  }
 
   @override
   Widget build(BuildContext context) {
+    fetchJournal();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Riwayat Jurnal'),
@@ -67,7 +69,7 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
                     shrinkWrap: true,
                     itemCount: dummyJournal.length,
                     itemBuilder: (context, index) {
-                      return JournalCard(dummyJournal[index]);
+                      return JournalCard(dummyJournal[index].fields);
                     },
                   ),
           ],
@@ -90,19 +92,26 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
     super.dispose();
   }
 
-  Future<JournalJson> fetchJournal() async {
+  dynamic fetchJournal() async {
     final request = context.watch<NetworkService>();
-    String url = 'https://reflekt-io.herokuapp.com/journal/json/';
-    JournalJson? data;
+    String url = 'http://127.0.0.1:8000/journal/json';
+    dynamic data;
+
+    final response = await request.get(url);
+    data = json.decode(response).map((m)=> JournalJson.fromJson(m)).toList();
+    print(data);
 
     try {
       final response = await request.get(url);
-      //print(response.body);
-      data = jsonDecode(response.body);
+      data = json.decode(response).map((m)=> JournalJson.fromJson(m)).toList();
+      print(data);
     } catch (error) {
-      //print(error);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("An error occured, please try again."),
+      ));
+      return null;
     }
 
-    return data!;
+    return data;
   }
 }

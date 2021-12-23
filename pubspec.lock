@@ -149,6 +149,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3"
+  json_helpers:
+    dependency: transitive
+    description:
+      name: json_helpers
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.5"
   kutipan:
     dependency: "direct main"
     description:
