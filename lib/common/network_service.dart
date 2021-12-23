@@ -17,6 +17,7 @@ class NetworkService {
 
   bool loggedIn = false;
   bool initialized = false;
+  String username = "";
 
   Future init(BuildContext context) async {
     if (!initialized) {
@@ -50,6 +51,7 @@ class NetworkService {
 
     if (response.statusCode == 200) {
       loggedIn = true;
+      username = json.decode(response.body)['username'];
     } else {
       loggedIn = false;
     }
