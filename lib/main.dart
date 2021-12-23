@@ -1,11 +1,19 @@
-import 'package:echo/common/CookieRequest.dart';
+import 'package:echo/common/network_service.dart';
 import 'package:flutter/material.dart';
+import 'package:about_us/screens/about_us.dart';
 import 'package:echo/common/utils.dart';
 import 'package:echo/screens/home_page.dart';
 import 'package:echo/screens/create_new_account.dart';
 import 'package:echo/screens/login_screen.dart';
 import 'package:journal/screens/add_journal_page.dart';
 import 'package:journal/screens/journal_home_page.dart';
+import 'package:kutipan/screens/add_kutipan_penyemangat_page.dart';
+import 'package:kutipan/screens/kutipan_penyemangat_home.dart';
+import 'package:pojok_curhat/screens/add_pojok_curhat_page.dart';
+import 'package:pojok_curhat/screens/pojok_curhat_home.dart';
+import 'package:deteksi_depresi/screens/phq9_page.dart';
+import 'package:ide_kegiatan/screens/add_ide_kegiatan.dart';
+import 'package:ide_kegiatan/screens/ide_kegiatan_home.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -43,43 +51,66 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Provider(
-      create: (_) {
-        CookieRequest request = CookieRequest();
+        create: (_) {
+          NetworkService request = NetworkService();
 
-        return request;
-      }, child : MaterialApp(
-        title: 'reflekt.io',
-        theme: ThemeData(
-          primarySwatch: MaterialColor(0xFF24262A, themeColor),
-        ),
-        // home: (ke login screen intinya)
-        home: const LoginScreen(),
-        navigatorObservers: [routeObserver],
-        onGenerateRoute: (RouteSettings settings) {
-          switch (settings.name) {
-            case HomePage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => const HomePage());
-            case JournalHomePage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => const JournalHomePage());
-            case AddJournalPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => const AddJournalPage());
-            case LoginScreen.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => const LoginScreen());
-            case CreateNewAccount.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => const CreateNewAccount());
-            default:
-              return MaterialPageRoute(
-                builder: (_) {
-                  return const Scaffold(
-                    body: Center(
-                      child: Text('Page not found :('),
-                    ),
-                  );
-                },
-              );
-          }
-        }
-      )
+          return request;
+        },
+      child: MaterialApp(
+          title: 'reflekt.io',
+          theme: ThemeData(
+            primarySwatch: MaterialColor(0xFF24262A, themeColor),
+          ),
+          home: const LoginScreen(),
+          navigatorObservers: [routeObserver],
+          onGenerateRoute: (RouteSettings settings) {
+            switch (settings.name) {
+              case HomePage.ROUTE_NAME:
+                return MaterialPageRoute(builder: (_) => const HomePage());
+              case JournalHomePage.ROUTE_NAME:
+                return MaterialPageRoute(builder: (_) => const JournalHomePage());
+              case AddJournalPage.ROUTE_NAME:
+                return MaterialPageRoute(builder: (_) => const AddJournalPage());
+              case LoginScreen.ROUTE_NAME:
+                return MaterialPageRoute(builder: (_) => const LoginScreen());
+              case CreateNewAccount.ROUTE_NAME:
+                return MaterialPageRoute(
+                    builder: (_) => const CreateNewAccount());
+              case KutipanPenyemangatHomePage.ROUTE_NAME:
+                return MaterialPageRoute(
+                    builder: (_) => const KutipanPenyemangatHomePage());
+              case AddKutipanPenyemangatPage.ROUTE_NAME:
+                return MaterialPageRoute(
+                    builder: (_) => const AddKutipanPenyemangatPage());
+              case PojokCurhatHomePage.ROUTE_NAME:
+                return MaterialPageRoute(
+                    builder: (_) => const PojokCurhatHomePage());
+              case AddPojokCurhatPage.ROUTE_NAME:
+                return MaterialPageRoute(
+                    builder: (_) => const AddPojokCurhatPage());
+              case PHQ9.ROUTE_NAME:
+                return MaterialPageRoute(builder: (_) => const PHQ9());
+              case IdeKegiatanHomePage.ROUTE_NAME:
+                return MaterialPageRoute(
+                    builder: (_) => const IdeKegiatanHomePage());
+              case AddRekomendasiKegiatanPage.ROUTE_NAME:
+                return MaterialPageRoute(
+                    builder: (_) => const AddRekomendasiKegiatanPage());
+              case AboutUs.ROUTE_NAME:
+                return MaterialPageRoute(
+                    builder: (_) => const AboutUs());
+              default:
+                return MaterialPageRoute(
+                  builder: (_) {
+                    return const Scaffold(
+                      body: Center(
+                        child: Text('Page not found :('),
+                      ),
+                    );
+                  },
+                );
+            }
+          }),
     );
   }
 }

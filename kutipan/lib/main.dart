@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:journal/screens/journal_home_page.dart';
+
+import 'package:kutipan/screens/kutipan_penyemangat_home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,9 +37,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'reflekt.io - Jurnal',
+      title: 'reflekt.io - Kutipan Penyemangat',
       theme: ThemeData(
-        // This is the theme of your application.
+        // This is the theme of your application.a
         //
         // Try running your application with "flutter run". You'll see the
         // application has a blue toolbar. Then, without quitting the app, try
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: MaterialColor(0xFF24262A, themeColor),
       ),
-      home: const JournalHomePage(),
+      home: const KutipanPenyemangatHomePage(),
     );
   }
 }
