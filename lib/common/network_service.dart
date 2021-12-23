@@ -128,4 +128,18 @@ class NetworkService {
 
     return cookie;
   }
+
+  Future<dynamic> logoutAccount() async {
+    http.Response response =
+      await _client.post(Uri.parse('http://127.0.0.1:8000/logoutflutter'));
+
+    if (response.statusCode == 200) {
+      loggedIn = false;
+    } else {
+      loggedIn = true;
+    }
+
+    cookies = {};
+    return json.decode(response.body);
+  }
 }
