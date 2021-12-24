@@ -1,20 +1,29 @@
 // ignore_for_file: camel_case_types, constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:echo/common/network_service.dart';
+import 'package:provider/provider.dart';
+import 'dart:convert' as convert;
+import 'package:kutipan/screens/kutipan_penyemangat_home.dart';
 
 class AddKutipanPenyemangatPage extends StatefulWidget {
   const AddKutipanPenyemangatPage({Key? key}) : super(key: key);
   static const ROUTE_NAME = '/add-kutipan';
 
   @override
-  State<AddKutipanPenyemangatPage> createState() => _Kutipan_PenyemangatHomePageState();
+  State<AddKutipanPenyemangatPage> createState() =>
+      _Kutipan_PenyemangatHomePageState();
 }
 
-class _Kutipan_PenyemangatHomePageState extends State<AddKutipanPenyemangatPage> {
+class _Kutipan_PenyemangatHomePageState
+    extends State<AddKutipanPenyemangatPage> {
   final _formKey = GlobalKey<FormState>();
+  String nama = "";
+  String kutipan = "";
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<NetworkService>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tambahkan Kutipan'),
@@ -52,10 +61,16 @@ class _Kutipan_PenyemangatHomePageState extends State<AddKutipanPenyemangatPage>
                       hintText: 'Masukin nama kamu (boleh anonim juga :D)',
                       labelText: 'Nama',
                     ),
-                    onSaved: (String? value) {
-                      // This optional block of code can be used to run
-                      // code when the user saves the form.
-                    },
+                     onChanged: (String? value) {
+                      setState(() {
+                        nama = value!;
+                      });
+                     },
+                      onSaved: (String? value) {
+                      setState(() {
+                        nama = value!;
+                      });
+                      },
                     validator: (String? value) {
                       return (value == null || value.isEmpty)
                           ? 'Nama tidak boleh kosong.'
@@ -74,7 +89,15 @@ class _Kutipan_PenyemangatHomePageState extends State<AddKutipanPenyemangatPage>
                     onSaved: (String? value) {
                       // This optional block of code can be used to run
                       // code when the user saves the form.
+                       setState(() {
+                        kutipan = value!;
+                      });
                     },
+                    onChanged: (String? value) {
+                      setState(() {
+                        kutipan = value!;
+                      });
+                     },
                     validator: (String? value) {
                       return (value == null || value.isEmpty)
                           ? 'Kutipannya tidak boleh kosong.'
@@ -93,8 +116,29 @@ class _Kutipan_PenyemangatHomePageState extends State<AddKutipanPenyemangatPage>
                       backgroundColor:
                           MaterialStateProperty.all(const Color(0xFF0B36A8)),
                     ),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        final response = await request.postJson(
+                            "http://127.0.0.1:8000/kutipan-penyemangat/add-kutipan-flutter",
+                            convert.jsonEncode(<String, String>{
+                              'name': nama,
+                              'quotes_form': kutipan,
+                            }));
+                        if (response['status'] == 'success') {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Kutipan Penyamangat baru telah berhasil disimpan!"),
+                          ));
+                          Navigator.pushReplacementNamed(
+                              context, KutipanPenyemangatHomePage.ROUTE_NAME);
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content:
+                                Text("An error occured, please try again."),
+                          ));
+                        }
+                      }
                     },
                   ),
                 ),

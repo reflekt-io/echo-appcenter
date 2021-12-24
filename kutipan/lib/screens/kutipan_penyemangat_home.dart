@@ -1,11 +1,12 @@
 // ignore_for_file: camel_case_types, non_constant_identifier_names, constant_identifier_names
 
+import 'package:echo/common/network_service.dart';
 import 'package:flutter/material.dart';
 import 'package:echo/widgets/drawer_menu.dart';
-import 'package:kutipan/dummy_data.dart';
 import 'package:kutipan/screens/add_kutipan_penyemangat_page.dart';
 import 'package:kutipan/models/kutipan_penyemangat.dart';
 import 'package:kutipan/widgets/kutipan_penyemangat_card.dart';
+import 'package:provider/provider.dart';
 
 class KutipanPenyemangatHomePage extends StatefulWidget {
   const KutipanPenyemangatHomePage({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class KutipanPenyemangatHomePage extends StatefulWidget {
 }
 
 class _Kutipan_PenyemangatHomePageState extends State<KutipanPenyemangatHomePage> {
-  List<Kutipan_Penyemangat> dummyKutipan_Penyemangat = DUMMY_CATEGORIES.fields;
+  // List<Kutipan_Penyemangat> dummyKutipan_Penyemangat = DUMMY_CATEGORIES.fields;
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +26,12 @@ class _Kutipan_PenyemangatHomePageState extends State<KutipanPenyemangatHomePage
         title: const Text('List Kutipan Penyemangat'),
       ),
       drawer: const DrawerMenu(KutipanPenyemangatHomePage.ROUTE_NAME),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            dummyKutipan_Penyemangat.isEmpty
+      body: FutureBuilder(
+          future: fetchKutipan(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<Kutipan_Penyemangat>? kutipan = snapshot.data as List<Kutipan_Penyemangat>;   
+              return kutipan.isEmpty
                 ? const Center(
                     child: Padding(
                       padding: EdgeInsets.only(top: 30.0),
@@ -42,25 +44,39 @@ class _Kutipan_PenyemangatHomePageState extends State<KutipanPenyemangatHomePage
                 : ListView.builder(
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
-                    itemCount: dummyKutipan_Penyemangat.length,
+                    itemCount: kutipan.length,
                     itemBuilder: (context, index) {
-                      return KutipanPenyemangatCard(dummyKutipan_Penyemangat[index]);
+                      return KutipanPenyemangatCard(kutipan[index]);
                     },
-                  ),
-          ],
-        ),
-      ),
+                  );
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          }),
+
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFF0B36A8),
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const AddKutipanPenyemangatPage()));
+          Navigator.pushNamed(context, AddKutipanPenyemangatPage.ROUTE_NAME);
         },
         tooltip: 'Tambahkan Kutipan Penyemangat',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  Future<List<Kutipan_Penyemangat>> fetchKutipan() async {
+    final request = context.watch<NetworkService>();
+    String url = 'http://127.0.0.1:8000/kutipan-penyemangat/json';
+
+    final response = await request.get(url);
+
+    List<Kutipan_Penyemangat> result = [];
+    for (var d in response) {
+      if (d != null) {
+        result.add(Kutipan_Penyemangat.fromJson(d));
+      }
+    }
+    return result;
   }
 }
