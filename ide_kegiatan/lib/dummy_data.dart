@@ -1,5 +1,6 @@
 import 'package:ide_kegiatan/models/rekomendasi.dart';
 
+// ignore: constant_identifier_names
 const DUMMY_REKOMENDASI = [
   Rekomendasi(id: '1', nama: 'Bermain game'),
   Rekomendasi(id: '2', nama: 'Menonton film'),
