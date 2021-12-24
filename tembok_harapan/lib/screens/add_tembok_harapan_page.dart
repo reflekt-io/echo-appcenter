@@ -1,6 +1,10 @@
 // ignore_for_file: camel_case_types, constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:echo/common/network_service.dart';
+import 'package:provider/provider.dart';
+import 'dart:convert' as convert;
+import 'package:tembok_harapan/screens/tembok_harapan_home.dart';
 
 class AddTembokHarapanPage extends StatefulWidget {
   const AddTembokHarapanPage({Key? key}) : super(key: key);
@@ -12,9 +16,13 @@ class AddTembokHarapanPage extends StatefulWidget {
 
 class _Tembok_HarapanHomePageState extends State<AddTembokHarapanPage> {
   final _formKey = GlobalKey<FormState>();
+  
+  String title = "";
+  String harapan = "";
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<NetworkService>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tambahkan Harapan'),
@@ -52,9 +60,15 @@ class _Tembok_HarapanHomePageState extends State<AddTembokHarapanPage> {
                       hintText: 'Hal apa yang sangat kamu harapkan ?',
                       labelText: 'Harapanmu',
                     ),
+                    onChanged: (String? value) {
+                      setState(() {
+                        title = value!;
+                      });
+                     },
                     onSaved: (String? value) {
-                      // This optional block of code can be used to run
-                      // code when the user saves the form.
+                      setState(() {
+                        title = value!;
+                      });
                     },
                     validator: (String? value) {
                       return (value == null || value.isEmpty)
@@ -74,6 +88,14 @@ class _Tembok_HarapanHomePageState extends State<AddTembokHarapanPage> {
                     onSaved: (String? value) {
                       // This optional block of code can be used to run
                       // code when the user saves the form.
+                       setState(() {
+                        harapan = value!;
+                      });
+                    },
+                    onChanged: (String? value) {
+                      setState(() {
+                        harapan = value!;
+                      });
                     },
                     validator: (String? value) {
                       return (value == null || value.isEmpty)
@@ -93,8 +115,29 @@ class _Tembok_HarapanHomePageState extends State<AddTembokHarapanPage> {
                       backgroundColor:
                           MaterialStateProperty.all(const Color(0xFF0B36A8)),
                     ),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        final response = await request.postJson(
+                            "http://127.0.0.1:8000/tembok-harapan/add-harapan-flutter",
+                            convert.jsonEncode(<String, String>{
+                              'title': title,
+                              'harapan': harapan,
+                            }));
+                        if (response['status'] == 'success') {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Harapan baru telah berhasil disimpan!"),
+                          ));
+                          Navigator.pushReplacementNamed(
+                              context, TembokHarapanHomePage.ROUTE_NAME);
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content:
+                                Text("An error occured, please try again."),
+                          ));
+                        }
+                      }
                     },
                   ),
                 ),

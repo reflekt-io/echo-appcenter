@@ -12,18 +12,19 @@ class Tembok_Harapan {
   final String title;
   final String harapan;
 
-  factory Tembok_Harapan.fromJson(String str) =>
-      Tembok_Harapan.fromMap(json.decode(str));
+  factory Tembok_Harapan.fromRawJson(String str) =>
+      Tembok_Harapan.fromJson(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toRawJson() => json.encode(toJson());
 
-  factory Tembok_Harapan.fromMap(Map<String, dynamic> json) => Tembok_Harapan(
-        title: json["title"],
-        harapan: json["harapan"],
+  factory Tembok_Harapan.fromJson(Map<String, dynamic> json) => Tembok_Harapan(
+        title: json["fields"]["title"],
+        harapan: json["fields"]["harapan"],
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
         "title": title,
         "harapan": harapan,
       };
+
 }

@@ -1,8 +1,10 @@
 // ignore_for_file: camel_case_types, non_constant_identifier_names, constant_identifier_names
 
+
+import 'package:echo/common/network_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:echo/widgets/drawer_menu.dart';
-import 'package:tembok_harapan/dummy_data.dart';
 import 'package:tembok_harapan/screens/add_tembok_harapan_page.dart';
 import 'package:tembok_harapan/models/tembok_harapan.dart';
 import 'package:tembok_harapan/widgets/tembok_harapan_card.dart';
@@ -16,7 +18,7 @@ class TembokHarapanHomePage extends StatefulWidget {
 }
 
 class _Tembok_HarapanHomePageState extends State<TembokHarapanHomePage> {
-  List<Tembok_Harapan> dummyTembok_Harapan = DUMMY_CATEGORIES.fields;
+  // List<Tembok_Harapan> dummyTembok_Harapan = DUMMY_CATEGORIES.fields;
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +27,12 @@ class _Tembok_HarapanHomePageState extends State<TembokHarapanHomePage> {
         title: const Text('Kumpulan Harapan'),
       ),
       drawer: const DrawerMenu(TembokHarapanHomePage.ROUTE_NAME),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            dummyTembok_Harapan.isEmpty
+      body: FutureBuilder(
+          future: fetchHarapan(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<Tembok_Harapan>? harapan = snapshot.data as List<Tembok_Harapan>;   
+              return harapan.isEmpty
                 ? const Center(
                     child: Padding(
                       padding: EdgeInsets.only(top: 30.0),
@@ -42,14 +45,15 @@ class _Tembok_HarapanHomePageState extends State<TembokHarapanHomePage> {
                 : ListView.builder(
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
-                    itemCount: dummyTembok_Harapan.length,
+                    itemCount: harapan.length,
                     itemBuilder: (context, index) {
-                      return TembokHarapanCard(dummyTembok_Harapan[index]);
+                      return TembokHarapanCard(harapan[index]);
                     },
-                  ),
-          ],
-        ),
-      ),
+                  );
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFF0B36A8),
         onPressed: () {
@@ -62,5 +66,20 @@ class _Tembok_HarapanHomePageState extends State<TembokHarapanHomePage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  Future<List<Tembok_Harapan>> fetchHarapan() async {
+    final request = context.watch<NetworkService>();
+    String url = 'http://127.0.0.1:8000/tembok-harapan/json-tembok-harapan';
+
+    final response = await request.get(url);
+
+    List<Tembok_Harapan> result = [];
+    for (var d in response) {
+      if (d != null) {
+        result.add(Tembok_Harapan.fromJson(d));
+      }
+    }
+    return result;
   }
 }
