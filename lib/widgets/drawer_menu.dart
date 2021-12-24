@@ -183,7 +183,7 @@ class DrawerMenu extends StatelessWidget {
                   ListTile(
                     title: const Text('Log Out'),
                     onTap: () async {
-                      final response = await request.logoutAccount("http://127.0.0.1:8000/logoutflutter");
+                      final response = await request.logoutAccount("https://reflekt-io.herokuapp.com/logoutflutter");
                             if (response['status']) {
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                 content: Text("Successfully logged out!"),

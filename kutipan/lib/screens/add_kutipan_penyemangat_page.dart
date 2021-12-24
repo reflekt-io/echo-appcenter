@@ -119,7 +119,7 @@ class _Kutipan_PenyemangatHomePageState
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         final response = await request.postJson(
-                            "http://127.0.0.1:8000/kutipan-penyemangat/add-kutipan-flutter",
+                            "https://reflekt-io.herokuapp.com/kutipan-penyemangat/add-kutipan-flutter",
                             convert.jsonEncode(<String, String>{
                               'name': nama,
                               'quotes_form': kutipan,

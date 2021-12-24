@@ -66,7 +66,7 @@ class _JournalHomePageState extends State<JournalHomePage> {
 
   Future<List<Journal>> fetchJournal() async {
     final request = context.watch<NetworkService>();
-    String url = 'http://127.0.0.1:8000/journal/json';
+    String url = 'https://reflekt-io.herokuapp.com/journal/json';
 
     final response = await request.get(url);
 
