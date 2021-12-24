@@ -92,6 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
                           obscureText: true,
+                          style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             hintText: "Masukkan Password",
                             labelText: "Password",
@@ -103,6 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             hintStyle: const TextStyle(color: Colors.white),
+                            
                           ),
                           onChanged: (String? value) {
                             setState(() {
