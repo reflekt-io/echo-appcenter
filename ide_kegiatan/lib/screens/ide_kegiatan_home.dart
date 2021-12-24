@@ -55,8 +55,10 @@ class _IdeKegiatanHomePageState extends State<IdeKegiatanHomePage> {
                               child: Padding(
                                 padding: EdgeInsets.only(top: 30.0),
                                 child: Text(
-                                  'Tekan tombol tambah untuk menambahkan kegiatan baru.',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  'Belum ada kegiatan yang kamu tambahkan.',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
                                 ),
                               ),
                             )
@@ -170,9 +172,9 @@ class _IdeKegiatanHomePageState extends State<IdeKegiatanHomePage> {
     ];
 
     for (var d in response) {
-      if (d != null && !listNama.contains(d.nama.toLowerCase())) {
+      if (d != null && !listNama.contains(d["fields"]["nama"].toLowerCase())) {
         result.add(Rekomendasi.fromJson(d));
-        listNama.add(d.nama.toLowerCase());
+        listNama.add(d["fields"]["nama"].toLowerCase());
       }
     }
 
