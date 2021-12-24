@@ -1,8 +1,12 @@
 // ignore_for_file: constant_identifier_names
 
+import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
+import 'package:echo/common/network_service.dart';
 import 'package:collection/collection.dart';
 import 'package:echo/widgets/drawer_menu.dart';
+import 'package:deteksi_depresi/models/result.dart';
+import 'package:provider/provider.dart';
 
 class PHQ9 extends StatefulWidget {
   const PHQ9({Key? key}) : super(key: key);
@@ -65,7 +69,14 @@ class _PHQ9State extends State<PHQ9> with RouteAware {
   }
 
   @override
+  void initState() {
+    showResult();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final request = context.watch<NetworkService>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Patient Health Questionnaire (PHQ-9)'),
@@ -122,16 +133,22 @@ class _PHQ9State extends State<PHQ9> with RouteAware {
                     backgroundColor:
                         MaterialStateProperty.all(const Color(0xFF0B36A8)),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     showDialog(
                       context: context,
                       builder: (context) {
                         return AlertDialog(
                           title: const Text(
-                              "Hasil deteksi depresi"),
+                              "Hasil Deteksi Depresi"),
                           content: Text(resultText),
                         );
                       },
+                    );
+                    await request.postJson(
+                        "http://127.0.0.1:8000/deteksi-depresi/add-result-flutter",
+                        convert.jsonEncode(<String, String>{
+                          'result': resultText,
+                        })
                     );
                   },
                 ),
@@ -141,5 +158,26 @@ class _PHQ9State extends State<PHQ9> with RouteAware {
         ),
       ),
     );
+  }
+
+  showResult() async {
+    final request = context.read<NetworkService>();
+    String url = 'http://127.0.0.1:8000/deteksi-depresi/fetch-result-flutter';
+    Result data;
+
+    final response = await request.get(url);
+    data = Result.fromMap(response);
+    
+    if (data.result != "") {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Hasil Terakhir Deteksi Depresi"),
+            content: Text("${data.result} (${data.date.toLocal().toString().substring(0, 16)})"),
+          );
+        },
+      );
+    }
   }
 }
