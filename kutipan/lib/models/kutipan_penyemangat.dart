@@ -15,17 +15,16 @@ class Kutipan_Penyemangat {
   final String nama;
   final String kutipan;
 
-  factory Kutipan_Penyemangat.fromJson(String str) =>
-      Kutipan_Penyemangat.fromMap(json.decode(str));
+  factory Kutipan_Penyemangat.fromRawJson(String str) => Kutipan_Penyemangat.fromJson(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toRawJson() => json.encode(toJson());
 
-  factory Kutipan_Penyemangat.fromMap(Map<String, dynamic> json) => Kutipan_Penyemangat(
-        nama: json["nama"],
-        kutipan: json["kutipan"],
+  factory Kutipan_Penyemangat.fromJson(Map<String, dynamic> json) => Kutipan_Penyemangat(
+        nama: json["fields"]["name"],
+        kutipan: json["fields"]["quotes_form"],
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
         "nama": nama,
         "kutipan": kutipan,
       };
