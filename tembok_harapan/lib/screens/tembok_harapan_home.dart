@@ -70,7 +70,7 @@ class _Tembok_HarapanHomePageState extends State<TembokHarapanHomePage> {
 
   Future<List<Tembok_Harapan>> fetchHarapan() async {
     final request = context.watch<NetworkService>();
-    String url = 'http://127.0.0.1:8000/tembok-harapan/json-tembok-harapan';
+    String url = 'https://reflekt-io.herokuapp.com/tembok-harapan/json-tembok-harapan';
 
     final response = await request.get(url);
 

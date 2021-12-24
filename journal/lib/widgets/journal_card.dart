@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:journal/models/journal.dart';
 
 // https://stackoverflow.com/questions/56273062/flutter-collapsible-expansible-card
@@ -110,6 +111,9 @@ class JournalCard extends StatelessWidget {
   }
 
   String _showDate(DateTime rawDate) {
+    // Formatting
+    final f = NumberFormat("00");
+    
     DateTime dateTime = rawDate.toLocal();
     // ignore: non_constant_identifier_names
     List MONTH = [
@@ -145,9 +149,9 @@ class JournalCard extends StatelessWidget {
     String monthName = MONTH[month - 1];
     String dayName = DAY[dateTime.weekday];
 
-    int hour = dateTime.hour;
-    int minute = dateTime.minute;
-    int second = dateTime.second;
+    String hour = f.format(dateTime.hour);
+    String minute = f.format(dateTime.minute);
+    String second = f.format(dateTime.second);
 
     // Use string interpolation
     String result = '$dayName, $day $monthName $year, pukul $hour.$minute.$second.';

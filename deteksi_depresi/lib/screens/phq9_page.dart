@@ -145,7 +145,7 @@ class _PHQ9State extends State<PHQ9> with RouteAware {
                       },
                     );
                     await request.postJson(
-                        "http://127.0.0.1:8000/deteksi-depresi/add-result-flutter",
+                        "https://reflekt-io.herokuapp.com/deteksi-depresi/add-result-flutter",
                         convert.jsonEncode(<String, String>{
                           'result': resultText,
                         })
@@ -162,7 +162,7 @@ class _PHQ9State extends State<PHQ9> with RouteAware {
 
   showResult() async {
     final request = context.read<NetworkService>();
-    String url = 'http://127.0.0.1:8000/deteksi-depresi/fetch-result-flutter';
+    String url = 'https://reflekt-io.herokuapp.com/deteksi-depresi/fetch-result-flutter';
     Result data;
 
     final response = await request.get(url);

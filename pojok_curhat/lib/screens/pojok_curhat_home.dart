@@ -66,7 +66,7 @@ class _PojokCurhatHomePageState extends State<PojokCurhatHomePage> {
   }
   Future<List<Pojok_Curhat>> fetchCurhat() async {
     final request = context.watch<NetworkService>();
-    String url = 'http://127.0.0.1:8000/pojok-curhat/json';
+    String url = 'https://reflekt-io.herokuapp.com/pojok-curhat/json';
 
     final response = await request.get(url);
 
