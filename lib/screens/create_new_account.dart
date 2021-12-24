@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
 import 'package:echo/common/network_service.dart';
 import 'package:echo/common/background_image.dart';
 import 'package:echo/screens/login_screen.dart';
@@ -22,6 +23,21 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
   String email = "";
   String password1 = "";
   String password2 = "";
+
+  Future<http.Response> registFlutter(String username, String email, String password1, String password2) {
+  return http.post(
+    Uri.parse('http://127.0.0.1:8000/registerflutter'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8'
+    },
+    body: convert.jsonEncode(<String, String>{
+      'username': username,
+      'email': email,
+      'password1': password1,
+      'password2': password2,
+      }),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -196,29 +212,22 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               // Submit to Django server and wait for response
-                              final response = await request.postJson(
-                                  "http://127.0.0.1:8000/registerflutter",
-                                  convert.jsonEncode(<String, String>{
-                                    'username': username,
-                                    'email': email,
-                                    'password1': password1,
-                                    'password2': password2,
-                                  }));
-                              if (response['status'] == 'success') {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  content: Text(
-                                      "Account has been successfully registered!"),
-                                ));
+                              registFlutter(username, email, password1, password2);
+                              // if (response['status'] == 'success') {
+                              //   ScaffoldMessenger.of(context)
+                              //       .showSnackBar(const SnackBar(
+                              //     content: Text(
+                              //         "Account has been successfully registered!"),
+                              //   ));
                                 Navigator.pushReplacementNamed(
                                     context, LoginScreen.ROUTE_NAME);
-                              } else {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  content: Text(
-                                      "An error occured, please try again."),
-                                ));
-                              }
+                              // } else {
+                              //   ScaffoldMessenger.of(context)
+                              //       .showSnackBar(const SnackBar(
+                              //     content: Text(
+                              //         "An error occured, please try again."),
+                              //   ));
+                              // }
                             }
                           },
                           child: const Text(
