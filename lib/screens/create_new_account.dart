@@ -1,11 +1,11 @@
 // ignore_for_file: constant_identifier_names
 
 import 'dart:convert' as convert;
-import 'package:http/http.dart' as http;
-
+import 'package:echo/common/network_service.dart';
 import 'package:echo/common/background_image.dart';
 import 'package:echo/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CreateNewAccount extends StatefulWidget {
   const CreateNewAccount({Key? key}) : super(key: key);
@@ -15,7 +15,6 @@ class CreateNewAccount extends StatefulWidget {
   State<CreateNewAccount> createState() => _CreateNewAccountState();
 }
 
-
 class _CreateNewAccountState extends State<CreateNewAccount> {
   final _formKey = GlobalKey<FormState>();
 
@@ -23,10 +22,10 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
   String email = "";
   String password1 = "";
   String password2 = "";
-  
+
   @override
   Widget build(BuildContext context) {
-    // final request = context.watch<NetworkService>();
+    final request = context.watch<NetworkService>();
     Size size = MediaQuery.of(context).size;
     return Form(
       key: _formKey,
@@ -197,9 +196,29 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               // Submit to Django server and wait for response
-                              registFlutter(username, email, password1, password2);
-                              Navigator.pushReplacementNamed(
-                                context, LoginScreen.ROUTE_NAME);
+                              final response = await request.postJson(
+                                  "http://127.0.0.1:8000/registerflutter",
+                                  convert.jsonEncode(<String, String>{
+                                    'username': username,
+                                    'email': email,
+                                    'password1': password1,
+                                    'password2': password2,
+                                  }));
+                              if (response['status'] == 'success') {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text(
+                                      "Account has been successfully registered!"),
+                                ));
+                                Navigator.pushReplacementNamed(
+                                    context, LoginScreen.ROUTE_NAME);
+                              } else {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text(
+                                      "An error occured, please try again."),
+                                ));
+                              }
                             }
                           },
                           child: const Text(
@@ -225,7 +244,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(
+                              Navigator.pushReplacementNamed(
                                   context, LoginScreen.ROUTE_NAME);
                             },
                             child: const Text(
@@ -250,21 +269,6 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
           )
         ],
       ),
-    );
-  }
-
-  Future<http.Response> registFlutter(String username, String email, String password1, String password2) {
-    return http.post(
-      Uri.parse('http://127.0.0.1:8000/registerflutter'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8'
-      },
-      body: convert.jsonEncode(<String, String>{
-        'username': username,
-        'email': email,
-        'password1': password1,
-        'password2': password2,
-        }),
     );
   }
 }
