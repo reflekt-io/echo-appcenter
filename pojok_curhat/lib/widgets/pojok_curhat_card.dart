@@ -30,7 +30,7 @@ class PojokCurhatCard extends StatelessWidget {
                     children: [
                       Flexible(
                         child: Text(
-                          'Dibuat oleh ' + pojok_curhat.id,
+                          'Dibuat oleh ' + pojok_curhat.fromCurhat,
                           style:
                               TextStyle(color: Colors.black.withOpacity(0.6)),
                         ),

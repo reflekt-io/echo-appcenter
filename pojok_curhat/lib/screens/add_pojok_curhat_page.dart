@@ -1,6 +1,9 @@
 // ignore_for_file: constant_identifier_names
-
+import 'dart:convert' as convert;
+import 'package:echo/common/network_service.dart';
 import 'package:flutter/material.dart';
+import 'package:pojok_curhat/screens/pojok_curhat_home.dart';
+import 'package:provider/provider.dart';
 
 class AddPojokCurhatPage extends StatefulWidget {
   const AddPojokCurhatPage({Key? key}) : super(key: key);
@@ -14,8 +17,15 @@ class AddPojokCurhatPage extends StatefulWidget {
 class _Pojok_CurhatHomePageState extends State<AddPojokCurhatPage> {
   final _formKey = GlobalKey<FormState>();
 
+  // Saved variables to be submitted
+  String _typedName = "";
+  String _typedTitle = "";
+  String _typedMessage = "";
+
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<NetworkService>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Curhat Baru'),
@@ -53,9 +63,17 @@ class _Pojok_CurhatHomePageState extends State<AddPojokCurhatPage> {
                       hintText: 'Ayo sini, tulis nama (boleh anonymous).',
                       labelText: 'Dari',
                     ),
+                    onChanged: (String? value) {
+                      setState(() {
+                        _typedName = value!;
+                      });
+                    },
                     onSaved: (String? value) {
                       // This optional block of code can be used to run
                       // code when the user saves the form.
+                      setState(() {
+                        _typedName = value!;
+                      });
                     },
                     validator: (String? value) {
                       return (value == null || value.isEmpty)
@@ -72,9 +90,17 @@ class _Pojok_CurhatHomePageState extends State<AddPojokCurhatPage> {
                       hintText: 'Berikan judul pada curhatanmu.',
                       labelText: 'Judul',
                     ),
+                    onChanged: (String? value) {
+                      setState(() {
+                        _typedTitle = value!;
+                      });
+                    },
                     onSaved: (String? value) {
                       // This optional block of code can be used to run
                       // code when the user saves the form.
+                      setState(() {
+                        _typedTitle = value!;
+                      });
                     },
                     validator: (String? value) {
                       return (value == null || value.isEmpty)
@@ -91,9 +117,17 @@ class _Pojok_CurhatHomePageState extends State<AddPojokCurhatPage> {
                       hintText: 'Ungkapkan curhatanmu',
                       labelText: 'Pesan',
                     ),
+                    onChanged: (String? value) {
+                      setState(() {
+                        _typedMessage= value!;
+                      });
+                    },
                     onSaved: (String? value) {
                       // This optional block of code can be used to run
                       // code when the user saves the form.
+                      setState(() {
+                        _typedMessage = value!;
+                      });
                     },
                     validator: (String? value) {
                       return (value == null || value.isEmpty)
@@ -113,8 +147,30 @@ class _Pojok_CurhatHomePageState extends State<AddPojokCurhatPage> {
                       backgroundColor:
                           MaterialStateProperty.all(const Color(0xFF0B36A8)),
                     ),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        final response = await request.postJson(
+                            "http://127.0.0.1:8000/pojok-curhat/add-curhat-flutter",
+                            convert.jsonEncode(<String, String>{
+                              'fromCurhat': _typedName,
+                              'title': _typedTitle,
+                              'message': _typedMessage,
+                            }));
+                        if (response['status'] == 'success') {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Curhat baru berhasil disimpan!"),
+                          ));
+                          Navigator.pushReplacementNamed(
+                              context, PojokCurhatHomePage.ROUTE_NAME);
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content:
+                                Text("An error occured, please try again."),
+                          ));
+                        }
+                      }
                     },
                   ),
                 ),
