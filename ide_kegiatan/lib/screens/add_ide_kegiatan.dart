@@ -121,7 +121,7 @@ class _IdeKegiatanHomePageState extends State<AddRekomendasiKegiatanPage> {
                               if (_formKey.currentState!.validate()) {
                                 // Submit to Django server and wait for response
                                 final response = await request.postJson(
-                                    "http://127.0.0.1:8000/refleksi/add-kegiatan-flutter",
+                                    "https://reflekt-io.herokuapp.com/refleksi/add-kegiatan-flutter",
                                     convert.jsonEncode(<String, String>{
                                       'nama': _nama.toString(),
                                       'deskripsi': _deskripsi.toString(),

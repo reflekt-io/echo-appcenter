@@ -218,7 +218,7 @@ class _JournalHomePageState extends State<AddJournalPage> {
                       if (_formKey.currentState!.validate()) {
                         // Submit to Django server and wait for response
                         final response = await request.postJson(
-                            "http://127.0.0.1:8000/journal/add-journal-flutter",
+                            "https://reflekt-io.herokuapp.com/journal/add-journal-flutter",
                             convert.jsonEncode(<String, String>{
                               'feeling': _selectedFeelings.toString(),
                               'factor': _selectedFactors.toString(),

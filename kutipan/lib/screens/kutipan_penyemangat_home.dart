@@ -67,7 +67,7 @@ class _Kutipan_PenyemangatHomePageState extends State<KutipanPenyemangatHomePage
 
   Future<List<Kutipan_Penyemangat>> fetchKutipan() async {
     final request = context.watch<NetworkService>();
-    String url = 'http://127.0.0.1:8000/kutipan-penyemangat/json';
+    String url = 'https://reflekt-io.herokuapp.com/kutipan-penyemangat/json';
 
     final response = await request.get(url);
 
