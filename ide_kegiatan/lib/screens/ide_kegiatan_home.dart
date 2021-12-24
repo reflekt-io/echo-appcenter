@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:echo/common/network_service.dart';
+import 'package:provider/provider.dart';
 import 'package:echo/widgets/drawer_menu.dart';
 import 'package:ide_kegiatan/dummy_data.dart';
 import 'package:ide_kegiatan/models/kegiatan.dart';
@@ -17,7 +19,6 @@ class IdeKegiatanHomePage extends StatefulWidget {
 }
 
 class _IdeKegiatanHomePageState extends State<IdeKegiatanHomePage> {
-  List<Kegiatan> dummyKegiatan = DUMMY_KEGIATAN;
   List<Rekomendasi> dummyRekomendasi = DUMMY_REKOMENDASI;
 
   @override
@@ -44,14 +45,42 @@ class _IdeKegiatanHomePageState extends State<IdeKegiatanHomePage> {
                 minHeight: 30,
                 maxHeight: 375,
               ),
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: dummyKegiatan.length,
-                itemBuilder: (context, index) {
-                  return KegiatanCard(dummyKegiatan[index]);
-                },
-              ),
+              child: FutureBuilder(
+                  future: fetchKegiatan(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<Kegiatan>? kegiatan =
+                          snapshot.data as List<Kegiatan>;
+                      return kegiatan.isEmpty
+                          ? const Center(
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 30.0),
+                                child: Text(
+                                  'Tekan tombol tambah untuk menambahkan kegiatan baru.',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            )
+                          : ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: kegiatan.length,
+                              itemBuilder: (context, index) {
+                                return KegiatanCard(kegiatan[index]);
+                              },
+                            );
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  }),
+              // child: ListView.builder(
+              //   scrollDirection: Axis.vertical,
+              //   shrinkWrap: true,
+              //   itemCount: dummyKegiatan.length,
+              //   itemBuilder: (context, index) {
+              //     return KegiatanCard(dummyKegiatan[index]);
+              //   },
+              // ),
             ),
             Container(
               margin:
@@ -89,5 +118,21 @@ class _IdeKegiatanHomePageState extends State<IdeKegiatanHomePage> {
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  Future<List<Kegiatan>> fetchKegiatan() async {
+    final request = context.watch<NetworkService>();
+    String url = 'http://127.0.0.1:8000/refleksi/add-deskripsi';
+
+    final response = await request.get(url);
+
+    List<Kegiatan> result = [];
+    for (var d in response) {
+      if (d != null) {
+        result.add(Kegiatan.fromJson(d));
+      }
+    }
+
+    return result;
   }
 }
