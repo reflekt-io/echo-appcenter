@@ -126,7 +126,7 @@ class _IdeKegiatanHomePageState extends State<AddRekomendasiKegiatanPage> {
                                       'nama': _nama.toString(),
                                       'deskripsi': _deskripsi.toString(),
                                     }));
-                                if (response == 'success') {
+                                if (response != '') {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(const SnackBar(
                                     content:
@@ -134,12 +134,6 @@ class _IdeKegiatanHomePageState extends State<AddRekomendasiKegiatanPage> {
                                   ));
                                   Navigator.pushReplacementNamed(
                                       context, IdeKegiatanHomePage.ROUTE_NAME);
-                                } else {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(const SnackBar(
-                                    content: Text(
-                                        "An error occured, please try again."),
-                                  ));
                                 }
                               }
                             },
