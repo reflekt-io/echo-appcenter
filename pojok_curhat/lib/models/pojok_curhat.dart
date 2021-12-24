@@ -6,12 +6,12 @@ import 'dart:convert';
 // ignore: camel_case_types
 class Pojok_Curhat {
   Pojok_Curhat({
-    required this.name,
+    required this.fromCurhat,
     required this.title,
     required this.message,
   });
 
-  final String name;
+  final String fromCurhat;
   final String title;
   final String message;
 
@@ -20,13 +20,13 @@ class Pojok_Curhat {
   String toRawJson() => json.encode(toJson());
 
   factory Pojok_Curhat.fromJson(Map<String, dynamic> json) => Pojok_Curhat(
-        name: json["fields"]["id"],
+        fromCurhat: json["fields"]["fromCurhat"],
         title: json["fields"]["title"],
         message: json["fields"]["message"],
       );
 
   Map<String, dynamic> toJson() => {
-        "name": name,
+        "fromCurhat": fromCurhat,
         "title": title,
         "message": message,
       };

@@ -153,7 +153,7 @@ class _Pojok_CurhatHomePageState extends State<AddPojokCurhatPage> {
                         final response = await request.postJson(
                             "http://127.0.0.1:8000/pojok-curhat/add-curhat",
                             convert.jsonEncode(<String, String>{
-                              'name': _typedName,
+                              'fromCurhat': _typedName,
                               'title': _typedTitle,
                               'message': _typedMessage,
                             }));
