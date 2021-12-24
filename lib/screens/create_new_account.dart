@@ -58,6 +58,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
+                          style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             hintText: "contoh: Dummy123",
                             labelText: "Username",
@@ -65,6 +66,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             icon: const Icon(Icons.people),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
+                            hintStyle: const TextStyle(color: Colors.white),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -89,6 +91,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
+                          style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             hintText: "contoh: Dummy@gmail.com",
                             labelText: "Email",
@@ -96,6 +99,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             icon: const Icon(Icons.attach_email),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
+                            hintStyle: const TextStyle(color: Colors.white),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -121,6 +125,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
                           obscureText: true,
+                          style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             hintText: "Masukkan Password",
                             labelText: "Password",
@@ -130,6 +135,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             ),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
+                            hintStyle: const TextStyle(color: Colors.white),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -155,6 +161,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
                           obscureText: true,
+                          style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                             hintText: "Konfirmasi Password",
                             labelText: "Konfirmasi Password",
@@ -162,6 +169,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             icon: const Icon(Icons.lock_outline),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
+                            hintStyle: const TextStyle(color: Colors.white),
                           ),
                           onChanged: (String? value) {
                             setState(() {
