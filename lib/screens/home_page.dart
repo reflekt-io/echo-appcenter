@@ -1,5 +1,7 @@
 // ignore_for_file: constant_identifier_names, avoid_print
 
+import 'package:echo/common/network_service.dart';
+import 'package:provider/provider.dart';
 import 'package:about_us/screens/about_us.dart';
 import 'package:deteksi_depresi/screens/phq9_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,11 +26,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<NetworkService>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           // Nanti jangan pakai const (variable, cuy)
-          "Halo, username!",
+          'Halo, ${request.username}!',
         ),
       ),
       drawer: const DrawerMenu(ROUTE_NAME),

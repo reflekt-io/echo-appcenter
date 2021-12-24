@@ -110,6 +110,7 @@ class JournalCard extends StatelessWidget {
   }
 
   String _showDate(DateTime rawDate) {
+    DateTime dateTime = rawDate.toLocal();
     // ignore: non_constant_identifier_names
     List MONTH = [
       'Januari',
@@ -138,15 +139,15 @@ class JournalCard extends StatelessWidget {
     };
 
     // Example: 2021-11-13T09:50:25.151Z
-    int year = rawDate.year;
-    int month = rawDate.month;
-    int day = rawDate.day;
+    int year = dateTime.year;
+    int month = dateTime.month;
+    int day = dateTime.day;
     String monthName = MONTH[month - 1];
-    String dayName = DAY[rawDate.weekday];
+    String dayName = DAY[dateTime.weekday];
 
-    int hour = rawDate.hour;
-    int minute = rawDate.minute;
-    int second = rawDate.second;
+    int hour = dateTime.hour;
+    int minute = dateTime.minute;
+    int second = dateTime.second;
 
     // Use string interpolation
     String result = '$dayName, $day $monthName $year, pukul $hour.$minute.$second.';

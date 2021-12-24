@@ -1,7 +1,6 @@
 import 'package:echo/common/network_service.dart';
 import 'package:flutter/material.dart';
 import 'package:about_us/screens/about_us.dart';
-import 'package:echo/common/utils.dart';
 import 'package:echo/screens/home_page.dart';
 import 'package:echo/screens/create_new_account.dart';
 import 'package:echo/screens/login_screen.dart';
@@ -62,7 +61,6 @@ class MyApp extends StatelessWidget {
             primarySwatch: MaterialColor(0xFF24262A, themeColor),
           ),
           home: const LoginScreen(),
-          navigatorObservers: [routeObserver],
           onGenerateRoute: (RouteSettings settings) {
             switch (settings.name) {
               case HomePage.ROUTE_NAME:

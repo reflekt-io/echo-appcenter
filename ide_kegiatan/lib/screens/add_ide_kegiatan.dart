@@ -1,4 +1,8 @@
+import 'package:echo/common/network_service.dart';
+import 'package:provider/provider.dart';
+import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
+import 'package:ide_kegiatan/screens/ide_kegiatan_home.dart';
 
 class AddRekomendasiKegiatanPage extends StatefulWidget {
   const AddRekomendasiKegiatanPage({Key? key}) : super(key: key);
@@ -12,8 +16,13 @@ class AddRekomendasiKegiatanPage extends StatefulWidget {
 
 class _IdeKegiatanHomePageState extends State<AddRekomendasiKegiatanPage> {
   final _formKey = GlobalKey<FormState>();
+  String _nama = "";
+  String _deskripsi = "";
+
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<NetworkService>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tambah Kegiatan'),
@@ -54,8 +63,13 @@ class _IdeKegiatanHomePageState extends State<AddRekomendasiKegiatanPage> {
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5.0)),
                               ),
+                              onChanged: (String? value) {
+                                setState(() {
+                                  _nama = value!;
+                                });
+                              },
                               onSaved: (String? value) {
-                                // In progress
+                                _nama = value!;
                               },
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -78,8 +92,13 @@ class _IdeKegiatanHomePageState extends State<AddRekomendasiKegiatanPage> {
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5.0)),
                               ),
+                              onChanged: (String? value) {
+                                setState(() {
+                                  _deskripsi = value!;
+                                });
+                              },
                               onSaved: (String? value) {
-                                // In progress
+                                _deskripsi = value!;
                               },
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -98,8 +117,31 @@ class _IdeKegiatanHomePageState extends State<AddRekomendasiKegiatanPage> {
                               backgroundColor: MaterialStateProperty.all(
                                   const Color(0xFF0B36A8)),
                             ),
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {}
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                // Submit to Django server and wait for response
+                                final response = await request.postJson(
+                                    "http://127.0.0.1:8000/refleksi/add-kegiatan-flutter",
+                                    convert.jsonEncode(<String, String>{
+                                      'nama': _nama.toString(),
+                                      'deskripsi': _deskripsi.toString(),
+                                    }));
+                                if (response == 'success') {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                    content:
+                                        Text("Kegiatan berhasil disimpan!"),
+                                  ));
+                                  Navigator.pushReplacementNamed(
+                                      context, IdeKegiatanHomePage.ROUTE_NAME);
+                                } else {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                    content: Text(
+                                        "An error occured, please try again."),
+                                  ));
+                                }
+                              }
                             },
                           ),
                         ],

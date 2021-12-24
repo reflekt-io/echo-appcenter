@@ -177,18 +177,18 @@ class DrawerMenu extends StatelessWidget {
                   ListTile(
                     title: const Text('Log Out'),
                     onTap: () async {
-                      final response = await request.logoutAccount();
+                      final response = await request.logoutAccount("http://127.0.0.1:8000/logoutflutter");
                             if (response['status']) {
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                              content: Text("Successfully logged out !"),
+                                content: Text("Successfully logged out!"),
                               ));
-
                               Navigator.pushReplacementNamed(
                                 context, LoginScreen.ROUTE_NAME);
                             } else {
-                              // kalo salah
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                content: Text("An error occured, please try again."),
+                              ));
                             }
-                      // Log Out (delete cookie) and return to login screen
                     },
                   ),
                 ],
