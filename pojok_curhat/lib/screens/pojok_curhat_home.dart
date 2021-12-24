@@ -23,7 +23,7 @@ class _PojokCurhatHomePageState extends State<PojokCurhatHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Riwayat Jurnal'),
+        title: const Text('Riwayat Curhat'),
       ),
       drawer: const DrawerMenu(PojokCurhatHomePage.ROUTE_NAME),
       body: FutureBuilder(
