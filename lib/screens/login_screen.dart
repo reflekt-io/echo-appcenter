@@ -58,13 +58,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
+                          style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
-                            hintText: "contoh: Dummy123",
+                            hintText: "Masukkan Username",
                             labelText: "Username",
                             labelStyle: const TextStyle(color: Colors.white),
                             icon: const Icon(Icons.attach_email),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
+                            hintStyle: const TextStyle(color: Colors.white),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -100,6 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
+                            hintStyle: const TextStyle(color: Colors.white),
                           ),
                           onChanged: (String? value) {
                             setState(() {
