@@ -1,8 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:echo/common/network_service.dart';
 import 'package:provider/provider.dart';
 import 'package:echo/widgets/drawer_menu.dart';
-import 'package:ide_kegiatan/dummy_data.dart';
 import 'package:ide_kegiatan/models/kegiatan.dart';
 import 'package:ide_kegiatan/models/rekomendasi.dart';
 import 'package:ide_kegiatan/screens/add_ide_kegiatan.dart';
@@ -19,8 +20,6 @@ class IdeKegiatanHomePage extends StatefulWidget {
 }
 
 class _IdeKegiatanHomePageState extends State<IdeKegiatanHomePage> {
-  List<Rekomendasi> dummyRekomendasi = DUMMY_REKOMENDASI;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,14 +72,6 @@ class _IdeKegiatanHomePageState extends State<IdeKegiatanHomePage> {
                       return const Center(child: CircularProgressIndicator());
                     }
                   }),
-              // child: ListView.builder(
-              //   scrollDirection: Axis.vertical,
-              //   shrinkWrap: true,
-              //   itemCount: dummyKegiatan.length,
-              //   itemBuilder: (context, index) {
-              //     return KegiatanCard(dummyKegiatan[index]);
-              //   },
-              // ),
             ),
             Container(
               margin:
@@ -94,14 +85,24 @@ class _IdeKegiatanHomePageState extends State<IdeKegiatanHomePage> {
                   left: 10, top: 0, right: 10, bottom: 20),
               padding: const EdgeInsets.all(10),
               height: 380,
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: dummyRekomendasi.length,
-                itemBuilder: (context, index) {
-                  return RekomendasiCard(dummyRekomendasi[index]);
-                },
-              ),
+              child: FutureBuilder(
+                  future: fetchRekomendasi(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<Rekomendasi>? rekomendasi =
+                          snapshot.data as List<Rekomendasi>;
+                      return ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: rekomendasi.length,
+                        itemBuilder: (context, index) {
+                          return RekomendasiCard(rekomendasi[index]);
+                        },
+                      );
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  }),
             ),
           ],
         ),
@@ -130,6 +131,48 @@ class _IdeKegiatanHomePageState extends State<IdeKegiatanHomePage> {
     for (var d in response) {
       if (d != null) {
         result.add(Kegiatan.fromJson(d));
+      }
+    }
+
+    return result;
+  }
+
+  Future<List<Rekomendasi>> fetchRekomendasi() async {
+    final request = context.watch<NetworkService>();
+    String url = 'http://127.0.0.1:8000/refleksi/add-deskripsi';
+
+    final response = await request.get(url);
+
+    List<Rekomendasi> result = [
+      Rekomendasi(nama: 'Bermain game'),
+      Rekomendasi(nama: 'Menonton film'),
+      Rekomendasi(nama: 'Membaca buku'),
+      Rekomendasi(nama: 'Mendengarkan musik'),
+      Rekomendasi(nama: 'Belanja'),
+      Rekomendasi(nama: 'Mengunjungi tempat wisata'),
+      Rekomendasi(nama: 'Olahraga'),
+      Rekomendasi(nama: 'Menulis'),
+      Rekomendasi(nama: 'Memasak'),
+      Rekomendasi(nama: 'Membersihkan rumah')
+    ];
+
+    List<String> listNama = [
+      'bermain game',
+      'menonton film',
+      'membaca buku',
+      'mendengarkan musik',
+      'belanja',
+      'mengunjungi tempat wisata',
+      'olahraga',
+      'menulis',
+      'memasak',
+      'membersihkan rumah'
+    ];
+
+    for (var d in response) {
+      if (d != null && !listNama.contains(d.nama.toLowerCase())) {
+        result.add(Rekomendasi.fromJson(d));
+        listNama.add(d.nama.toLowerCase());
       }
     }
 
