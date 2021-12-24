@@ -3,7 +3,6 @@ import 'dart:convert' as convert;
 import 'package:echo/common/network_service.dart';
 import 'package:flutter/material.dart';
 import 'package:pojok_curhat/screens/pojok_curhat_home.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:provider/provider.dart';
 
 class AddPojokCurhatPage extends StatefulWidget {
