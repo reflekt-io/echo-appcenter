@@ -90,8 +90,8 @@ class NetworkService {
     headers['Content-Type'] = 'application/json; charset=UTF-8';
     http.Response response =
         await _client.post(Uri.parse(url), body: data, headers: headers);
-    // Clear used additional header
-    headers['Content-Type'] = '';
+    // Remove used additional header
+    headers.remove('Content-Type');
     _updateCookie(response);
     return json.decode(response.body); // Expects and returns JSON request body
   }
