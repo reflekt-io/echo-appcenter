@@ -12,6 +12,8 @@ import 'package:pojok_curhat/screens/add_pojok_curhat_page.dart';
 import 'package:pojok_curhat/screens/pojok_curhat_home.dart';
 import 'package:ide_kegiatan/screens/add_ide_kegiatan.dart';
 import 'package:ide_kegiatan/screens/ide_kegiatan_home.dart';
+import 'package:tembok_harapan/screens/add_tembok_harapan_page.dart';
+import 'package:tembok_harapan/screens/tembok_harapan_home.dart';
 import 'package:provider/provider.dart';
 
 class DrawerMenu extends StatelessWidget {
@@ -154,13 +156,17 @@ class DrawerMenu extends StatelessWidget {
                       ListTile(
                         title: const Text('Lihat Tembok Harapan'),
                         onTap: () {
-                          // Go to the page
+                          route == TembokHarapanHomePage.ROUTE_NAME
+                            ? Navigator.pop(context)
+                            : Navigator.pushReplacementNamed(context, TembokHarapanHomePage.ROUTE_NAME);
                         },
                       ),
                       ListTile(
                         title: const Text('Buat Harapan Baru'),
                         onTap: () {
-                          // Go to the page
+                          route == AddTembokHarapanPage.ROUTE_NAME
+                            ? Navigator.pop(context)
+                            : Navigator.pushNamed(context, AddTembokHarapanPage.ROUTE_NAME);
                         },
                       ),
                     ],

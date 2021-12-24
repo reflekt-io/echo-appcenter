@@ -13,6 +13,8 @@ import 'package:pojok_curhat/screens/pojok_curhat_home.dart';
 import 'package:deteksi_depresi/screens/phq9_page.dart';
 import 'package:ide_kegiatan/screens/add_ide_kegiatan.dart';
 import 'package:ide_kegiatan/screens/ide_kegiatan_home.dart';
+import 'package:tembok_harapan/screens/add_tembok_harapan_page.dart';
+import 'package:tembok_harapan/screens/tembok_harapan_home.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -86,6 +88,12 @@ class MyApp extends StatelessWidget {
               case AddPojokCurhatPage.ROUTE_NAME:
                 return MaterialPageRoute(
                     builder: (_) => const AddPojokCurhatPage());
+              case TembokHarapanHomePage.ROUTE_NAME:
+                return MaterialPageRoute(
+                    builder: (_) => const TembokHarapanHomePage());
+              case AddTembokHarapanPage.ROUTE_NAME:
+                return MaterialPageRoute(
+                    builder: (_) => const AddTembokHarapanPage());
               case PHQ9.ROUTE_NAME:
                 return MaterialPageRoute(builder: (_) => const PHQ9());
               case IdeKegiatanHomePage.ROUTE_NAME:
