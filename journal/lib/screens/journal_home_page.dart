@@ -1,17 +1,13 @@
-// ignore_for_file: constant_identifier_names
+// ignore_for_file: constant_identifier_names, avoid_print
 
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:echo/common/network_service.dart';
 import 'package:flutter/material.dart';
-import 'package:echo/common/utils.dart';
-import 'package:echo/screens/home_page.dart';
-import 'package:journal/dummy_data.dart';
+import 'package:echo/widgets/drawer_menu.dart';
 import 'package:journal/models/journal.dart';
-import 'package:journal/models/journal_json.dart';
 import 'package:journal/screens/add_journal_page.dart';
 import 'package:journal/widgets/journal_card.dart';
+import 'package:provider/provider.dart';
 
-// Jaga-jaga nanti untuk update data, makanya pakai stateful dulu (?)
 class JournalHomePage extends StatefulWidget {
   const JournalHomePage({Key? key}) : super(key: key);
   static const ROUTE_NAME = '/journal';
@@ -20,26 +16,7 @@ class JournalHomePage extends StatefulWidget {
   State<JournalHomePage> createState() => _JournalHomePageState();
 }
 
-class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
-  List<Journal> dummyJournal = DUMMY_CATEGORIES.fields;
-  // List<Journal> dummyJournal = [];
-
-  @override
-  void initState() {
-    //Get journals by calling fetchJournal()
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context)!);
-  }
-
-  @override
-  void didPopNext() {
-    //Get journals by calling fetchJournal()
-  }  
+class _JournalHomePageState extends State<JournalHomePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -47,65 +24,14 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
       appBar: AppBar(
         title: const Text('Riwayat Jurnal'),
       ),
-      drawer: Drawer(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            // ignore: sized_box_for_whitespace
-            Container(
-              width: double.infinity,
-              height: 64,
-              child: const DrawerHeader(
-                child: Text(
-                  'reflekt.io',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  color: Color(0xFF24262A),
-                ),
-              ),
-            ),
-            ListTile(
-              title: const Text('Halaman Utama'),
-              onTap: () {
-                // Go to Halaman Utama screen
-                Navigator.pushReplacementNamed(context, HomePage.ROUTE_NAME);
-              },
-            ),
-            ListTile(
-              title: const Text('Riwayat Jurnal'),
-              onTap: () {
-                // Go to Riwayat Jurnal screen
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Jurnal Baru'),
-              onTap: () {
-                // Go to Jurnal Baru page
-                Navigator.pushNamed(context, AddJournalPage.ROUTE_NAME);
-              },
-            ),
-            const Spacer(),
-            const Divider(),
-            ListTile(
-              title: const Text('Log Out'),
-              onTap: () {
-                // Log Out (delete cookie) and return to login screen
-              },
-            ),
-          ],
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            dummyJournal.isEmpty
+      drawer: const DrawerMenu(JournalHomePage.ROUTE_NAME),
+      body: FutureBuilder(
+          future: fetchJournal(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<Journal>? journal = snapshot.data as List<Journal>;
+              
+              return journal.isEmpty
                 ? const Center(
                     child: Padding(
                       padding: EdgeInsets.only(top: 30.0),
@@ -118,19 +44,19 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
                 : ListView.builder(
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
-                    itemCount: dummyJournal.length,
+                    itemCount: journal.length,
                     itemBuilder: (context, index) {
-                      return JournalCard(dummyJournal[index]);
+                      return JournalCard(journal[index]);
                     },
-                  ),
-          ],
-        ),
-      ),
+                  );
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFF0B36A8),
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const AddJournalPage()));
+          Navigator.pushNamed(context, AddJournalPage.ROUTE_NAME);
         },
         tooltip: 'Jurnal Baru',
         child: const Icon(Icons.add),
@@ -138,25 +64,19 @@ class _JournalHomePageState extends State<JournalHomePage> with RouteAware {
     );
   }
 
-  @override
-  void dispose() {
-    routeObserver.unsubscribe(this);
-    super.dispose();
-  }
+  Future<List<Journal>> fetchJournal() async {
+    final request = context.watch<NetworkService>();
+    String url = 'https://reflekt-io.herokuapp.com/journal/json';
 
-  Future<JournalJson> fetchJournal() async {
-    const url = 'https://reflekt-io.herokuapp.com/journal/json/';
-    // How to auth?
-    JournalJson? data;
+    final response = await request.get(url);
 
-    try {
-      final response = await http.get(Uri.parse(url));
-      //print(response.body);
-      data = jsonDecode(response.body);
-    } catch (error) {
-      //print(error);
+    List<Journal> result = [];
+    for (var d in response) {
+      if (d != null) {
+        result.add(Journal.fromJson(d));
+      }
     }
 
-    return data!;
+    return result;
   }
 }

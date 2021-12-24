@@ -1,8 +1,11 @@
-// ignore_for_file: unnecessary_question_mark, prefer_final_fields, unused_field, unused_element, constant_identifier_names
-
+// ignore_for_file: unnecessary_question_mark, prefer_final_fields, unused_field, constant_identifier_names
+import 'dart:convert' as convert;
+import 'package:echo/common/network_service.dart';
 import 'package:flutter/material.dart';
 import 'package:journal/models/option.dart';
+import 'package:journal/screens/journal_home_page.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:provider/provider.dart';
 
 class AddJournalPage extends StatefulWidget {
   const AddJournalPage({Key? key}) : super(key: key);
@@ -70,6 +73,8 @@ class _JournalHomePageState extends State<AddJournalPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<NetworkService>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Jurnal Baru'),
@@ -96,10 +101,12 @@ class _JournalHomePageState extends State<AddJournalPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: MultiSelectDialogField(
-                    buttonText: const Text('Perasaan apa saja yang sedang kamu rasakan?'),
+                    buttonText: const Text(
+                        'Perasaan apa saja yang sedang kamu rasakan?'),
                     title: const Text('Perasaan'),
                     items: _feelingList
-                        .map((option) => MultiSelectItem<Option?>(option, option.value))
+                        .map((option) =>
+                            MultiSelectItem<Option?>(option, option.value))
                         .toList(),
                     listType: MultiSelectListType.CHIP,
                     onConfirm: (values) {
@@ -107,6 +114,7 @@ class _JournalHomePageState extends State<AddJournalPage> {
                         _selectedFeelings = values;
                       });
                     },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (values) {
                       return (values == null || values.isEmpty)
                           ? 'Perasaan tidak boleh kosong.'
@@ -117,10 +125,12 @@ class _JournalHomePageState extends State<AddJournalPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: MultiSelectDialogField(
-                    buttonText: const Text('Dari mana datangnya perasaan tersebut?'),
+                    buttonText:
+                        const Text('Dari mana datangnya perasaan tersebut?'),
                     title: const Text('Faktor'),
                     items: _factorList
-                        .map((option) => MultiSelectItem<Option?>(option, option.value))
+                        .map((option) =>
+                            MultiSelectItem<Option?>(option, option.value))
                         .toList(),
                     listType: MultiSelectListType.CHIP,
                     onConfirm: (values) {
@@ -128,6 +138,7 @@ class _JournalHomePageState extends State<AddJournalPage> {
                         _selectedFactors = values;
                       });
                     },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (values) {
                       return (values == null || values.isEmpty)
                           ? 'Faktor perasaan tidak boleh kosong.'
@@ -135,10 +146,6 @@ class _JournalHomePageState extends State<AddJournalPage> {
                     },
                   ),
                 ),
-                // Wrap(
-                //   alignment: WrapAlignment.spaceEvenly,
-                //   children: _buildButtonsList(_feelingList),
-                // ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: DropdownButtonFormField(
@@ -159,6 +166,7 @@ class _JournalHomePageState extends State<AddJournalPage> {
                         _currentSelectedAnxietyRate = value as int;
                       });
                     },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     items: _anxietyScale.map((int val) {
                       return DropdownMenuItem(
                         value: val,
@@ -187,6 +195,7 @@ class _JournalHomePageState extends State<AddJournalPage> {
                         _typedSummary = value!;
                       });
                     },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (String? value) {
                       return (value == null || value.isEmpty)
                           ? 'Ringkasan tidak boleh kosong.'
@@ -202,11 +211,35 @@ class _JournalHomePageState extends State<AddJournalPage> {
                       style: TextStyle(color: Colors.white),
                     ),
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(const Color(0xFF0B36A8)),
+                      backgroundColor:
+                          MaterialStateProperty.all(const Color(0xFF0B36A8)),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        // How to submit?
+                        // Submit to Django server and wait for response
+                        final response = await request.postJson(
+                            "https://reflekt-io.herokuapp.com/journal/add-journal-flutter",
+                            convert.jsonEncode(<String, String>{
+                              'feeling': _selectedFeelings.toString(),
+                              'factor': _selectedFactors.toString(),
+                              'anxiety_rate':
+                                  _currentSelectedAnxietyRate.toString(),
+                              'summary': _typedSummary,
+                            }));
+                        if (response['status'] == 'success') {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Jurnal baru berhasil disimpan!"),
+                          ));
+                          Navigator.pushReplacementNamed(
+                              context, JournalHomePage.ROUTE_NAME);
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content:
+                                Text("An error occured, please try again."),
+                          ));
+                        }
                       }
                     },
                   ),
@@ -217,18 +250,5 @@ class _JournalHomePageState extends State<AddJournalPage> {
         ),
       ),
     );
-  }
-
-  List<Widget> _buildButtonsList(Map nameList) {
-    List<TextButton> buttonsList = <TextButton>[];
-    for (String i in nameList.keys) {
-      buttonsList.add(
-        TextButton(
-          child: Text(nameList[i]),
-          onPressed: null, // Nanti store yang i aja, terus submit ke database
-        ),
-      );
-    }
-    return buttonsList;
   }
 }
