@@ -16,27 +16,27 @@ class Journal {
         required this.summary,
     });
 
-    final int user;
+    final dynamic user;
     final DateTime date;
     final String feeling;
     final String factor;
     final int anxietyRate;
     final String summary;
 
-    factory Journal.fromJson(String str) => Journal.fromMap(json.decode(str));
+    factory Journal.fromRawJson(String str) => Journal.fromJson(json.decode(str));
 
-    String toJson() => json.encode(toMap());
+    String toRawJson() => json.encode(toJson());
 
-    factory Journal.fromMap(Map<String, dynamic> json) => Journal(
-        user: json["user"],
-        date: DateTime.parse(json["date"]),
-        feeling: json["feeling"],
-        factor: json["factor"],
-        anxietyRate: json["anxiety_rate"],
-        summary: json["summary"],
+    factory Journal.fromJson(Map<String, dynamic> json) => Journal(
+        user: json["fields"]["user"],
+        date: DateTime.parse(json["fields"]["date"]),
+        feeling: json["fields"]["feeling"],
+        factor: json["fields"]["factor"],
+        anxietyRate: json["fields"]["anxiety_rate"],
+        summary: json["fields"]["summary"],
     );
 
-    Map<String, dynamic> toMap() => {
+    Map<String, dynamic> toJson() => {
         "user": user,
         "date": date.toIso8601String(),
         "feeling": feeling,

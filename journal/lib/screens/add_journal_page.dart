@@ -226,7 +226,7 @@ class _JournalHomePageState extends State<AddJournalPage> {
                                   _currentSelectedAnxietyRate.toString(),
                               'summary': _typedSummary,
                             }));
-                        if (response == 'success') {
+                        if (response['status'] == 'success') {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
                             content: Text("Jurnal baru berhasil disimpan!"),
