@@ -1,11 +1,11 @@
 // ignore_for_file: non_constant_identifier_names, constant_identifier_names
-
+import 'package:echo/common/network_service.dart';
 import 'package:flutter/material.dart';
 import 'package:echo/widgets/drawer_menu.dart';
-import 'package:pojok_curhat/dummy_data.dart';
 import 'package:pojok_curhat/screens/add_pojok_curhat_page.dart';
 import 'package:pojok_curhat/models/pojok_curhat.dart';
 import 'package:pojok_curhat/widgets/pojok_curhat_card.dart';
+import 'package:provider/provider.dart';
 
 class PojokCurhatHomePage extends StatefulWidget {
   const PojokCurhatHomePage({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class PojokCurhatHomePage extends StatefulWidget {
 
 // ignore: camel_case_types
 class _PojokCurhatHomePageState extends State<PojokCurhatHomePage> {
-  List<Pojok_Curhat> dummyPojok_Curhat = DUMMY_CATEGORIES.fields;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +26,18 @@ class _PojokCurhatHomePageState extends State<PojokCurhatHomePage> {
         title: const Text('Riwayat Jurnal'),
       ),
       drawer: const DrawerMenu(PojokCurhatHomePage.ROUTE_NAME),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            dummyPojok_Curhat.isEmpty
+      body: FutureBuilder(
+          future: fetchCurhat(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<Pojok_Curhat>? curhat = snapshot.data as List<Pojok_Curhat>;
+              
+              return curhat.isEmpty
                 ? const Center(
                     child: Padding(
                       padding: EdgeInsets.only(top: 30.0),
                       child: Text(
-                        'Tekan tombol tambah untuk menambahkan jurnal baru.',
+                        'Tekan tombol tambah untuk menambahkan curhat baru.',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -43,14 +45,15 @@ class _PojokCurhatHomePageState extends State<PojokCurhatHomePage> {
                 : ListView.builder(
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
-                    itemCount: dummyPojok_Curhat.length,
+                    itemCount: curhat.length,
                     itemBuilder: (context, index) {
-                      return PojokCurhatCard(dummyPojok_Curhat[index]);
+                      return PojokCurhatCard(curhat[index]);
                     },
-                  ),
-          ],
-        ),
-      ),
+                  );
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFF0B36A8),
         onPressed: () {
@@ -60,5 +63,20 @@ class _PojokCurhatHomePageState extends State<PojokCurhatHomePage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+  Future<List<Pojok_Curhat>> fetchCurhat() async {
+    final request = context.watch<NetworkService>();
+    String url = 'http://127.0.0.1:8000/pojok-curhat/json';
+
+    final response = await request.get(url);
+
+    List<Pojok_Curhat> result = [];
+    for (var d in response) {
+      if (d != null) {
+        result.add(Pojok_Curhat.fromJson(d));
+      }
+    }
+
+    return result;
   }
 }

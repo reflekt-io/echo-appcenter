@@ -6,28 +6,27 @@ import 'dart:convert';
 // ignore: camel_case_types
 class Pojok_Curhat {
   Pojok_Curhat({
-    required this.id,
+    required this.name,
     required this.title,
     required this.message,
   });
 
-  final String id;
+  final String name;
   final String title;
   final String message;
 
-  factory Pojok_Curhat.fromJson(String str) =>
-      Pojok_Curhat.fromMap(json.decode(str));
+  factory Pojok_Curhat.fromRawJson(String str) => Pojok_Curhat.fromJson(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toRawJson() => json.encode(toJson());
 
-  factory Pojok_Curhat.fromMap(Map<String, dynamic> json) => Pojok_Curhat(
-        id: json["id"],
-        title: json["title"],
-        message: json["message"],
+  factory Pojok_Curhat.fromJson(Map<String, dynamic> json) => Pojok_Curhat(
+        name: json["fields"]["id"],
+        title: json["fields"]["title"],
+        message: json["fields"]["message"],
       );
 
-  Map<String, dynamic> toMap() => {
-        "id": id,
+  Map<String, dynamic> toJson() => {
+        "name": name,
         "title": title,
         "message": message,
       };
