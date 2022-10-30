@@ -403,12 +403,14 @@ class _AboutUsState extends State<AboutUs> {
               const SizedBox(
                 height: 20,
               ),
-              RaisedButton(
+              ElevatedButton(
                 child: const Text(
                   "Kirim Pesan",
                   style: TextStyle(color: Colors.white),
                 ),
-                color: const Color.fromRGBO(11, 53, 168, 1),
+                style: ElevatedButton.styleFrom(
+                  primary: const Color.fromRGBO(11, 53, 168, 1),
+                ),
                 onPressed: () async {
                   final isValid = _formKey.currentState!.validate();
 
