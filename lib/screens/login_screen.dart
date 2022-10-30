@@ -1,4 +1,4 @@
-// ignore_for_file: constant_identifier_names
+// ignore_for_file: constant_identifier_names, use_build_context_synchronously
 import 'package:echo/common/network_service.dart';
 import 'package:provider/provider.dart';
 import 'package:echo/common/background_image.dart';
@@ -174,15 +174,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     onTap: () => Navigator.pushNamed(
                         context, CreateNewAccount.ROUTE_NAME),
                     child: Container(
+                      decoration: const BoxDecoration(
+                          border: Border(
+                              bottom:
+                                  BorderSide(width: 1, color: Colors.white))),
                       child: const Text(
                         'Create New Account',
                         style: TextStyle(
                             fontSize: 22, color: Colors.white, height: 1.5),
                       ),
-                      decoration: const BoxDecoration(
-                          border: Border(
-                              bottom:
-                                  BorderSide(width: 1, color: Colors.white))),
                     ),
                   ),
                   const SizedBox(

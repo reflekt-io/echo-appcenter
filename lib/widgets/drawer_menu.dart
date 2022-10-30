@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:echo/common/network_service.dart';
 import 'package:echo/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +35,9 @@ class DrawerMenu extends StatelessWidget {
               width: double.infinity,
               height: 64,
               child: const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color(0xFF24262A),
+                ),
                 child: Text(
                   'reflekt.io',
                   style: TextStyle(
@@ -40,9 +45,6 @@ class DrawerMenu extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                   ),
-                ),
-                decoration: BoxDecoration(
-                  color: Color(0xFF24262A),
                 ),
               ),
             ),
