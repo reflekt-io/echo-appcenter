@@ -1,4 +1,4 @@
-// ignore_for_file: constant_identifier_names
+// ignore_for_file: constant_identifier_names, use_build_context_synchronously
 
 import 'dart:convert' as convert;
 import 'package:echo/common/network_service.dart';
