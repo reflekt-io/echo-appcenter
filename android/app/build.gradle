@@ -54,8 +54,8 @@ android {
        release {
             storeFile file("../../upload-keystore.jks")
             storePassword = "$System.env.KEY_PASSWORD"
-            keyAlias = "release"
-            keyPassword = "$System.env.ALIAS_PASSWORD"
+            keyAlias = "upload"
+            keyPassword = "$System.env.KEY_PASSWORD"
        }
    }
    buildTypes {
