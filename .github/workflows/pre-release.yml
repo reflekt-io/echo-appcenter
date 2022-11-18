@@ -36,7 +36,11 @@ jobs:
       #   run: flutter analyze
               
       - name: Build APK
-        run: flutter build apk --split-per-abi
+        env:
+          KEY_JKS: ${{ secrets.KEY_JKS }}
+          KEY_PASSWORD: ${{ secrets.ALIAS_PASSWORD }}
+          ALIAS_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: echo $KEY_JKS > key.jks && flutter build apk --split-per-abi
       
       - name: Pre-release APK by uploading it to Artifacts
         uses: actions/upload-artifact@v3

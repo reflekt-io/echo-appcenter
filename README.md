@@ -3,6 +3,7 @@
 [![Develop](https://github.com/reflekt-io/echo-appcenter/actions/workflows/develop.yml/badge.svg)](https://github.com/reflekt-io/echo-appcenter/actions/workflows/develop.yml)
 [![Pre-Release](https://github.com/reflekt-io/echo-appcenter/actions/workflows/pre-release.yml/badge.svg)](https://github.com/reflekt-io/echo-appcenter/actions/workflows/pre-release.yml)
 [![Release](https://github.com/reflekt-io/echo-appcenter/actions/workflows/release.yml/badge.svg)](https://github.com/reflekt-io/echo-appcenter/actions/workflows/release.yml)
+[![AppCenter Build status](https://build.appcenter.ms/v0.1/apps/fec28b7d-3347-4493-8f91-e71e8703d7fa/branches/main/badge)](https://appcenter.ms)
 
 Sebuah tempat baru yang akan menjadi tempat aman untuk merefleksikan diri, berkeluh kesah, memberikan semangat kepada sesama, dan menyuarakan harapan tanpa rasa takut.
 
@@ -82,3 +83,5 @@ Berikut ini adalah sumber referensi yang digunakan dalam pembuatan proyek ini.
 - [Flutter Android App Distribution with Visual Studio AppCenter](https://itnext.io/flutter-android-app-distribution-with-visual-studio-appcenter-1b94f3ee8fd1)
 - [Using AppCenter for Flutter projects](https://rocksolidknowledge.com/articles/using-appcenter-for-flutter-projects)
 - [Deploy Flutter Apps using AppCenter](https://medium.com/@maite.daluz11/deploy-flutter-apps-using-appcenter-ec28e8d940bf)
+- [Flutter & Github actions for a signed APK](https://danielllewellyn.medium.com/flutter-github-actions-for-a-signed-apk-fcdf9878f660)
+- [Visual Studio Code App Center: Android Gradle plugin requires Java 11 to run. You are currently using Java 1.8](https://stackoverflow.com/a/71876102)
