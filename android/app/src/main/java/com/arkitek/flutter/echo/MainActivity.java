@@ -1,4 +1,4 @@
-package com.reflekt_io.echo;
+package com.arkitek.flutter.echo;
 import io.flutter.embedding.android.FlutterActivity;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
