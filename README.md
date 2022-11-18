@@ -3,7 +3,7 @@
 [![Develop](https://github.com/reflekt-io/echo-appcenter/actions/workflows/develop.yml/badge.svg)](https://github.com/reflekt-io/echo-appcenter/actions/workflows/develop.yml)
 [![Pre-Release](https://github.com/reflekt-io/echo-appcenter/actions/workflows/pre-release.yml/badge.svg)](https://github.com/reflekt-io/echo-appcenter/actions/workflows/pre-release.yml)
 [![Release](https://github.com/reflekt-io/echo-appcenter/actions/workflows/release.yml/badge.svg)](https://github.com/reflekt-io/echo-appcenter/actions/workflows/release.yml)
-[![AppCenter Build status](https://build.appcenter.ms/v0.1/apps/fec28b7d-3347-4493-8f91-e71e8703d7fa/branches/main/badge)](https://appcenter.ms)
+[![AppCenter Build status](https://build.appcenter.ms/v0.1/apps/fec28b7d-3347-4493-8f91-e71e8703d7fa/branches/main/badge)](https://install.appcenter.ms/users/determinedguy/apps/reflekt-io/distribution_groups/public)
 
 Sebuah tempat baru yang akan menjadi tempat aman untuk merefleksikan diri, berkeluh kesah, memberikan semangat kepada sesama, dan menyuarakan harapan tanpa rasa takut.
 
@@ -16,7 +16,7 @@ Sebuah tempat baru yang akan menjadi tempat aman untuk merefleksikan diri, berke
 
 ## 📱 Aplikasi 📱
 
-Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diunduh di bagian [_releases_](https://github.com/reflekt-io/echo-appcenter/releases).
+Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diunduh di bagian [_releases_](https://github.com/reflekt-io/echo-appcenter/releases) atau melalui [Microsoft Visual Studio App Center](https://install.appcenter.ms/users/determinedguy/apps/reflekt-io/distribution_groups/public).
 
 ## 👨‍💻 Pengembang Aplikasi 👩‍💻
 
