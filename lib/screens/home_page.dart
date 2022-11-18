@@ -32,7 +32,6 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          // Nanti jangan pakai const (variable, cuy)
           'Halo, ${request.username}!',
         ),
       ),
