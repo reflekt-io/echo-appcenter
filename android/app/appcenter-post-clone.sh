@@ -17,6 +17,9 @@ flutter doctor
 
 echo "Installed flutter to `pwd`/flutter"
 
+# export key
+echo $KEY_JKS > key.jks
+
 # build APK
 # if you get "Execution failed for task ':app:lintVitalRelease'." error, uncomment next two lines
 # flutter build apk --debug
