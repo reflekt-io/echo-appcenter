@@ -1,8 +1,8 @@
 # reflekt.io - echo
 
-[![Develop](https://github.com/reflekt-io/echo/actions/workflows/develop.yml/badge.svg)](https://github.com/reflekt-io/echo/actions/workflows/develop.yml)
-[![Pre-Release](https://github.com/reflekt-io/echo/actions/workflows/pre-release.yml/badge.svg)](https://github.com/reflekt-io/echo/actions/workflows/pre-release.yml)
-[![Release](https://github.com/reflekt-io/echo/actions/workflows/release.yml/badge.svg)](https://github.com/reflekt-io/echo/actions/workflows/release.yml)
+[![Develop](https://github.com/reflekt-io/echo-appcenter/actions/workflows/develop.yml/badge.svg)](https://github.com/reflekt-io/echo-appcenter/actions/workflows/develop.yml)
+[![Pre-Release](https://github.com/reflekt-io/echo-appcenter/actions/workflows/pre-release.yml/badge.svg)](https://github.com/reflekt-io/echo-appcenter/actions/workflows/pre-release.yml)
+[![Release](https://github.com/reflekt-io/echo-appcenter/actions/workflows/release.yml/badge.svg)](https://github.com/reflekt-io/echo-appcenter/actions/workflows/release.yml)
 
 Sebuah tempat baru yang akan menjadi tempat aman untuk merefleksikan diri, berkeluh kesah, memberikan semangat kepada sesama, dan menyuarakan harapan tanpa rasa takut.
 
@@ -15,7 +15,7 @@ Sebuah tempat baru yang akan menjadi tempat aman untuk merefleksikan diri, berke
 
 ## 📱 Aplikasi 📱
 
-Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diunduh di bagian [_releases_](https://github.com/reflekt-io/echo/releases).
+Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diunduh di bagian [_releases_](https://github.com/reflekt-io/echo-appcenter/releases).
 
 ## 👨‍💻 Pengembang Aplikasi 👩‍💻
 
@@ -33,13 +33,13 @@ Proyek ini dibuat oleh kelompok C04 yang beranggotakan sebagai berikut.
 
 Berikut ini adalah daftar modul yang akan diimplementasikan beserta pengembang dari setiap modul.
 
-- [Journaling](https://github.com/reflekt-io/echo/tree/main/journal) - [Muhammad Athallah](https://github.com/determinedguy)
-- [Pojok Curhat](https://github.com/reflekt-io/echo/tree/main/pojok_curhat) - [Kevin](https://github.com/vnctkevin)
-- [Tembok Harapan](https://github.com/reflekt-io/echo/tree/main/tembok_harapan) - [Teuku Faiz Aryasena](https://github.com/teukufaiz)
-- [Kutipan Penyemangat](https://github.com/reflekt-io/echo/tree/main/kutipan) - [Aurelia Amanda Robert](https://github.com/orelar)
-- [Deteksi Dini Depresi](https://github.com/reflekt-io/echo/tree/main/deteksi_depresi) - [Loanda Gunawan](https://github.com/Gloanda)
-- [Ide Kegiatan untuk Perasaan yang Dirasakan](https://github.com/reflekt-io/echo/tree/main/ide_kegiatan) - [Muhammad Fikri Haryanto](https://github.com/mfikriharyanto)
-- [About Us](https://github.com/reflekt-io/echo/tree/main/about_us) - [Muhammad Bintang Azriel Aditya Wardhana](https://github.com/bintangazriel)
+- [Journaling](https://github.com/reflekt-io/echo-appcenter/tree/main/journal) - [Muhammad Athallah](https://github.com/determinedguy)
+- [Pojok Curhat](https://github.com/reflekt-io/echo-appcenter/tree/main/pojok_curhat) - [Kevin](https://github.com/vnctkevin)
+- [Tembok Harapan](https://github.com/reflekt-io/echo-appcenter/tree/main/tembok_harapan) - [Teuku Faiz Aryasena](https://github.com/teukufaiz)
+- [Kutipan Penyemangat](https://github.com/reflekt-io/echo-appcenter/tree/main/kutipan) - [Aurelia Amanda Robert](https://github.com/orelar)
+- [Deteksi Dini Depresi](https://github.com/reflekt-io/echo-appcenter/tree/main/deteksi_depresi) - [Loanda Gunawan](https://github.com/Gloanda)
+- [Ide Kegiatan untuk Perasaan yang Dirasakan](https://github.com/reflekt-io/echo-appcenter/tree/main/ide_kegiatan) - [Muhammad Fikri Haryanto](https://github.com/mfikriharyanto)
+- [About Us](https://github.com/reflekt-io/echo-appcenter/tree/main/about_us) - [Muhammad Bintang Azriel Aditya Wardhana](https://github.com/bintangazriel)
 
 ## 🔗 Integrasi dengan Situs Web 🔗
 
