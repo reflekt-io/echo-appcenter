@@ -85,3 +85,4 @@ Berikut ini adalah sumber referensi yang digunakan dalam pembuatan proyek ini.
 - [Deploy Flutter Apps using AppCenter](https://medium.com/@maite.daluz11/deploy-flutter-apps-using-appcenter-ec28e8d940bf)
 - [Flutter & Github actions for a signed APK](https://danielllewellyn.medium.com/flutter-github-actions-for-a-signed-apk-fcdf9878f660)
 - [Visual Studio Code App Center: Android Gradle plugin requires Java 11 to run. You are currently using Java 1.8](https://stackoverflow.com/a/71876102)
+- [Build flutter releases in github actions for production only android for while.](https://gist.github.com/vinicioslc/b9bd073c8013a726033a999db68a45be)
