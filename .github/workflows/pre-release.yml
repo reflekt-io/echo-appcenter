@@ -34,13 +34,17 @@ jobs:
 
       # - name: Analyze
       #   run: flutter analyze
+
+      - name: Generate Java keystore
+        env: 
+          KEY_JKS: ${{ secrets.KEY_JKS }}
+        run: echo $KEY_JKS | base64 --decode > upload-keystore.jks 
               
       - name: Build APK
         env:
-          KEY_JKS: ${{ secrets.KEY_JKS }}
           KEY_PASSWORD: ${{ secrets.ALIAS_PASSWORD }}
           ALIAS_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: echo $KEY_JKS > upload-keystore.jks && flutter build apk --split-per-abi
+        run: flutter build apk --split-per-abi
       
       - name: Pre-release APK by uploading it to Artifacts
         uses: actions/upload-artifact@v3
