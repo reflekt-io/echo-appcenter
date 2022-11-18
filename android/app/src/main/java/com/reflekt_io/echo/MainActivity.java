@@ -9,7 +9,7 @@ import android.os.Bundle;
 public class MainActivity extends FlutterActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AppCenter.start(getApplication(), "{your-project-key-from-appcenter}", Distribute.class, Analytics.class, Crashes.class);
+        AppCenter.start(getApplication(), "b5126333-83c8-40d1-9f0d-69b2d62167d9", Distribute.class, Analytics.class, Crashes.class);
         AppCenter.setEnabled(true);
         Analytics.trackEvent("Application started");
         super.onCreate(savedInstanceState);
