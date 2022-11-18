@@ -14,10 +14,13 @@ Sebuah tempat baru yang akan menjadi tempat aman untuk merefleksikan diri, berke
 > pada Semester Gasal, Tahun Ajaran 2021/2022.
 
 ## 📱 Aplikasi 📱
+
 Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diunduh di bagian [_releases_](https://github.com/reflekt-io/echo/releases).
 
 ## 👨‍💻 Pengembang Aplikasi 👩‍💻
+
 Proyek ini dibuat oleh kelompok C04 yang beranggotakan sebagai berikut.
+
 - [Aurelia Amanda Robert](https://github.com/orelar) (2006527903)
 - [Kevin](https://github.com/vnctkevin) (2006483795)
 - [Loanda Gunawan](https://github.com/Gloanda) (2006521585)
@@ -27,7 +30,9 @@ Proyek ini dibuat oleh kelompok C04 yang beranggotakan sebagai berikut.
 - [Teuku Faiz Aryasena](https://github.com/teukufaiz) (2006535716)
 
 ## 📋 Daftar Modul 📋
+
 Berikut ini adalah daftar modul yang akan diimplementasikan beserta pengembang dari setiap modul.
+
 - [Journaling](https://github.com/reflekt-io/echo/tree/main/journal) - [Muhammad Athallah](https://github.com/determinedguy)
 - [Pojok Curhat](https://github.com/reflekt-io/echo/tree/main/pojok_curhat) - [Kevin](https://github.com/vnctkevin)
 - [Tembok Harapan](https://github.com/reflekt-io/echo/tree/main/tembok_harapan) - [Teuku Faiz Aryasena](https://github.com/teukufaiz)
@@ -46,9 +51,11 @@ Berikut adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan aplika
 4. Melakukan integrasi antara _front-end_ dengan _back-end_ dengan menggunakan konsep _asynchronous_ HTTP.
 
 ## 👥 Persona 👥
+
 Aplikasi ini hanya dapat diakses setelah pengguna melakukan _login_. Apabila pengguna belum memiliki akun, maka pengguna dapat membuat akun melalui fitur _sign up_.
 
 Pengguna yang sudah melakukan _login_ dapat:
+
 - Melakukan Deteksi Dini Depresi
 - Melakukan Journaling
 - Menggunakan Pojok Curhat
@@ -58,7 +65,9 @@ Pengguna yang sudah melakukan _login_ dapat:
 - Melihat detail aplikasi dan memberikan saran kepada pengembang aplikasi melalui About Us
 
 ## 📑 Referensi 📑
+
 Berikut ini adalah sumber referensi yang digunakan dalam pembuatan proyek ini.
+
 - [Efektivitas Kuesioner PHQ-9 Sebagai Skrining Deteksi Dini Depresi](https://www.alomedika.com/efektivitas-kuesioner-ph-9-sebagai-skrining-deteksi-dini-depresi/)
 - [The Patient Health Questionnaire (PHQ-9) - Overview](https://img3.reoveme.com/m/7dcac06741830f40.pdf)
 - [Relax Color Scheme » Blue » SchemeColor.com](https://www.schemecolor.com/relax-color.php)
@@ -70,3 +79,6 @@ Berikut ini adalah sumber referensi yang digunakan dalam pembuatan proyek ini.
 - [How to handle screen transitions in Flutter - Tetsuhiro Ueda](https://medium.com/@najeira/how-to-handle-screen-transitions-in-flutter-b39dcb2675f)
 - [App Icon Generator](https://appicon.co/)
 - [How to implement Authentication in TK2 PBP - Adrian Ardizza](https://gist.github.com/Meta502/1605fdba3b141fbf67dba689e9e55498)
+- [Flutter Android App Distribution with Visual Studio AppCenter](https://itnext.io/flutter-android-app-distribution-with-visual-studio-appcenter-1b94f3ee8fd1)
+- [Using AppCenter for Flutter projects](https://rocksolidknowledge.com/articles/using-appcenter-for-flutter-projects)
+- [Deploy Flutter Apps using AppCenter](https://medium.com/@maite.daluz11/deploy-flutter-apps-using-appcenter-ec28e8d940bf)
