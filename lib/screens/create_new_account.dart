@@ -205,7 +205,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             if (_formKey.currentState!.validate()) {
                               // Submit to Django server and wait for response
                               final response = await request.postJson(
-                                  "https://reflekt-io.herokuapp.com/registerflutter",
+                                  "https://reflekt-io.up.railway.app/registerflutter",
                                   convert.jsonEncode(<String, String>{
                                     'username': username,
                                     'email': email,

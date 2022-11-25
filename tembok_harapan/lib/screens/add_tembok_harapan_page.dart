@@ -16,7 +16,7 @@ class AddTembokHarapanPage extends StatefulWidget {
 
 class _Tembok_HarapanHomePageState extends State<AddTembokHarapanPage> {
   final _formKey = GlobalKey<FormState>();
-  
+
   String title = "";
   String harapan = "";
 
@@ -64,7 +64,7 @@ class _Tembok_HarapanHomePageState extends State<AddTembokHarapanPage> {
                       setState(() {
                         title = value!;
                       });
-                     },
+                    },
                     onSaved: (String? value) {
                       setState(() {
                         title = value!;
@@ -82,13 +82,14 @@ class _Tembok_HarapanHomePageState extends State<AddTembokHarapanPage> {
                   child: TextFormField(
                     decoration: const InputDecoration(
                       icon: Icon(Icons.sticky_note_2),
-                      hintText: 'Apa yang akan kamu lakukan agar kamu dapat mewujudkan harapanmu?',
+                      hintText:
+                          'Apa yang akan kamu lakukan agar kamu dapat mewujudkan harapanmu?',
                       labelText: 'Usahamu',
                     ),
                     onSaved: (String? value) {
                       // This optional block of code can be used to run
                       // code when the user saves the form.
-                       setState(() {
+                      setState(() {
                         harapan = value!;
                       });
                     },
@@ -118,7 +119,7 @@ class _Tembok_HarapanHomePageState extends State<AddTembokHarapanPage> {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         final response = await request.postJson(
-                            "https://reflekt-io.herokuapp.com/tembok-harapan/add-harapan-flutter",
+                            "https://reflekt-io.up.railway.app/tembok-harapan/add-harapan-flutter",
                             convert.jsonEncode(<String, String>{
                               'title': title,
                               'harapan': harapan,
@@ -126,7 +127,8 @@ class _Tembok_HarapanHomePageState extends State<AddTembokHarapanPage> {
                         if (response['status'] == 'success') {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
-                            content: Text("Harapan baru telah berhasil disimpan!"),
+                            content:
+                                Text("Harapan baru telah berhasil disimpan!"),
                           ));
                           Navigator.pushReplacementNamed(
                               context, TembokHarapanHomePage.ROUTE_NAME);

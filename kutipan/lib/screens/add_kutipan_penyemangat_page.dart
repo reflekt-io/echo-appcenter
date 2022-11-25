@@ -61,16 +61,16 @@ class _Kutipan_PenyemangatHomePageState
                       hintText: 'Masukin nama kamu (boleh anonim juga :D)',
                       labelText: 'Nama',
                     ),
-                     onChanged: (String? value) {
+                    onChanged: (String? value) {
                       setState(() {
                         nama = value!;
                       });
-                     },
-                      onSaved: (String? value) {
+                    },
+                    onSaved: (String? value) {
                       setState(() {
                         nama = value!;
                       });
-                      },
+                    },
                     validator: (String? value) {
                       return (value == null || value.isEmpty)
                           ? 'Nama tidak boleh kosong.'
@@ -89,7 +89,7 @@ class _Kutipan_PenyemangatHomePageState
                     onSaved: (String? value) {
                       // This optional block of code can be used to run
                       // code when the user saves the form.
-                       setState(() {
+                      setState(() {
                         kutipan = value!;
                       });
                     },
@@ -97,7 +97,7 @@ class _Kutipan_PenyemangatHomePageState
                       setState(() {
                         kutipan = value!;
                       });
-                     },
+                    },
                     validator: (String? value) {
                       return (value == null || value.isEmpty)
                           ? 'Kutipannya tidak boleh kosong.'
@@ -119,7 +119,7 @@ class _Kutipan_PenyemangatHomePageState
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         final response = await request.postJson(
-                            "https://reflekt-io.herokuapp.com/kutipan-penyemangat/add-kutipan-flutter",
+                            "https://reflekt-io.up.railway.app/kutipan-penyemangat/add-kutipan-flutter",
                             convert.jsonEncode(<String, String>{
                               'name': nama,
                               'quotes_form': kutipan,
@@ -127,7 +127,8 @@ class _Kutipan_PenyemangatHomePageState
                         if (response['status'] == 'success') {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
-                            content: Text("Kutipan Penyamangat baru telah berhasil disimpan!"),
+                            content: Text(
+                                "Kutipan Penyamangat baru telah berhasil disimpan!"),
                           ));
                           Navigator.pushReplacementNamed(
                               context, KutipanPenyemangatHomePage.ROUTE_NAME);

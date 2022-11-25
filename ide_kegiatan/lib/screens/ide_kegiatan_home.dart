@@ -125,7 +125,7 @@ class _IdeKegiatanHomePageState extends State<IdeKegiatanHomePage> {
 
   Future<List<Kegiatan>> fetchKegiatan() async {
     final request = context.watch<NetworkService>();
-    String url = 'https://reflekt-io.herokuapp.com/refleksi/add-deskripsi';
+    String url = 'https://reflekt-io.up.railway.app/refleksi/add-deskripsi';
 
     final response = await request.get(url);
 
@@ -141,7 +141,7 @@ class _IdeKegiatanHomePageState extends State<IdeKegiatanHomePage> {
 
   Future<List<Rekomendasi>> fetchRekomendasi() async {
     final request = context.watch<NetworkService>();
-    String url = 'https://reflekt-io.herokuapp.com/refleksi/add-deskripsi';
+    String url = 'https://reflekt-io.up.railway.app/refleksi/add-deskripsi';
 
     final response = await request.get(url);
 

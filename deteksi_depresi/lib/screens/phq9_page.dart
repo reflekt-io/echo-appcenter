@@ -17,7 +17,6 @@ class PHQ9 extends StatefulWidget {
 }
 
 class _PHQ9State extends State<PHQ9> with RouteAware {
-
   List<String> questions = [
     "Kurang berminat atau bergairah dalam melakukan apapun",
     "Merasa murung, sedih, atau putus asa",
@@ -99,29 +98,29 @@ class _PHQ9State extends State<PHQ9> with RouteAware {
                 ),
               ),
               for (int i = 0; i < questions.length; i++)
-              Column(
-                children: [
-                  const Divider(
-                    thickness: 2.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(questions[i]),
-                  ),
-                  Slider(
-                    value: scores[i],
-                    min: 0,
-                    max: 3,
-                    divisions: 3,
-                    label: '${choices[scores[i].round()]['text']}',
-                    onChanged: (value) {
-                      setState(() {
-                        scores[i] = value;
-                      });
-                    },
-                  ),
-                ],
-              ),
+                Column(
+                  children: [
+                    const Divider(
+                      thickness: 2.0,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(questions[i]),
+                    ),
+                    Slider(
+                      value: scores[i],
+                      min: 0,
+                      max: 3,
+                      divisions: 3,
+                      label: '${choices[scores[i].round()]['text']}',
+                      onChanged: (value) {
+                        setState(() {
+                          scores[i] = value;
+                        });
+                      },
+                    ),
+                  ],
+                ),
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
                 child: TextButton(
@@ -138,18 +137,16 @@ class _PHQ9State extends State<PHQ9> with RouteAware {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: const Text(
-                              "Hasil Deteksi Depresi"),
+                          title: const Text("Hasil Deteksi Depresi"),
                           content: Text(resultText),
                         );
                       },
                     );
                     await request.postJson(
-                        "https://reflekt-io.herokuapp.com/deteksi-depresi/add-result-flutter",
+                        "https://reflekt-io.up.railway.app/deteksi-depresi/add-result-flutter",
                         convert.jsonEncode(<String, String>{
                           'result': resultText,
-                        })
-                    );
+                        }));
                   },
                 ),
               ),
@@ -162,19 +159,21 @@ class _PHQ9State extends State<PHQ9> with RouteAware {
 
   showResult() async {
     final request = context.read<NetworkService>();
-    String url = 'https://reflekt-io.herokuapp.com/deteksi-depresi/fetch-result-flutter';
+    String url =
+        'https://reflekt-io.up.railway.app/deteksi-depresi/fetch-result-flutter';
     Result data;
 
     final response = await request.get(url);
     data = Result.fromMap(response);
-    
+
     if (data.result != "") {
       showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
             title: const Text("Hasil Terakhir Deteksi Depresi"),
-            content: Text("${data.result} (${data.date.toLocal().toString().substring(0, 16)})"),
+            content: Text(
+                "${data.result} (${data.date.toLocal().toString().substring(0, 16)})"),
           );
         },
       );

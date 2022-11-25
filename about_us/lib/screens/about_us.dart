@@ -419,7 +419,7 @@ class _AboutUsState extends State<AboutUs> {
 
                     final response = await http.post(
                         Uri.parse(
-                            "https://reflekt-io.herokuapp.com/about-us/add-contact-flutter"),
+                            "https://reflekt-io.up.railway.app/about-us/add-contact-flutter"),
                         headers: <String, String>{
                           'Content-Type': 'application/json; charset=UTF-8',
                         },

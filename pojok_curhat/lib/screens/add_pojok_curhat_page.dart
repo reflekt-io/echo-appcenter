@@ -119,7 +119,7 @@ class _Pojok_CurhatHomePageState extends State<AddPojokCurhatPage> {
                     ),
                     onChanged: (String? value) {
                       setState(() {
-                        _typedMessage= value!;
+                        _typedMessage = value!;
                       });
                     },
                     onSaved: (String? value) {
@@ -150,7 +150,7 @@ class _Pojok_CurhatHomePageState extends State<AddPojokCurhatPage> {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         final response = await request.postJson(
-                            "https://reflekt-io.herokuapp.com/pojok-curhat/add-curhat-flutter",
+                            "https://reflekt-io.up.railway.app/pojok-curhat/add-curhat-flutter",
                             convert.jsonEncode(<String, String>{
                               'fromCurhat': _typedName,
                               'title': _typedTitle,
